@@ -1,13 +1,18 @@
 package net.bauxite_ltk.immersive_metallurgy.block.metal;
 
+import blusunrize.immersiveengineering.api.IETags;
 import blusunrize.immersiveengineering.api.utils.DirectionUtils;
 import blusunrize.immersiveengineering.api.utils.SafeChunkUtils;
+import blusunrize.immersiveengineering.api.utils.shapes.CachedVoxelShapes;
 import blusunrize.immersiveengineering.common.blocks.BlockCapabilityRegistration;
 import blusunrize.immersiveengineering.common.blocks.IEBaseBlockEntity;
 import blusunrize.immersiveengineering.common.blocks.IEBlockInterfaces;
 import blusunrize.immersiveengineering.common.blocks.PlacementLimitation;
+import blusunrize.immersiveengineering.common.blocks.metal.FluidPipeBlockEntity;
 import blusunrize.immersiveengineering.common.blocks.ticking.IEServerTickableBE;
+import blusunrize.immersiveengineering.common.register.IEItems;
 import blusunrize.immersiveengineering.common.util.IEBlockCapabilityCaches;
+import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
 import it.unimi.dsi.fastutil.objects.Object2BooleanOpenHashMap;
 import net.bauxite_ltk.immersive_metallurgy.ImmersiveMetallurgy;
@@ -16,21 +21,30 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElectricCableConnectionBE ,IEServerTickableBE,
-        IEBlockInterfaces.IStateBasedDirectional, IEBlockInterfaces.IPlacementInteraction {
+        IEBlockInterfaces.IStateBasedDirectional, IEBlockInterfaces.IPlacementInteraction,
+        IEBlockInterfaces.ICollisionBounds, IEBlockInterfaces.ISelectionBounds {
 
 
     protected int transferLimit;
@@ -242,11 +256,27 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
         final byte oldConn = connections;
         int i = dir.get3DDataValue();
         int mask = 1<<i;
-        connections &= (byte) ~mask;
-        connectionAndAttachment.remove(dir);
 
-        if(sideConfig.getBoolean(dir))
-        {
+        boolean wasConnected = (connections & (byte) mask)!=0;
+        ImmersiveMetallurgy.LOGGER.info("connections:{}", connections);
+        ImmersiveMetallurgy.LOGGER.info("mask:{}", mask);
+        ImmersiveMetallurgy.LOGGER.info("wasConnected:{}", (connections & (byte) mask));
+
+        if(wasConnected){
+            //ImmersiveMetallurgy.LOGGER.info("execute wasConnected updateConnectionByte");
+            boolean doRemove = false;
+            IEnergyStorage energyStorage = neighbors.get(dir).getCapability();
+            IElectricCableConnectionBE iElectricCable = getNeighborIElectricCable(dir);
+            if(!sideConfig.getBoolean(dir)) doRemove = true;
+            else if(energyStorage == null) doRemove = true;
+            else if(iElectricCable == null && !isDirectionTerminal(dir)) doRemove = true;
+            if(doRemove){
+                connections &= (byte) ~mask;
+                connectionAndAttachment.remove(dir);
+            }
+        }
+        else if(getConnectionCount() < 2){
+            //ImmersiveMetallurgy.LOGGER.info("execute regular updateConnectionByte");
             IEnergyStorage energyStorage = neighbors.get(dir).getCapability();
             IElectricCableConnectionBE be = getNeighborIElectricCable(dir);
             if(energyStorage!=null){
@@ -254,16 +284,22 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
                     connections |= (byte) mask;
                 }
                 else if(be instanceof ElectricCableBlockEntity electricCable){
-                    for(Direction attachDir : getTerminalDirections()){
-                        if(electricCable.getTerminalDirections().contains(attachDir)){
-                            connections |= (byte) mask;
-                            connectionAndAttachment.put(dir,attachDir);
-                            ImmersiveMetallurgy.LOGGER.info("connected neighbor cable");
+                    byte neighborConnections = electricCable.getConnectionByte();
+                    if(electricCable.getConnectionCount() < 2 ||
+                            ((neighborConnections >> dir.getOpposite().get3DDataValue()) & 1 ) != 0)
+                    {
+                        for (Direction attachDir : getAttachDirections()) {
+                            if (electricCable.getAttachDirections().contains(attachDir)) {
+                                connections |= (byte) mask;
+                                connectionAndAttachment.put(dir, attachDir);
+                                //ImmersiveMetallurgy.LOGGER.info("connected neighbor cable");
+                            }
                         }
                     }
                 }
             }
         }
+
         return oldConn!=connections;
     }
 
@@ -274,10 +310,11 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
         super.onNeighborBlockChange(otherPos);
         Direction dir = Direction.getNearest(otherPos.getX()-worldPosition.getX(),
                 otherPos.getY()-worldPosition.getY(), otherPos.getZ()-worldPosition.getZ());
-        ImmersiveMetallurgy.LOGGER.info("{} onNeighborBlockChange, dir: {}", getBlockPos(), dir);
+        //ImmersiveMetallurgy.LOGGER.info("{} onNeighborBlockChange, dir: {}", getBlockPos(), dir);
         if(updateConnectionByte(dir))
         {
             updateTerminal(true);
+            updateAllRootNode();
             Level world = getLevelNonnull();
             world.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
         }
@@ -327,11 +364,26 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
         return false;
     }
 
+    public List<Direction> getAttachDirections(){
+        List<Direction> directions = new ArrayList<>();
+        if(mainDir != null) directions.add(mainDir);
+        if(subDir != null) directions.add(subDir);
+        return directions;
+    }
+
     public List<Direction> getTerminalDirections(){
         List<Direction> directions = new ArrayList<>();
         if(isDirectionTerminal(mainDir)) directions.add(mainDir);
         if(isDirectionTerminal(subDir)) directions.add(subDir);
         return directions;
+    }
+
+    public int getConnectionCount(){
+        int count = 0;
+        for(int i = 0; i< 6; i++){
+            if(((connections >> i) & 1) != 0) count++;
+        }
+        return count;
     }
 
     public Map<Direction, Direction> getConnectionAndAttachment() {
@@ -344,7 +396,7 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
         mainDir = getFacing();
         mainTerminal = true;
         setSide(mainDir.getOpposite(), false);
-        ImmersiveMetallurgy.LOGGER.info("mainAttachment: {}", mainDir);
+        //ImmersiveMetallurgy.LOGGER.info("mainAttachment: {}", mainDir);
         for(Direction d : DirectionUtils.VALUES){
             updateConnectionByte(d);
         }
@@ -404,6 +456,149 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
             return up;
         }
         return null;
+    }
+
+
+    public byte getAvailableConnectionByte()
+    {
+        byte availableConnections = connections;
+        int mask = 1;
+        for(Direction dir : DirectionUtils.VALUES)
+        {
+            if((availableConnections&mask)==0)
+            {
+                if(level.getBlockEntity(getBlockPos().relative(dir)) instanceof ElectricCableBlockEntity)
+                    availableConnections |= mask;
+                else
+                {
+                    IEnergyStorage handler = neighbors.get(dir).getCapability();
+                    if(handler!=null)
+                        availableConnections |= mask;
+                }
+            }
+            mask <<= 1;
+        }
+        return availableConnections;
+    }
+
+
+    private static final CachedVoxelShapes<BoundingBoxKey> SHAPES = new CachedVoxelShapes<>(ElectricCableBlockEntity::getBoxes);
+
+    @Override
+    public VoxelShape getCollisionShape(CollisionContext ctx)
+    {
+        return SHAPES.get(new BoundingBoxKey(this,false, mainDir, subDir, mainTerminal, subTerminal, connectionAndAttachment));
+    }
+
+    @Override
+    public VoxelShape getSelectionShape(@Nullable CollisionContext ctx)
+    {
+        //TODO needs to be a more generic check!
+        boolean hammer = ctx!=null&&ctx.isHoldingItem(IEItems.Tools.HAMMER.get());
+        if(ctx instanceof EntityCollisionContext ecc){
+            if(ecc.getEntity() instanceof Player player){
+                hammer = player.getItemInHand(InteractionHand.MAIN_HAND).getTags()
+                        .anyMatch(tagKey -> tagKey.equals(IETags.hammers));
+            }
+        }
+        return SHAPES.get(new BoundingBoxKey( this, hammer, mainDir, subDir, mainTerminal, subTerminal, connectionAndAttachment));
+    }
+
+
+    private static List<AABB> getBoxes(BoundingBoxKey key)
+    {
+        List<AABB> list = Lists.newArrayList();
+        byte availableConnections = key.availableConnections;
+        byte activeConnections = key.connections;
+        for(Direction d : DirectionUtils.VALUES)
+        {
+            int i = d.get3DDataValue();
+            if(((availableConnections >> i) & 1)==1)
+            {
+                if(((activeConnections >> i) & 1)==1||key.showToolView)
+                {
+                    switch (d){
+                        case Direction.UP:{
+                            list.add(new AABB(3d/16, 0, 0, 13d/16,1,1));
+                            break;
+                        }
+                        case Direction.NORTH:{
+                            list.add(new AABB(3d/16, 0, 0, 13d/16, 8d/16,3d/16));
+                            break;
+                        }
+                        case Direction.SOUTH:{
+                            list.add(new AABB(3d/16, 0, 13d/16, 13d/16, 8d/16,1));
+                            break;
+                        }
+                        case Direction.EAST:{
+                            list.add(new AABB(13d/16, 0, 3d/16, 1, 8d/16,13d/16));
+                            break;
+                        }
+                        case Direction.WEST:{
+                            list.add(new AABB(0, 0, 3d/16, 3d/16, 8d/16,13d/16));
+                            break;
+                        }
+                    }
+//                    if(key.connectionStyles.get(d)== ConnectionStyle.TO_UP_NORTH)
+//                        list.add(new AABB(
+//                                i==4?0: i==5?0.875: 0.125, i==0?0: i==1?0.875: 0.125, i==2?0: i==3?0.875: 0.125,
+//                                i==4?0.125: i==5?1: 0.875, i==0?0.125: i==1?1: 0.875, i==2?0.125: i==3?1: 0.875
+//                        ));
+                }
+            }
+        }
+        list.add(new AABB(3d/16, 0, 3d/16, 13d/16, 8d/16, 13d/16));
+        return list;
+    }
+
+    private static class BoundingBoxKey
+    {
+        private final boolean showToolView;
+        private final byte connections;
+        private final byte availableConnections;
+        private final Map<Direction, ConnectionStyle> connectionStyles = new EnumMap<>(Direction.class);
+
+        Direction mainDir;
+        Direction subDir;
+        boolean isMainTerminal;
+        boolean isSubTerminal;
+        Map<Direction, Direction> connectionAndAttachment;
+
+        private BoundingBoxKey(ElectricCableBlockEntity te, boolean showToolView,
+                               Direction mainDir, Direction subDir,
+                               boolean isMainTerminal, boolean isSubTerminal,
+                               Map<Direction, Direction> connectionAndAttachment)
+        {
+            this.showToolView = showToolView;
+            this.connections = te.connections;
+            this.availableConnections = te.getAvailableConnectionByte();
+            for(Direction d : DirectionUtils.VALUES)
+                connectionStyles.put(d, te.getConnectionStyle(d));
+            this.mainDir = mainDir;
+            this.subDir = subDir;
+            this.isMainTerminal = isMainTerminal;
+            this.isSubTerminal = isSubTerminal;
+            this.connectionAndAttachment = connectionAndAttachment;
+        }
+
+        @Override
+        public boolean equals(Object o)
+        {
+            if(this==o) return true;
+            if(o==null||getClass()!=o.getClass()) return false;
+            BoundingBoxKey that = (BoundingBoxKey)o;
+            return showToolView==that.showToolView&&
+                    connections==that.connections&&
+                    availableConnections==that.availableConnections&&
+                    connectionStyles.equals(that.connectionStyles);
+        }
+
+        @Override
+        public int hashCode()
+        {
+            return Objects.hash(showToolView, connections, availableConnections, connectionStyles);
+        }
+
     }
 
 

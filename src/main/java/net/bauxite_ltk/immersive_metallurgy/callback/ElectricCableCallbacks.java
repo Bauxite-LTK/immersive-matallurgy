@@ -59,8 +59,8 @@ public class ElectricCableCallbacks implements BlockCallback<ElectricCableCallba
         List<String> parts = new ArrayList<>();
         Matrix4 rotationMatrix = new Matrix4();
         rotationMatrix.translate(0.5, 0.5, 0.5);
-        Direction mainDir = key.getMainCenter();
-        Direction subDir = key.getSubCenter();
+        Direction mainDir = key.mainDir;
+        Direction subDir = key.subDir;
         boolean mainTerminal = key.isMainTerminal;
         boolean subTerminal = key.isSubTerminal;
         if(mainDir != null){
@@ -104,21 +104,7 @@ public class ElectricCableCallbacks implements BlockCallback<ElectricCableCallba
             Map<Direction, Direction> connectionAndAttachment
     )
     {
-        public Direction getMainCenter(){
-            return mainDir;
-        }
 
-        public Direction getSubCenter(){
-            return subDir;
-        }
-
-        public boolean isMainTerminal(){
-            return isMainTerminal;
-        }
-
-        public boolean isSubTerminal(){
-            return isSubTerminal;
-        }
 
 
 

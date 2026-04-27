@@ -42,8 +42,9 @@ public interface IElectricCableConnectionBE {
             else if(status.equals(ConnectionStatus.COMMON)){
                 IEnergyStorage source = getNeighborHandler(info.previous);
                 if (source == null){
-                    ImmersiveMetallurgy.LOGGER.info("change root");
-                    info.setStatus(ConnectionStatus.ROOT);
+                    ImmersiveMetallurgy.LOGGER.info("invalid");
+                    info.setStatus(ConnectionStatus.INVALID);
+                    updateNode();
                 }
             }
         }
@@ -65,7 +66,7 @@ public interface IElectricCableConnectionBE {
         List<BlockPos> closeList = new LinkedList<>();
         openList.add(infoRootPos);
         for(int i = 0; i < 1024; i++){
-            //TFCTrihydrate.LOGGER.info("rootUpdateSubnet: i = {}", i);
+            ImmersiveMetallurgy.LOGGER.info("rootUpdateSubnet: i = {}", i);
             if(openList.isEmpty()) break;
             BlockPos curPos = openList.getFirst();
             openList.removeFirst();
@@ -142,8 +143,8 @@ public interface IElectricCableConnectionBE {
         if(nextDir == null) return null;
         IEnergyStorage energyStorage = getNeighborHandler(nextDir);
         if(energyStorage == null) return null;
-        if(energyStorage instanceof ElectricCableEnergyStorge){
-            return getTailEnergyHandler(rootTerminal);
+        if(energyStorage instanceof ElectricCableEnergyStorge electricCableES){
+            return electricCableES.electricCable.getTailEnergyHandler(rootTerminal);
         }
         else {
             return energyStorage;
