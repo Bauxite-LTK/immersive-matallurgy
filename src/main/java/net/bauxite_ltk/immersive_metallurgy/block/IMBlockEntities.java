@@ -1,0 +1,58 @@
+package net.bauxite_ltk.immersive_metallurgy.block;
+
+import com.google.common.collect.ImmutableSet;
+import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlock;
+import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlockEntity;
+import net.bauxite_ltk.immersive_metallurgy.block.metal.ElectricCableBlockEntity;
+import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
+public class IMBlockEntities {
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(
+            BuiltInRegistries.BLOCK_ENTITY_TYPE, IMUtils.MOD_ID
+    );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> CAN_SOLIDIFY_LIQUID = BLOCK_ENTITIES.register(
+            "can_solidify_liquid", makeType(CanSolidifyLiquidBlockEntity::new, IMBlocks.MOLTEN_PIG_IRON));
+
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ElectricCableBlockEntity>> ELECTRIC_CABLE = BLOCK_ENTITIES.register(
+            "electric_cable", makeType(ElectricCableBlockEntity::forLv, IMBlocks.ELECTRIC_CABLE)
+    );
+
+
+    public static <T extends BlockEntity> Supplier<BlockEntityType<T>> makeType(BlockEntityType.BlockEntitySupplier<T> create, Supplier<? extends Block> valid)
+    {
+        return makeTypeMultipleBlocks(create, ImmutableSet.of(valid));
+    }
+
+    @SafeVarargs
+    public static <T extends BlockEntity> Supplier<BlockEntityType<T>> makeTypeMultipleBlocks(
+            BlockEntityType.BlockEntitySupplier<T> create, Collection<? extends Supplier<? extends Block>>... valid
+    )
+    {
+        return () -> new BlockEntityType<>(
+                create,
+                Arrays.stream(valid)
+                        .flatMap(Collection::stream)
+                        .map(Supplier::get)
+                        .collect(Collectors.toSet()),
+                null
+        );
+    }
+
+    public static void init(IEventBus modEventBus){
+        BLOCK_ENTITIES.register(modEventBus);
+    }
+}

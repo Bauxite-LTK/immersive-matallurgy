@@ -1,0 +1,12 @@
+{
+  "itemGroup.immersive_metallurgy": "Example Mod Tab",
+
+
+  "item.immersive_metallurgy.bucket.molten_pig_iron": "Molten Pig Iron Bucket",
+  "block.immersive_metallurgy.fluid.molten_pig_iron": "Molten Pig Iron",
+  "fluid.immersive_metallurgy.molten_pig_iron": "Molten Pig Iron",
+
+  "immersive_metallurgy.configuration.title": "Immersive Metallurgy Configs",
+  "immersive_metallurgy.configuration.section.immersive_metallurgy.common.toml": "Immersive Metallurgy Configs",
+  "immersive_metallurgy.configuration.section.immersive_metallurgy.common.toml.title": "Immersive Metallurgy Configs"
+}
