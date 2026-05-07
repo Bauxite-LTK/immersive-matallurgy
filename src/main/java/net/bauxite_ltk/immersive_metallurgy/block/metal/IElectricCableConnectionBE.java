@@ -23,6 +23,8 @@ public interface IElectricCableConnectionBE {
 
     IElectricCableConnectionBE getNeighborIElectricCable(Direction direction);
 
+    int getTransferLimit();
+
     default void updateNode(){
         List<ConnectionInfo> connectionInfoList = getConnectionInfoList();
         int connectionByte = getConnectionByte();
@@ -172,8 +174,9 @@ public interface IElectricCableConnectionBE {
                 electricCable.updateNode();
             }
             IEnergyStorage tailEnergyStorge = electricCable.getTailEnergyHandler(electricCable.getBE().getBlockPos());
+            int transferLimit = electricCable.getTransferLimit();
             if(tailEnergyStorge != null)
-                return tailEnergyStorge.receiveEnergy(toReceive, simulate);
+                return tailEnergyStorge.receiveEnergy(Math.min(toReceive, transferLimit), simulate);
             else
                 return 0;
         }

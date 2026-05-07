@@ -258,12 +258,13 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
         int mask = 1<<i;
 
         boolean wasConnected = (connections & (byte) mask)!=0;
+        ImmersiveMetallurgy.LOGGER.info("Pos:{}", getBlockPos());
         ImmersiveMetallurgy.LOGGER.info("connections:{}", connections);
         ImmersiveMetallurgy.LOGGER.info("mask:{}", mask);
         ImmersiveMetallurgy.LOGGER.info("wasConnected:{}", (connections & (byte) mask));
 
         if(wasConnected){
-            //ImmersiveMetallurgy.LOGGER.info("execute wasConnected updateConnectionByte");
+            ImmersiveMetallurgy.LOGGER.info("execute wasConnected updateConnectionByte");
             boolean doRemove = false;
             IEnergyStorage energyStorage = neighbors.get(dir).getCapability();
             IElectricCableConnectionBE iElectricCable = getNeighborIElectricCable(dir);
@@ -276,23 +277,27 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
             }
         }
         else if(getConnectionCount() < 2){
-            //ImmersiveMetallurgy.LOGGER.info("execute regular updateConnectionByte");
+            ImmersiveMetallurgy.LOGGER.info("execute regular updateConnectionByte");
             IEnergyStorage energyStorage = neighbors.get(dir).getCapability();
             IElectricCableConnectionBE be = getNeighborIElectricCable(dir);
-            if(energyStorage!=null){
+            if(energyStorage!=null && sideConfig.getBoolean(dir)){
+                ImmersiveMetallurgy.LOGGER.info("regular 1");
                 if(be == null && isDirectionTerminal(dir)){
                     connections |= (byte) mask;
                 }
                 else if(be instanceof ElectricCableBlockEntity electricCable){
+                    ImmersiveMetallurgy.LOGGER.info("regular 2");
                     byte neighborConnections = electricCable.getConnectionByte();
-                    if(electricCable.getConnectionCount() < 2 ||
-                            ((neighborConnections >> dir.getOpposite().get3DDataValue()) & 1 ) != 0)
+                    ImmersiveMetallurgy.LOGGER.info("regular 3 {}", electricCable.getConnectionCount() < 2);
+                    ImmersiveMetallurgy.LOGGER.info("regular 4 {}", ((neighborConnections >> dir.getOpposite().get3DDataValue()) & 1 ) != 0);
+                    if(electricCable.getConnectionCount() < 2
+                             || ((neighborConnections >> dir.getOpposite().get3DDataValue()) & 1 ) != 0)
                     {
                         for (Direction attachDir : getAttachDirections()) {
                             if (electricCable.getAttachDirections().contains(attachDir)) {
                                 connections |= (byte) mask;
                                 connectionAndAttachment.put(dir, attachDir);
-                                //ImmersiveMetallurgy.LOGGER.info("connected neighbor cable");
+                                ImmersiveMetallurgy.LOGGER.info("connected neighbor cable");
                             }
                         }
                     }
@@ -327,13 +332,20 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
                 if(attachDir == mainDir) mainConnectionCount++;
             }
             mainTerminal = mainConnectionCount <= 1;
-            if(setSide) setSideWithoutUpdate(mainDir, mainTerminal, true);
+            if(setSide){
+                setSideWithoutUpdate(mainDir, mainTerminal, true);
+                setSideWithoutUpdate(mainDir.getOpposite(), false, true);
+            }
         }
         else{
             mainTerminal = !connectionAndAttachment.values().contains(mainDir);
             subTerminal = !connectionAndAttachment.values().contains(subDir);
-            if(setSide) setSideWithoutUpdate(mainDir, mainTerminal, true);
-            if(setSide) setSideWithoutUpdate(subDir, subTerminal, true);
+            if(setSide){
+                setSideWithoutUpdate(mainDir, mainTerminal, true);
+                setSideWithoutUpdate(mainDir.getOpposite(), false, true);
+                setSideWithoutUpdate(subDir, subTerminal, true);
+                setSideWithoutUpdate(subDir.getOpposite(), false, true);
+            }
         }
     }
 
@@ -395,11 +407,16 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
         if (getLevel() != null && getLevel().isClientSide) return;
         mainDir = getFacing();
         mainTerminal = true;
-        setSide(mainDir.getOpposite(), false);
+        sideConfig.put(mainDir.getOpposite(), false);
+        invalidateHandler(mainDir.getOpposite());
+        level.blockEvent(getBlockPos(), getBlockState().getBlock(), 0, 0);
+        //setSide(mainDir.getOpposite(), false);
+
         //ImmersiveMetallurgy.LOGGER.info("mainAttachment: {}", mainDir);
         for(Direction d : DirectionUtils.VALUES){
             updateConnectionByte(d);
         }
+        updateTerminal(true);
         //markContainingBlockForUpdate(null);
     }
 
@@ -456,6 +473,11 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
             return up;
         }
         return null;
+    }
+
+    @Override
+    public int getTransferLimit() {
+        return transferLimit;
     }
 
 

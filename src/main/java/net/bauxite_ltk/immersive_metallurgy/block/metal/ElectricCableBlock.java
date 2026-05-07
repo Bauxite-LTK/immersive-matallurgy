@@ -39,7 +39,10 @@ public class ElectricCableBlock extends IEEntityBlock<ElectricCableBlockEntity> 
             if(world.isEmptyBlock(pos.relative(cable.getFacing())))
             {
                 popResource(world, pos, new ItemStack(this));
-                cable.getLevelNonnull().removeBlock(pos, false);
+                Level level = cable.getLevelNonnull();
+                level.removeBlock(pos, false);
+                level.sendBlockUpdated(pos,state,state,3);
+                level.updateNeighborsAt(pos,block);
             }
         }
     }
