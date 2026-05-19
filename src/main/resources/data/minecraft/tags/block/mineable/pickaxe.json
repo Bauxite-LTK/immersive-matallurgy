@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "immersive_metallurgy:electric_cable_lv",
+    "immersive_metallurgy:electric_cable_mv"
+  ]
+}

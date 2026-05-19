@@ -8,6 +8,7 @@ import net.bauxite_ltk.immersive_metallurgy.block.multiblock.IMMultiblocks;
 import net.bauxite_ltk.immersive_metallurgy.crafting.IMRecipeSerializers;
 import net.bauxite_ltk.immersive_metallurgy.crafting.IMRecipeType;
 import net.bauxite_ltk.immersive_metallurgy.event.IMClient;
+import net.bauxite_ltk.immersive_metallurgy.event.IMListeners;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
 import net.bauxite_ltk.immersive_metallurgy.gui.IMMenuTypes;
 import net.bauxite_ltk.immersive_metallurgy.item.IMItems;
@@ -80,6 +81,7 @@ public class ImmersiveMetallurgy {
         // Note that this is necessary if and only if we want *this* class (ImmersiveMetallurgy) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(new IMListeners());
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

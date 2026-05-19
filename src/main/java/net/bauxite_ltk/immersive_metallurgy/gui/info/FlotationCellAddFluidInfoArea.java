@@ -156,7 +156,6 @@ public class FlotationCellAddFluidInfoArea extends InfoArea {
     ) {
         Matrix4f matrix = transform.last().pose();
         BufferBuilder bufferbuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        // 简化版本，直接使用传入的builder
         bufferbuilder.addVertex(matrix, x, y + h, 0).setUv(u0,v1);
         bufferbuilder.addVertex(matrix, x + w, y + h, 0).setUv(u1,v1);
         bufferbuilder.addVertex(matrix, x + w, y, 0).setUv(u1,v0);

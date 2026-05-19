@@ -7,8 +7,6 @@ import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
 import net.bauxite_ltk.immersive_metallurgy.item.IMItems;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -42,7 +40,8 @@ public class IMBlocks {
 
     private static final Supplier<BlockBehaviour.Properties> METAL_PROPERTIES_DYNAMIC = () -> METAL_PROPERTIES_NO_OCCLUSION.get().dynamicShape();
 
-    public static final DeferredBlock<ElectricCableBlock> ELECTRIC_CABLE = registerBlockIE("electric_cable_lv", () -> new ElectricCableBlock(METAL_PROPERTIES_DYNAMIC.get()));
+    public static final DeferredBlock<ElectricCableBlock> ELECTRIC_CABLE_LV = registerBlockIE("electric_cable_lv", () -> ElectricCableBlock.forLv(METAL_PROPERTIES_DYNAMIC.get()));
+    public static final DeferredBlock<ElectricCableBlock> ELECTRIC_CABLE_MV = registerBlockIE("electric_cable_mv", () -> ElectricCableBlock.forMv(METAL_PROPERTIES_DYNAMIC.get()));
 
 
     public static <T extends Block> DeferredBlock<T> registerBlockIE(String name, Supplier<T> block){

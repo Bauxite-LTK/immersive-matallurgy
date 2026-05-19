@@ -1,7 +1,6 @@
 package net.bauxite_ltk.immersive_metallurgy.block;
 
 import com.google.common.collect.ImmutableSet;
-import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.block.metal.ElectricCableBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
@@ -27,8 +26,12 @@ public class IMBlockEntities {
             "can_solidify_liquid", makeType(CanSolidifyLiquidBlockEntity::new, IMBlocks.MOLTEN_PIG_IRON));
 
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ElectricCableBlockEntity>> ELECTRIC_CABLE = BLOCK_ENTITIES.register(
-            "electric_cable", makeType(ElectricCableBlockEntity::forLv, IMBlocks.ELECTRIC_CABLE)
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ElectricCableBlockEntity>> ELECTRIC_CABLE_LV = BLOCK_ENTITIES.register(
+            "electric_cable_lv", makeType(ElectricCableBlockEntity::forLv, IMBlocks.ELECTRIC_CABLE_LV)
+    );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ElectricCableBlockEntity>> ELECTRIC_CABLE_MV = BLOCK_ENTITIES.register(
+            "electric_cable_mv", makeType(ElectricCableBlockEntity::forMv, IMBlocks.ELECTRIC_CABLE_MV)
     );
 
 

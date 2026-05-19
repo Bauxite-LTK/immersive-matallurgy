@@ -2,6 +2,7 @@ package net.bauxite_ltk.immersive_metallurgy;
 
 import blusunrize.immersiveengineering.api.EnumMetals;
 import blusunrize.immersiveengineering.common.register.IEItems;
+import net.bauxite_ltk.immersive_metallurgy.block.IMBlocks;
 import net.bauxite_ltk.immersive_metallurgy.item.IMItems;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +20,7 @@ public class IMCreativeModTabs {
             .icon(() -> IEItems.Metals.INGOTS.get(EnumMetals.STEEL).get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.accept(IMItems.MOLTEN_PIG_IRON_BUCKET.get());
+                output.accept(IMBlocks.ELECTRIC_CABLE_LV.asItem());
             }).build()
     );
 

@@ -5,8 +5,8 @@
     "cutout"
   ],
   "loader": "immersiveengineering:ie_obj",
-  "model": "immersive_metallurgy:models/block/metal_device/electric_cable_lv.obj.ie",
+  "model": "immersive_metallurgy:models/block/metal_device/electric_cable_mv.obj.ie",
   "textures": {
-    "particle": "immersive_metallurgy:block/metal_device/electric_cable_lv"
+    "particle": "immersive_metallurgy:block/metal_device/electric_cable_mv"
   }
 }

@@ -4,6 +4,7 @@ package net.bauxite_ltk.immersive_metallurgy.event;
 import blusunrize.immersiveengineering.api.client.ieobj.IEOBJCallbacks;
 import net.bauxite_ltk.immersive_metallurgy.Config;
 import net.bauxite_ltk.immersive_metallurgy.ImmersiveMetallurgy;
+import net.bauxite_ltk.immersive_metallurgy.block.IMBlockEntities;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.IMMultiblockLogic;
 import net.bauxite_ltk.immersive_metallurgy.callback.ElectricCableCallbacks;
@@ -14,10 +15,7 @@ import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.BallMillScreen;
 import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.FlotationCellScreen;
 import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.HydrocycloneScreen;
 import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.ThickenerScreen;
-import net.bauxite_ltk.immersive_metallurgy.render.BallMillRender;
-import net.bauxite_ltk.immersive_metallurgy.render.FlotationCellRender;
-import net.bauxite_ltk.immersive_metallurgy.render.IMDynamicModel;
-import net.bauxite_ltk.immersive_metallurgy.render.ThickenerRender;
+import net.bauxite_ltk.immersive_metallurgy.render.*;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -48,7 +46,8 @@ public class IMClient {
 
 
     public static void modConstruction(){
-        IEOBJCallbacks.register(IMUtils.modRL("electric_cable_lv"), ElectricCableCallbacks.INSTANCE);
+        IEOBJCallbacks.register(IMUtils.modRL("electric_cable"), ElectricCableCallbacks.INSTANCE);
+        //IEOBJCallbacks.register(IMUtils.modRL("electric_cable_mv"), ElectricCableCallbacks.INSTANCE);
         ImmersiveMetallurgy.LOGGER.info("ImmersiveMetallurgy register callbacks");
     }
 
@@ -78,7 +77,10 @@ public class IMClient {
     {
         registerBERenderNoContext(event, IMMultiblockLogic.BALL_MILL.masterBE(), BallMillRender::new);
         registerBERenderNoContext(event, IMMultiblockLogic.FLOTATION_CELL.masterBE(), FlotationCellRender::new);
-        registerBERenderNoContext(event, IMMultiblockLogic.THICKENER.masterBE(), ThickenerRender::new);}
+        registerBERenderNoContext(event, IMMultiblockLogic.THICKENER.masterBE(), ThickenerRender::new);
+        //registerBERenderNoContext(event, IMBlockEntities.ELECTRIC_CABLE.get(), ElectricCableSelectionRenderer::new);
+    }
+
 
     private static <T extends BlockEntity>
     void registerBERenderNoContext(
