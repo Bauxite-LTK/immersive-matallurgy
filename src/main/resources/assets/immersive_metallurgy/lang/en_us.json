@@ -1,10 +1,25 @@
 {
-  "itemGroup.immersive_metallurgy": "Example Mod Tab",
+  "itemGroup.immersive_metallurgy": "Immersive Metallurgy",
 
 
   "item.immersive_metallurgy.bucket.molten_pig_iron": "Molten Pig Iron Bucket",
   "block.immersive_metallurgy.fluid.molten_pig_iron": "Molten Pig Iron",
   "fluid.immersive_metallurgy.molten_pig_iron": "Molten Pig Iron",
+
+  "block.immersive_metallurgy.electric_cable_lv": "LV Electric Cable",
+  "block.immersive_metallurgy.electric_cable_mv": "MV Electric Cable",
+
+  "item.immersive_metallurgy.pure_ore_chunk.raw_iron": "Raw Iron Chunk",
+  "item.immersive_metallurgy.pure_coarse_powder.raw_iron": "Raw Iron Coarse Powder",
+  "item.immersive_metallurgy.ore_fines.raw_iron": "Raw Iron Ore Fines",
+  "item.immersive_metallurgy.concentrate_pellet.raw_iron": "Raw Iron Concentrate Pellet",
+
+  "block.immersive_metallurgy.ball_mill": "Ball Mill",
+  "block.immersive_metallurgy.flotation_cell": "Flotation Cell",
+  "block.immersive_metallurgy.hydrocyclone": "Hydrocyclone",
+  "block.immersive_metallurgy.thickener": "Thickener",
+
+  "desc.immersive_metallurgy.info.thread_ift": "%1$s IF/tick (x%2$d)",
 
   "immersive_metallurgy.configuration.title": "Immersive Metallurgy Configs",
   "immersive_metallurgy.configuration.section.immersive_metallurgy.common.toml": "Immersive Metallurgy Configs",

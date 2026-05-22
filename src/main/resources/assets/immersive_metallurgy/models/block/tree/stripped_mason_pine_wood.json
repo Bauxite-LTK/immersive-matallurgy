@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "immersive_metallurgy:block/tree/stripped_mason_pine_log",
+    "side": "immersive_metallurgy:block/tree/stripped_mason_pine_log"
+  }
+}

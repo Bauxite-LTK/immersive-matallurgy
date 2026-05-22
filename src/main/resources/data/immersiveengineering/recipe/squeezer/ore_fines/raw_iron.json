@@ -1,0 +1,13 @@
+{
+  "type": "immersiveengineering:squeezer",
+  "energy": 6400,
+  "input": {
+    "basePredicate": {
+      "item": "immersive_metallurgy:ore_fines/raw_iron"
+    },
+    "count": 10
+  },
+  "result": {
+    "item": "immersive_metallurgy:concentrate_pellet/raw_iron"
+  }
+}

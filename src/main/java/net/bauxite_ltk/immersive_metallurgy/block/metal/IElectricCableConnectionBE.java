@@ -25,7 +25,9 @@ public interface IElectricCableConnectionBE {
 
     ElectricCableBlockEntity.PhysicalConnectionsInfo getPhysicalConnectionInfo();
 
-    List<BlockFace> getAllConnectBlockFace(BlockFace fromFace);
+    record BlockFaceConnection(BlockFace from, BlockFace to){};
+
+    List<BlockFaceConnection> getAllConnectBlockFace(BlockFace fromFace);
 
     BlockEntity getBE();
 
@@ -80,10 +82,11 @@ public interface IElectricCableConnectionBE {
                 }
             }
             if (source == null || isPreviousInvalid){
-                ImmersiveMetallurgy.LOGGER.info("invalid");
+                ImmersiveMetallurgy.LOGGER.info("invalid preFace:{},{}", info.previous.pos, info.previous.faceDir);
                 info.setStatus(ConnectionStatus.INVALID);
                 invalidateNextNode(rootBlockFace, info.next);
                 getConnectionInfoList().remove(info);
+                rootUpdateSubnet(rootBlockFace);
                 updateNode();
             }
         }
@@ -94,8 +97,14 @@ public interface IElectricCableConnectionBE {
         for(ConnectionInfo info : connectionInfoList){
             BlockEntity rootBE = null;
             if (getBE().getLevel() != null) rootBE = SafeChunkUtils.getSafeBE(getBE().getLevel(), info.rootTerminal.pos);
-            if(rootBE == null) continue;
-            if(rootBE instanceof IElectricCableConnectionBE electricCable) electricCable.updateNode();
+            if(rootBE == null){
+                IMUtils.LOGGER.info("rootBE is null");
+                continue;
+            }
+            if(rootBE instanceof IElectricCableConnectionBE electricCable){
+                IMUtils.LOGGER.info("updateAllRootNode");
+                electricCable.updateNode();
+            }
         }
     }
 
@@ -143,44 +152,25 @@ public interface IElectricCableConnectionBE {
 
     default void tryClaimNext(BlockFace rootFaceOfSubnet, BlockFace thisFace){
         //byte connections = getConnectionByte();
-        List<BlockFace> connections = getAllConnectBlockFace(thisFace);
+        List<BlockFaceConnection> connections = getAllConnectBlockFace(thisFace);
         // update nextFace
         getConnectionInfo(rootFaceOfSubnet, thisFace).setNext(null);
-        for(BlockFace blockFace : connections){
-            if(blockFace.pos.equals(getConnectionInfo(rootFaceOfSubnet, thisFace).previous.pos)) continue;
-            getConnectionInfo(rootFaceOfSubnet, thisFace).setNext(blockFace);
+        BlockFace previousBFofNextBF = null;
+        for(BlockFaceConnection blockFaceConnection : connections){
+            if(blockFaceConnection.to.pos.equals(getConnectionInfo(rootFaceOfSubnet, thisFace).previous.pos)) continue;
+            getConnectionInfo(rootFaceOfSubnet, thisFace).setNext(blockFaceConnection.to);
+            previousBFofNextBF = blockFaceConnection.from;
         }
 
-        /*
-        for(int i = 0; i < 6; i++) {
-            Direction dir = Direction.from3DDataValue(i);
-            //node should not check previous direction
-            if(getConnectionInfo(rootFaceOfSubnet).previous.equals(dir)) continue;
-            //check if the direction is connected
-            if (((connections >> i) & 1) != 1) {
-                getConnectionInfo(rootFaceOfSubnet).removeNext(dir);
-                continue;
-            }
-            //check if the direction has available handler
-            IEnergyStorage handler = getNeighborHandler(dir);
-            if(handler!=null){
-                getConnectionInfo(rootFaceOfSubnet).addNext(dir);
-
-            }
-            else{
-                getConnectionInfo(rootFaceOfSubnet).removeNext(dir);
-            }
-        }
-        */
 
         // from nextList, try claim neighbor cable
         BlockFace nextBlockFace = getConnectionInfo(rootFaceOfSubnet, thisFace).next;
         if(nextBlockFace != null) {
             IElectricCableConnectionBE neighbor = getNeighborIElectricCable(nextBlockFace.pos);
-            if(neighbor!=null){
+            if(neighbor!=null && previousBFofNextBF!=null){
                 //if pipe is not in subnet, then add it
                 if(neighbor.getConnectionInfo(rootFaceOfSubnet, nextBlockFace)==null){
-                    neighbor.setSelfCommonToSubnet(rootFaceOfSubnet, nextBlockFace, thisFace);
+                    neighbor.setSelfCommonToSubnet(rootFaceOfSubnet, nextBlockFace, previousBFofNextBF);
                 }
             }
         }

@@ -20,7 +20,22 @@ public class IMItems {
                     )
             );
 
+    public static final class Ores{
+        public static final DeferredItem<Item> RAW_IRON_ORE_CHUNK = ITEMS.registerSimpleItem("pure_ore_chunk/raw_iron");
+        public static final DeferredItem<Item> RAW_IRON_ORE_COARSE_POWDER = ITEMS.registerSimpleItem("pure_coarse_powder/raw_iron");
+        public static final DeferredItem<Item> RAW_IRON_ORE_FINES = ITEMS.registerSimpleItem("ore_fines/raw_iron");
+        public static final DeferredItem<Item> RAW_IRON_CONCENTRATE_PELLET = ITEMS.registerSimpleItem("concentrate_pellet/raw_iron");
+
+    }
+
+
+
     public static void init(IEventBus modEventBus){
+        try {
+            Class.forName("net.bauxite_ltk.immersive_metallurgy.item.IMItems$Ores");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         ITEMS.register(modEventBus);
     }
 

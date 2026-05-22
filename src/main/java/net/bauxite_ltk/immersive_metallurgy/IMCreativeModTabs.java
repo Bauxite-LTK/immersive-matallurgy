@@ -21,6 +21,18 @@ public class IMCreativeModTabs {
             .displayItems((parameters, output) -> {
                 output.accept(IMItems.MOLTEN_PIG_IRON_BUCKET.get());
                 output.accept(IMBlocks.ELECTRIC_CABLE_LV.asItem());
+                output.accept(IMBlocks.ELECTRIC_CABLE_MV.asItem());
+                output.accept(IMItems.Ores.RAW_IRON_ORE_CHUNK);
+                output.accept(IMItems.Ores.RAW_IRON_ORE_COARSE_POWDER);
+                output.accept(IMItems.Ores.RAW_IRON_ORE_FINES);
+                output.accept(IMItems.Ores.RAW_IRON_CONCENTRATE_PELLET);
+                output.accept(IMBlocks.MASON_PINE_LOG);
+                output.accept(IMBlocks.MASON_PINE_WOOD);
+                output.accept(IMBlocks.STRIPPED_MASON_PINE_LOG);
+                output.accept(IMBlocks.STRIPPED_MASON_PINE_WOOD);
+                output.accept(IMBlocks.MASON_PINE_LEAVES);
+                output.accept(IMBlocks.MASON_PINE_PLANKS);
+
             }).build()
     );
 

@@ -293,8 +293,16 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
         nbt.putByteArray("sideConfig", configBuffer);
     }
 
+    int updateTickCount;
     @Override
     public void tickServer() {
+//        if(updateTickCount < 20){
+//            updateTickCount++;
+//            return;
+//        }
+//        updateTickCount = 0;
+//
+
 
     }
 
@@ -636,6 +644,7 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
         if (getLevel() != null && getLevel().isClientSide) return;
         Direction firstAttach = getFacing();
         activateFace(firstAttach);
+
         //getLevelNonnull().blockEvent(getBlockPos(), getBlockState().getBlock(), 0, 0);
         //setSide(mainDir.getOpposite(), false);
 
@@ -852,9 +861,9 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
     }
 
     @Override
-    public List<BlockFace> getAllConnectBlockFace(BlockFace fromFace) {
+    public List<BlockFaceConnection> getAllConnectBlockFace(BlockFace fromFace) {
         //forgive my code using BFS, I just don't want to write a new logic.
-        List<BlockFace> result = new ArrayList<>();
+        List<BlockFaceConnection> result = new ArrayList<>();
         List<BlockFace> openList = new ArrayList<>();
         List<BlockFace> closeList = new ArrayList<>();
         openList.add(fromFace);
@@ -871,10 +880,11 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
                     BlockFace connectFace;
                     if(curFaceDir==nextDir) connectFace = new BlockFace(curPos.relative(nextDir),curFaceDir.getOpposite());
                     else connectFace = new BlockFace(curPos.relative(nextDir), curFaceDir);
-                    result.add(connectFace);
+                    result.add(new BlockFaceConnection(curBlockFace,connectFace));
                 }
                 else if(isBackCornerConnectedTo(curFaceDir,nextDir)){
-                    result.add(new BlockFace(curPos.relative(curFaceDir).relative(nextDir), nextDir.getOpposite()));
+                    BlockFace connectFace = new BlockFace(curPos.relative(curFaceDir).relative(nextDir), nextDir.getOpposite());
+                    result.add(new BlockFaceConnection(curBlockFace,connectFace));
                 }
                 else if(isFrontCornerConnectedTo(curFaceDir, nextDir)){
                     openList.add(new BlockFace(curPos,nextDir));
