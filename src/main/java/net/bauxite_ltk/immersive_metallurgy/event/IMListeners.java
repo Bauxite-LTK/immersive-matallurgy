@@ -16,6 +16,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
 
@@ -51,6 +52,11 @@ public class IMListeners {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public void forSpecialCraftingRecipes(PlayerEvent.ItemCraftedEvent event){
+
     }
 
 

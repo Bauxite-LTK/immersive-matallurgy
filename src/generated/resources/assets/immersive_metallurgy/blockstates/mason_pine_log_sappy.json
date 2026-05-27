@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "immersive_metallurgy:block/mason_pine_log_sappy_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "immersive_metallurgy:block/mason_pine_log_sappy"
+    },
+    "axis=z": {
+      "model": "immersive_metallurgy:block/mason_pine_log_sappy_horizontal",
+      "x": 90
+    }
+  }
+}

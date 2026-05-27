@@ -76,6 +76,7 @@ public class CanSolidifyLiquidBlockEntity extends BlockEntity{
         //ImmersiveMetallurgy.LOGGER.info("load ticksRemain:{}", tickRemain);
         this.solid = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(nbt.getString("solidBlock")));
         //ImmersiveMetallurgy.LOGGER.info("load solid:{}", solid);
+
         this.setChanged();
     }
 
@@ -136,10 +137,6 @@ public class CanSolidifyLiquidBlockEntity extends BlockEntity{
             BlockState state = getBlockState();
             //ImmersiveMetallurgy.LOGGER.info("state:{}", state);
             level.sendBlockUpdated(getBlockPos(), state, state, 3);
-
-
-
-
         }
     }
 

@@ -12,6 +12,8 @@ import net.bauxite_ltk.immersive_metallurgy.event.IMListeners;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
 import net.bauxite_ltk.immersive_metallurgy.gui.IMMenuTypes;
 import net.bauxite_ltk.immersive_metallurgy.item.IMItems;
+import net.bauxite_ltk.immersive_metallurgy.particle.IMParticleTypes;
+import net.bauxite_ltk.immersive_metallurgy.worldgen.tree.IMTreePlacerTypes;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -72,6 +74,8 @@ public class ImmersiveMetallurgy {
         IMItems.init(modEventBus);
         IMFluids.init(modEventBus);
         IMCreativeModTabs.init(modEventBus);
+        IMTreePlacerTypes.init(modEventBus);
+        IMParticleTypes.init(modEventBus);
 
         if(dist.isClient()){
             IMClient.modConstruction();

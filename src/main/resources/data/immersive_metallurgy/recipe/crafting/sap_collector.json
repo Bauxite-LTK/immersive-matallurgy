@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "tag": "c:bricks"
+    },
+    "s": {
+      "item": "immersiveengineering:stick_iron"
+    },
+    "p": {
+      "item": "immersiveengineering:plate_iron"
+    },
+    "f": {
+      "item": "immersiveengineering:fluid_pipe"
+    }
+  },
+  "pattern": [
+    "sps",
+    "bfb",
+    "bbb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "immersive_metallurgy:sap_collector"
+  }
+}

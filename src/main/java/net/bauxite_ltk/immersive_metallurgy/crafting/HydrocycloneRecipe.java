@@ -33,9 +33,9 @@ public class HydrocycloneRecipe extends MultiblockRecipe {
 
 
     protected <T extends Recipe<?>> HydrocycloneRecipe(FluidStack outputFluid, @Nonnull TagOutput outputItem,
-                                                        SizedFluidIngredient inputFluid, int energy) {
+                                                        SizedFluidIngredient inputFluid, int time, int energy) {
 
-        super(TagOutput.EMPTY, IMRecipeType.HYDROCYCLONE, 10, energy, MULTIPLIERS);
+        super(TagOutput.EMPTY, IMRecipeType.HYDROCYCLONE, time, energy, MULTIPLIERS);
         this.outputFluid = outputFluid;
         this.inputFluid = inputFluid;
         this.outputItem = outputItem;

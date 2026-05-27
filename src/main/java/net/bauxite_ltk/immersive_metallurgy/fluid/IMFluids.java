@@ -32,6 +32,76 @@ public class IMFluids {
                     IMBlocks.MOLTEN_PIG_IRON,
                     IMItems.MOLTEN_PIG_IRON_BUCKET);
 
+    public static final FluidHolder<BaseFlowingFluid> MASON_PINE_SAP =
+            register(
+                    "mason_pine_sap",
+                    properties -> properties
+                            .block(IMBlocks.MASON_PINE_SAP)
+                            .bucket(IMItems.MASON_PINE_SAP_BUCKET),
+                    waterLike()
+                            .descriptionId("fluid.immersive_metallurgy.mason_pine_sap"),
+                    BaseFlowingFluid.Source::new,
+                    BaseFlowingFluid.Flowing::new
+            );
+
+    public static final FluidHolder<BaseFlowingFluid> TURPENTINE_OIL =
+            register(
+                    "turpentine_oil",
+                    properties -> properties
+                            .block(IMBlocks.TURPENTINE_OIL)
+                            .bucket(IMItems.TURPENTINE_OIL_BUCKET),
+                    waterLike()
+                            .descriptionId("fluid.immersive_metallurgy.turpentine_oil"),
+                    BaseFlowingFluid.Source::new,
+                    BaseFlowingFluid.Flowing::new
+            );
+
+    public static final FluidHolder<BaseFlowingFluid> TERPINEOL =
+            register(
+                    "terpineol",
+                    properties -> properties
+                            .block(IMBlocks.TERPINEOL)
+                            .bucket(IMItems.TERPINEOL_BUCKET),
+                    waterLike()
+                            .descriptionId("fluid.immersive_metallurgy.terpineol"),
+                    BaseFlowingFluid.Source::new,
+                    BaseFlowingFluid.Flowing::new
+            );
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_IRON_SLURRY =
+            registerOreSlurry("raw_iron",
+                    IMBlocks.RAW_IRON_SLURRY,
+                    IMItems.RAW_IRON_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_IRON_PROCESSED_SLURRY =
+            registerOreSlurry("raw_iron_processed",
+                    IMBlocks.RAW_IRON_PROCESSED_SLURRY,
+                    IMItems.RAW_IRON_PROCESSED_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_IRON_CONCENTRATE_SLURRY =
+            registerOreSlurry("raw_iron_concentrate",
+                    IMBlocks.RAW_IRON_CONCENTRATE_SLURRY,
+                    IMItems.RAW_IRON_CONCENTRATE_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_IRON_TAILING_SLURRY =
+            registerOreSlurry("raw_iron_tailing",
+                    IMBlocks.RAW_IRON_TAILING_SLURRY,
+                    IMItems.RAW_IRON_TAILING_SLURRY_BUCKET);
+
+    private static FluidType.Properties waterLike()
+    {
+        return FluidType.Properties.create()
+                .adjacentPathType(PathType.WATER)
+                .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+                .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+                .canConvertToSource(false)
+                .canDrown(true)
+                .canExtinguish(true)
+                .canHydrate(true)
+                .canPushEntity(true)
+                .canSwim(true)
+                .supportsBoating(true);
+    }
 
     private static FluidType.Properties lavaLike()
     {
@@ -50,6 +120,22 @@ public class IMFluids {
                 .canPushEntity(false)
                 .canSwim(false)
                 .supportsBoating(false);
+    }
+
+
+    public static < L extends LiquidBlock, I extends Item>
+    FluidHolder<BaseFlowingFluid> registerOreSlurry(
+            String oreName, DeferredBlock<L> liquidBlock, DeferredItem<I> bucketItem)
+    {
+        return register(
+                oreName + "_slurry",
+                properties -> properties
+                        .block(liquidBlock)
+                        .bucket(bucketItem),
+                waterLike()
+                        .descriptionId("fluid.immersive_metallurgy." + oreName + "_slurry"),
+                BaseFlowingFluid.Source::new,
+                BaseFlowingFluid.Flowing::new);
     }
 
     public static < L extends LiquidBlock, I extends Item>

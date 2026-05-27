@@ -3,17 +3,20 @@ package net.bauxite_ltk.immersive_metallurgy.block;
 import blusunrize.immersiveengineering.common.blocks.BlockItemIE;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.metal.ElectricCableBlock;
+import net.bauxite_ltk.immersive_metallurgy.block.sapCollector.SapCollectorBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableLeavesBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableRotatedPillarBlock;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
 import net.bauxite_ltk.immersive_metallurgy.item.IMItems;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
+import net.bauxite_ltk.immersive_metallurgy.worldgen.tree.IMTreeGrowers;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -24,15 +27,27 @@ public class IMBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(IMUtils.MOD_ID);
 
     public static final DeferredBlock<LiquidBlock> MOLTEN_PIG_IRON = registerNoItem("fluid/molten_pig_iron", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_PIG_IRON.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), Blocks.IRON_BLOCK, 100));
+    public static final DeferredBlock<LiquidBlock> MASON_PINE_SAP = registerNoItem("fluid/mason_pine_sap", () -> new LiquidBlock(IMFluids.MASON_PINE_SAP.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> TURPENTINE_OIL = registerNoItem("fluid/turpentine_oil", () -> new LiquidBlock(IMFluids.TURPENTINE_OIL.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> TERPINEOL = registerNoItem("fluid/terpineol", () -> new LiquidBlock(IMFluids.TERPINEOL.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
 
-    public static final DeferredBlock<FlameableRotatedPillarBlock> MASON_PINE_LOG = registerBlock("tree/mason_pine_log", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
-    public static final DeferredBlock<FlameableRotatedPillarBlock> MASON_PINE_WOOD = registerBlock("tree/mason_pine_wood", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
-    public static final DeferredBlock<FlameableRotatedPillarBlock> STRIPPED_MASON_PINE_LOG = registerBlock("tree/stripped_mason_pine_log", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
-    public static final DeferredBlock<FlameableRotatedPillarBlock> STRIPPED_MASON_PINE_WOOD = registerBlock("tree/stripped_mason_pine_wood", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final DeferredBlock<FlameableRotatedPillarBlock> MASON_PINE_LOG = registerBlock("mason_pine_log", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<FlameableRotatedPillarBlock> MASON_PINE_LOG_LIVE = registerBlock("mason_pine_log_live", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<FlameableRotatedPillarBlock> MASON_PINE_LOG_SAPPY = registerBlock("mason_pine_log_sappy", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<FlameableRotatedPillarBlock> MASON_PINE_WOOD = registerBlock("mason_pine_wood", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
+    public static final DeferredBlock<FlameableRotatedPillarBlock> STRIPPED_MASON_PINE_LOG = registerBlock("stripped_mason_pine_log", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<FlameableRotatedPillarBlock> STRIPPED_MASON_PINE_WOOD = registerBlock("stripped_mason_pine_wood", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
 
-    public static final DeferredBlock<FlameableBlock> MASON_PINE_PLANKS = registerBlock("tree/mason_pine_planks", () -> new FlameableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS), 20,5));
-    public static final DeferredBlock<LeavesBlock> MASON_PINE_LEAVES = registerBlock("tree/mason_pine_leaves", () -> new FlameableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES), 60 ,30));
-    //public static final DeferredBlock<SaplingBlock> MASON_PINE_SAPLING = registerBlock("tree/mason_pine_sapling", () -> new SaplingBlock( , BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredBlock<FlameableBlock> MASON_PINE_PLANKS = registerBlock("mason_pine_planks", () -> new FlameableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS), 20,5));
+    public static final DeferredBlock<LeavesBlock> MASON_PINE_LEAVES = registerBlock("mason_pine_leaves", () -> new FlameableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES), 60 ,30));
+    public static final DeferredBlock<SaplingBlock> MASON_PINE_SAPLING = registerBlock("mason_pine_sapling", () -> new SaplingBlock(IMTreeGrowers.MASON_PINE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
+    public static final DeferredBlock<SapCollectorBlock> SAP_COLLECTOR = registerBlock("sap_collector", () -> new SapCollectorBlock(BlockBehaviour.Properties.of().noOcclusion().sound(SoundType.METAL).strength(3, 15)));
+
+    public static final DeferredBlock<LiquidBlock> RAW_IRON_SLURRY = registerNoItem("fluid/raw_iron_slurry", () -> new LiquidBlock(IMFluids.RAW_IRON_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_IRON_PROCESSED_SLURRY = registerNoItem("fluid/raw_iron_processed_slurry", () -> new LiquidBlock(IMFluids.RAW_IRON_PROCESSED_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_IRON_CONCENTRATE_SLURRY = registerNoItem("fluid/raw_iron_concentrate_slurry", () -> new LiquidBlock(IMFluids.RAW_IRON_CONCENTRATE_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_IRON_TAILING_SLURRY = registerNoItem("fluid/raw_iron_tailing_slurry", () -> new LiquidBlock(IMFluids.RAW_IRON_TAILING_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
 
 
 

@@ -1,0 +1,16 @@
+{
+  "type": "immersive_metallurgy:hydrocyclone",
+  "energy": 1600,
+  "time": 20,
+  "result_fluid": {
+    "amount": 500,
+    "id": "immersive_metallurgy:raw_iron_processed_slurry"
+  },
+  "result_item": {
+    "item": "immersive_metallurgy:pure_coarse_powder_raw_iron"
+  },
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "immersive_metallurgy:raw_iron_slurry"
+  }
+}

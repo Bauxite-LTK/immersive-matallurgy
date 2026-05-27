@@ -4,7 +4,7 @@
   "cookingtime": 100,
   "experience": 0.0,
   "ingredient": {
-    "item": "immersive_metallurgy:concentrate_pellet/raw_iron"
+    "item": "immersive_metallurgy:concentrate_pellet_raw_iron"
   },
   "result": {
     "count": 1,

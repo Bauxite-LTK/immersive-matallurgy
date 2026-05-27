@@ -3,6 +3,7 @@ package net.bauxite_ltk.immersive_metallurgy.block;
 import com.google.common.collect.ImmutableSet;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.block.metal.ElectricCableBlockEntity;
+import net.bauxite_ltk.immersive_metallurgy.block.sapCollector.SapCollectorBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
@@ -24,6 +25,10 @@ public class IMBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> CAN_SOLIDIFY_LIQUID = BLOCK_ENTITIES.register(
             "can_solidify_liquid", makeType(CanSolidifyLiquidBlockEntity::new, IMBlocks.MOLTEN_PIG_IRON));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SapCollectorBlockEntity>> SAP_COLLECTOR = BLOCK_ENTITIES.register(
+            "sap_collector", makeType(SapCollectorBlockEntity::new, IMBlocks.SAP_COLLECTOR)
+    );
 
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ElectricCableBlockEntity>> ELECTRIC_CABLE_LV = BLOCK_ENTITIES.register(

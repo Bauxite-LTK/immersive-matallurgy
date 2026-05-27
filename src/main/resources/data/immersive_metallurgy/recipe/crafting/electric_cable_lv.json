@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "immersiveengineering:wirecoil_copper"
+    },
+    {
+      "item": "immersiveengineering:connector_lv"
+    },
+    {
+      "tag": "immersiveengineering:treated_wood"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "id": "immersive_metallurgy:electric_cable_lv"
+  }
+}

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/leaves",
-  "textures": {
-    "all": "immersive_metallurgy:block/tree/mason_pine_leaves"
-  }
-}

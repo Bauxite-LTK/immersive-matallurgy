@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "immersive_metallurgy:mason_pine_sap_bottle"
+  },
+  "result": {
+    "count": 1,
+    "id": "immersive_metallurgy:colophony_bottle"
+  }
+}

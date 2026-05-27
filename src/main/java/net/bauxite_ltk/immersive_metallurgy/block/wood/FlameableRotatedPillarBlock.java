@@ -8,10 +8,14 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.Nullable;
 
 public class FlameableRotatedPillarBlock extends RotatedPillarBlock {
+
+    boolean isProducing = false;
 
     public FlameableRotatedPillarBlock(Properties properties) {
         super(properties);
@@ -40,6 +44,19 @@ public class FlameableRotatedPillarBlock extends RotatedPillarBlock {
             }
             if(state.is(IMBlocks.MASON_PINE_WOOD)){
                 return IMBlocks.STRIPPED_MASON_PINE_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+            }
+            if(state.is(IMBlocks.MASON_PINE_LOG_LIVE)){
+                if(state.getValue(AXIS).isHorizontal()){
+                    return IMBlocks.STRIPPED_MASON_PINE_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+                }
+                BlockPos thisPos = context.getClickedPos();
+                for(int i = 0; i < 16; i++){
+                    if(context.getLevel().getBlockState(thisPos.above(i)).is(IMBlocks.MASON_PINE_LOG_SAPPY)
+                        || context.getLevel().getBlockState(thisPos.below(i)).is(IMBlocks.MASON_PINE_LOG_SAPPY)){
+                        return IMBlocks.STRIPPED_MASON_PINE_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+                    }
+                }
+                return IMBlocks.MASON_PINE_LOG_SAPPY.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
             }
         }
 

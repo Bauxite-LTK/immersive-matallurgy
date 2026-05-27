@@ -1,20 +1,26 @@
 package net.bauxite_ltk.immersive_metallurgy.util;
 
+import blusunrize.immersiveengineering.api.utils.DirectionUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
+import org.joml.Quaternionf;
 
 import java.text.DecimalFormat;
+import java.util.EnumMap;
+import java.util.Map;
 
 public class Helper {
     static final DecimalFormat FORMATTER = new DecimalFormat("#,###.##");
@@ -112,5 +118,22 @@ public class Helper {
         return Mth.clamp(var3*tolerance,0,1);
     }
 
+    public static final Map<Direction, Quaternionf> ROTATE_FOR_FACING = Util.make(
+            new EnumMap<>(Direction.class), m -> {
+                for(Direction facing : DirectionUtils.BY_HORIZONTAL_INDEX)
+                    m.put(facing, new Quaternionf().rotateY(Mth.DEG_TO_RAD*(180-facing.toYRot())));
+            }
+    );
 
+    public static void rotateForFacingNoCentering(PoseStack stack, Direction facing)
+    {
+        stack.mulPose(ROTATE_FOR_FACING.get(facing));
+    }
+
+    public static void rotateForFacing(PoseStack stack, Direction facing)
+    {
+        stack.translate(0.5, 0.5, 0.5);
+        rotateForFacingNoCentering(stack, facing);
+        stack.translate(-0.5, -0.5, -0.5);
+    }
 }

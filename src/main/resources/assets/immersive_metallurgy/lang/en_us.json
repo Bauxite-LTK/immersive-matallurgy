@@ -6,13 +6,56 @@
   "block.immersive_metallurgy.fluid.molten_pig_iron": "Molten Pig Iron",
   "fluid.immersive_metallurgy.molten_pig_iron": "Molten Pig Iron",
 
+  "item.immersive_metallurgy.bucket.mason_pine_sap": "Mason Pine Sap Bucket",
+  "block.immersive_metallurgy.fluid.mason_pine_sap": "Mason Pine Sap",
+  "fluid.immersive_metallurgy.mason_pine_sap": "Mason Pine Sap",
+
+  "item.immersive_metallurgy.bucket.turpentine_oil": "Turpentine Oil Bucket",
+  "block.immersive_metallurgy.fluid.turpentine_oil": "Turpentine Oil",
+  "fluid.immersive_metallurgy.turpentine_oil": "Turpentine Oil",
+
+  "item.immersive_metallurgy.bucket.terpineol": "Terpineol Bucket",
+  "block.immersive_metallurgy.fluid.terpineol": "Terpineol",
+  "fluid.immersive_metallurgy.terpineol": "Terpineol",
+
+  "item.immersive_metallurgy.bucket.raw_iron_slurry": "Raw Iron Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_iron_slurry": "Raw Iron Slurry ",
+  "fluid.immersive_metallurgy.raw_iron_slurry": "Raw Iron Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_iron_processed_slurry": "Raw Iron Processed Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_iron_processed_slurry": "Raw Iron Processed Slurry ",
+  "fluid.immersive_metallurgy.raw_iron_processed_slurry": "Raw Iron Processed Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_iron_concentrate_slurry": "Raw Iron Concentrate Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_iron_concentrate_slurry": "Raw Iron Concentrate Slurry ",
+  "fluid.immersive_metallurgy.raw_iron_concentrate_slurry": "Raw Iron Concentrate Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_iron_tailing_slurry": "Raw Iron Tailing Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_iron_tailing_slurry": "Raw Iron Tailing Slurry ",
+  "fluid.immersive_metallurgy.raw_iron_tailing_slurry": "Raw Iron Tailing Slurry",
+
+
+
   "block.immersive_metallurgy.electric_cable_lv": "LV Electric Cable",
   "block.immersive_metallurgy.electric_cable_mv": "MV Electric Cable",
+  "block.immersive_metallurgy.sap_collector": "Sap Collector",
 
-  "item.immersive_metallurgy.pure_ore_chunk.raw_iron": "Raw Iron Chunk",
-  "item.immersive_metallurgy.pure_coarse_powder.raw_iron": "Raw Iron Coarse Powder",
-  "item.immersive_metallurgy.ore_fines.raw_iron": "Raw Iron Ore Fines",
-  "item.immersive_metallurgy.concentrate_pellet.raw_iron": "Raw Iron Concentrate Pellet",
+  "block.immersive_metallurgy.mason_pine_log": "Mason Pine Log",
+  "block.immersive_metallurgy.mason_pine_log_live": "Mason Pine Trunk",
+  "block.immersive_metallurgy.mason_pine_wood": "Mason Pine Log Wood",
+  "block.immersive_metallurgy.stripped_mason_pine_log": "Stripped Mason Pine Log",
+  "block.immersive_metallurgy.stripped_mason_pine_wood": "Stripped Mason Pine Log Wood",
+  "block.immersive_metallurgy.mason_pine_planks": "Mason Pine Planks",
+  "block.immersive_metallurgy.mason_pine_leaves": "Mason Pine Leaves",
+  "block.immersive_metallurgy.mason_pine_sapling": "Mason Pine Sapling",
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_iron": "Raw Iron Chunk",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_iron": "Raw Iron Coarse Powder",
+  "item.immersive_metallurgy.ore_fines_raw_iron": "Raw Iron Ore Fines",
+  "item.immersive_metallurgy.concentrate_pellet_raw_iron": "Raw Iron Concentrate Pellet",
+  "item.immersive_metallurgy.mason_pine_sap_bottle": "Mason Pine Sap Bottle",
+  "item.immersive_metallurgy.colophony_bottle": "Colophony Bottle",
+  "item.immersive_metallurgy.colophony": "Colophony",
 
   "block.immersive_metallurgy.ball_mill": "Ball Mill",
   "block.immersive_metallurgy.flotation_cell": "Flotation Cell",

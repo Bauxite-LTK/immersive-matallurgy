@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "s": {
+      "tag": "c:rods/wooden"
+    },
+    "c": {
+      "item": "immersive_metallurgy:colophony"
+    }
+  },
+  "pattern": [
+    "c",
+    "s"
+  ],
+  "result": {
+    "count": 12,
+    "id": "minecraft:torch"
+  }
+}

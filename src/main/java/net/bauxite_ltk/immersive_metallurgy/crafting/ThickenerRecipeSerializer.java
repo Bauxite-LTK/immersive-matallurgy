@@ -16,6 +16,7 @@ public class ThickenerRecipeSerializer extends IERecipeSerializer<ThickenerRecip
             IEDualCodecs.FLUID_STACK.fieldOf("result_fluid"), r -> r.outputFluid,
             TagOutput.CODECS.fieldOf("result_item"), r -> r.outputItem,
             IEDualCodecs.SIZED_FLUID_INGREDIENT.fieldOf("input_fluid"), r -> r.inputFluid,
+            DualCodecs.INT.fieldOf("time"), MultiblockRecipe::getBaseTime,
             DualCodecs.INT.fieldOf("energy"), MultiblockRecipe::getBaseEnergy,
             ThickenerRecipe::new
     );

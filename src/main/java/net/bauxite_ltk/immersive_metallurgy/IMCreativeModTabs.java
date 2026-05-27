@@ -19,19 +19,35 @@ public class IMCreativeModTabs {
             .title(Component.translatable("itemGroup.immersive_metallurgy")) //The language key for the title of your CreativeModeTab
             .icon(() -> IEItems.Metals.INGOTS.get(EnumMetals.STEEL).get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(IMItems.MOLTEN_PIG_IRON_BUCKET.get());
+
                 output.accept(IMBlocks.ELECTRIC_CABLE_LV.asItem());
                 output.accept(IMBlocks.ELECTRIC_CABLE_MV.asItem());
-                output.accept(IMItems.Ores.RAW_IRON_ORE_CHUNK);
-                output.accept(IMItems.Ores.RAW_IRON_ORE_COARSE_POWDER);
-                output.accept(IMItems.Ores.RAW_IRON_ORE_FINES);
-                output.accept(IMItems.Ores.RAW_IRON_CONCENTRATE_PELLET);
                 output.accept(IMBlocks.MASON_PINE_LOG);
                 output.accept(IMBlocks.MASON_PINE_WOOD);
                 output.accept(IMBlocks.STRIPPED_MASON_PINE_LOG);
                 output.accept(IMBlocks.STRIPPED_MASON_PINE_WOOD);
                 output.accept(IMBlocks.MASON_PINE_LEAVES);
                 output.accept(IMBlocks.MASON_PINE_PLANKS);
+                output.accept(IMBlocks.MASON_PINE_SAPLING);
+                output.accept(IMBlocks.MASON_PINE_LOG_LIVE);
+                output.accept(IMBlocks.MASON_PINE_LOG_SAPPY);
+                output.accept(IMBlocks.SAP_COLLECTOR);
+                output.accept(IMItems.MASON_PINE_SAP_BOTTLE);
+                output.accept(IMItems.COLOPHONY_BOTTLE);
+                output.accept(IMItems.COLOPHONY);
+                output.accept(IMItems.MASON_PINE_SAP_BUCKET);
+                output.accept(IMItems.TURPENTINE_OIL_BUCKET);
+                output.accept(IMItems.TERPINEOL_BUCKET);
+
+                output.accept(IMItems.Ores.RAW_IRON_ORE_CHUNK);
+                output.accept(IMItems.Ores.RAW_IRON_ORE_COARSE_POWDER);
+                output.accept(IMItems.Ores.RAW_IRON_ORE_FINES);
+                output.accept(IMItems.Ores.RAW_IRON_CONCENTRATE_PELLET);
+                output.accept(IMItems.RAW_IRON_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_IRON_PROCESSED_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_IRON_CONCENTRATE_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_IRON_TAILING_SLURRY_BUCKET);
+                output.accept(IMItems.MOLTEN_PIG_IRON_BUCKET.get());
 
             }).build()
     );
