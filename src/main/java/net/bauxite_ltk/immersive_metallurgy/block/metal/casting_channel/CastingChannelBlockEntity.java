@@ -658,7 +658,7 @@ public class CastingChannelBlockEntity extends PressurePipeBlockEntity
     public void setSide(Direction side, boolean connectable, boolean firstPipe)
     {
         if((connections & 3) != 0)
-            this.horizontalNeighborOfVerticalConnection = stopperDirection();
+            this.horizontalNeighborOfVerticalConnection = getUniqueHorizontalDirection();
         sideConfig.put(side, connectable);
         if(connectable)
             setValidHandler(side);
@@ -820,7 +820,7 @@ public class CastingChannelBlockEntity extends PressurePipeBlockEntity
         return null;
     }
 
-    public Direction stopperDirection(){
+    public Direction getUniqueHorizontalDirection(){
         int horizon = (connections >> 2) & 15;
         if(horizon > 0 && (horizon & (horizon - 1))==0){
             for(int i = 0; i < 4; i++){
@@ -853,12 +853,12 @@ public class CastingChannelBlockEntity extends PressurePipeBlockEntity
 
         CastingChannelBlockEntity up = getNeighborChannel(Direction.UP);
         if(up!=null && (connections & 3) == 0 && (up.connections & 3) == 0){
-            Direction upFlowFrom = up.stopperDirection();
-            Direction downFlowTo = stopperDirection();
+            Direction upFlowFrom = up.getUniqueHorizontalDirection();
+            Direction downFlowTo = getUniqueHorizontalDirection();
             if(upFlowFrom!=null && downFlowTo!=null){
                 if(upFlowFrom.getOpposite().equals(downFlowTo)){
                     for(Direction d : DirectionUtils.VALUES){
-                        sideConfig.put(d, d.equals(Direction.UP) || d.equals(upFlowFrom.getOpposite()));
+                        sideConfig.put(d, d.equals(Direction.UP) || d.equals(downFlowTo));
                         up.sideConfig.put(d, d.equals(Direction.DOWN) || d.equals(upFlowFrom));
                         updateConnectionByte(d);
                         up.updateConnectionByte(d);

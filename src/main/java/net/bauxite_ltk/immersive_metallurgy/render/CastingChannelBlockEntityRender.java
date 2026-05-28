@@ -20,13 +20,13 @@ public class CastingChannelBlockEntityRender implements BlockEntityRenderer<Cast
             final float fillPercent = (float) fluidStack.getAmount() / castingChannelBlockEntity.tank.getCapacity();
 
             if(castingChannelBlockEntity.isConnectTo(Direction.UP)){
-                Direction to = castingChannelBlockEntity.stopperDirection();
+                Direction to = castingChannelBlockEntity.getUniqueHorizontalDirection();
                 if(to != null) {
                     renderUpFluidInCenter(to, fillPercent, poseStack, fluidStack, buffer, combinedOverlay, combinedLight);
                 }
             }
             else if(castingChannelBlockEntity.isConnectTo(Direction.DOWN)){
-                Direction from = castingChannelBlockEntity.stopperDirection();
+                Direction from = castingChannelBlockEntity.getUniqueHorizontalDirection();
                 if(from != null){
                     renderDownFluidInCenter(from, fillPercent, poseStack, fluidStack, buffer, combinedOverlay, combinedLight);
                 }

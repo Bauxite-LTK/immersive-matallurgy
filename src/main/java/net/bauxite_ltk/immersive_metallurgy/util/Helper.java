@@ -55,7 +55,6 @@ public class Helper {
     }
 
 
-
     public static void applyRotationX(double pivotY, double pivotZ, double degree, PoseStack poseStack){
         double arcDegree = -degree/180 * Math.PI;
         //transY, transZ are the Y and Z position of the pivot after *directly* applying the rotation.

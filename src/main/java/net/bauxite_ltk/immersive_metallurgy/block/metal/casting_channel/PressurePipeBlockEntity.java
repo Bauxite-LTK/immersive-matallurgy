@@ -403,8 +403,9 @@ public abstract class PressurePipeBlockEntity extends IEBaseBlockEntity implemen
     protected boolean setSelfRootOfSubnet(Direction previousDir){
         for(PipeConnectionInfo info : connectionInfoList){
             if(info.root.equals(getBlockPos())){
-                if(info.status.equals(ConnectionStatus.ROOT)) return false;
-                info.status = ConnectionStatus.ROOT;
+//                if(info.status.equals(ConnectionStatus.ROOT)) return false;
+//                info.status = ConnectionStatus.ROOT;
+                return false;
             }
         }
         connectionInfoList.add(PipeConnectionInfo.forRoot(getBlockPos(), ConnectionStatus.ROOT, previousDir));
