@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.2,
+  "ingredient": {
+    "item": "immersive_metallurgy:pure_ore_chunk_raw_iron"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:iron_ingot"
+  }
+}

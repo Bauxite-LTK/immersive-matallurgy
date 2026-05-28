@@ -91,7 +91,7 @@ public class ThickenerLogic implements
             context.requestMasterBESync();
         }
         enqueueProcesses(state, context.getLevel().getRawLevel());
-        if(context.getLevel().shouldTickModulo(4))
+        if(context.getLevel().shouldTickModulo(8))
             handleItemOutput(context);
         boolean output = false;
         int totalAmount = context.getState().tanks.output.getFluidAmount() + state.tanks.input.getFluidAmount();
@@ -130,11 +130,16 @@ public class ThickenerLogic implements
         final ItemStack fullOutputStack = state.inventory.getStackInSlot(OUTPUT_SLOT);
         if(fullOutputStack.isEmpty())
             return;
-        ItemStack stack = fullOutputStack.copyWithCount(1);
+        int outputCount = Math.min(fullOutputStack.getCount(), 32);
+        ItemStack stack = fullOutputStack.copyWithCount(outputCount);
         final ItemStack remaining = Utils.insertStackIntoInventory(state.itemOutput, stack, false);
         if(remaining.isEmpty())
         {
-            fullOutputStack.shrink(1);
+            fullOutputStack.shrink(outputCount);
+            ctx.markMasterDirty();
+        }
+        else{
+            fullOutputStack.shrink(outputCount - remaining.getCount());
             ctx.markMasterDirty();
         }
     }

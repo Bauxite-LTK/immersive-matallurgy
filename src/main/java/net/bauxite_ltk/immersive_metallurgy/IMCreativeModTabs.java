@@ -49,6 +49,8 @@ public class IMCreativeModTabs {
                 output.accept(IMItems.RAW_IRON_TAILING_SLURRY_BUCKET);
                 output.accept(IMItems.MOLTEN_PIG_IRON_BUCKET.get());
 
+                output.accept(IMBlocks.CASTING_CHANNEL);
+
             }).build()
     );
 

@@ -3,6 +3,7 @@ package net.bauxite_ltk.immersive_metallurgy.block;
 import blusunrize.immersiveengineering.common.blocks.BlockItemIE;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.metal.ElectricCableBlock;
+import net.bauxite_ltk.immersive_metallurgy.block.metal.casting_channel.CastingChannelBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.sapCollector.SapCollectorBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableLeavesBlock;
@@ -65,6 +66,7 @@ public class IMBlocks {
 
     public static final DeferredBlock<ElectricCableBlock> ELECTRIC_CABLE_LV = registerBlockIE("electric_cable_lv", () -> ElectricCableBlock.forLv(METAL_PROPERTIES_DYNAMIC.get()));
     public static final DeferredBlock<ElectricCableBlock> ELECTRIC_CABLE_MV = registerBlockIE("electric_cable_mv", () -> ElectricCableBlock.forMv(METAL_PROPERTIES_DYNAMIC.get()));
+    public static final DeferredBlock<CastingChannelBlock> CASTING_CHANNEL = registerBlockIE("casting_channel", () -> new CastingChannelBlock(METAL_PROPERTIES_DYNAMIC.get()));
 
 
     public static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){

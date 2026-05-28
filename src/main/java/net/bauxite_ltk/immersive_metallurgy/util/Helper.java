@@ -10,9 +10,14 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -135,5 +140,76 @@ public class Helper {
         stack.translate(0.5, 0.5, 0.5);
         rotateForFacingNoCentering(stack, facing);
         stack.translate(-0.5, -0.5, -0.5);
+    }
+
+    public static void playSound(Level level, BlockPos worldPosition, SoundEvent soundEvent){
+        level.playSound(null, worldPosition, soundEvent, SoundSource.BLOCKS, 1.0F + level.getRandom().nextFloat(), level.getRandom().nextFloat() + 0.7F + 0.3F);
+    }
+
+
+    @SuppressWarnings("deprecation") public static final ResourceLocation BLOCKS_ATLAS = TextureAtlas.LOCATION_BLOCKS;
+
+    public static int getFluidColor(FluidStack fluid)
+    {
+        return getFluidColor(fluid.getFluid());
+    }
+
+    public static int getFluidColor(Fluid fluid)
+    {
+        return IClientFluidTypeExtensions.of(fluid).getTintColor();
+    }
+
+    public static void renderFluidFace(PoseStack poseStack, FluidStack fluidStack, MultiBufferSource buffer, float minX, float minZ, float maxX, float maxZ, float y, int combinedOverlay, int combinedLight)
+    {
+        renderFluidFace(poseStack, fluidStack, buffer, getFluidColor(fluidStack), minX, minZ, maxX, maxZ, y, combinedOverlay, combinedLight);
+    }
+
+    public static void renderFluidFace(PoseStack poseStack, FluidStack fluidStack, MultiBufferSource buffers, int color, float minX, float minZ, float maxX, float maxZ, float y, int packedOverlay, int packedLight)
+    {
+        final ResourceLocation texture = IClientFluidTypeExtensions.of(fluidStack.getFluid()).getStillTexture(fluidStack);
+        final TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(BLOCKS_ATLAS).apply(texture);
+        final VertexConsumer buffer = buffers.getBuffer(RenderType.entityTranslucentCull(BLOCKS_ATLAS));
+
+        renderTexturedFace(poseStack.last(), buffer, color, minX, minZ, maxX, maxZ, y, packedOverlay, packedLight, sprite);
+    }
+
+
+    public static void renderFluidFace(PoseStack poseStack, FluidStack fluidStack, MultiBufferSource buffers, float x1, float y1, float z1, float x2, float y2, float z2, boolean withRotationX, int packedOverlay, int packedLight)
+    {
+        final ResourceLocation texture = IClientFluidTypeExtensions.of(fluidStack.getFluid()).getStillTexture(fluidStack);
+        final TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(BLOCKS_ATLAS).apply(texture);
+        final VertexConsumer buffer = buffers.getBuffer(RenderType.entityTranslucentCull(BLOCKS_ATLAS));
+
+        renderTexturedFace(poseStack.last(), buffer, getFluidColor(fluidStack), x1, y1, z1, x2, y2, z2, withRotationX, packedOverlay, packedLight, sprite);
+    }
+
+
+    private static void renderTexturedFace(PoseStack.Pose pose, VertexConsumer buffer, int color, float minX, float minZ, float maxX, float maxZ, float y, int packedOverlay, int packedLight, TextureAtlasSprite sprite)
+    {
+        buffer.addVertex(pose, minX, y, minZ).setColor(color).setUv(sprite.getU(minX), sprite.getV(minZ)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+        buffer.addVertex(pose, minX, y, maxZ).setColor(color).setUv(sprite.getU(minX), sprite.getV(maxZ)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+        buffer.addVertex(pose, maxX, y, maxZ).setColor(color).setUv(sprite.getU(maxX), sprite.getV(maxZ)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+        buffer.addVertex(pose, maxX, y, minZ).setColor(color).setUv(sprite.getU(maxX), sprite.getV(minZ)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+    }
+
+    private static void renderTexturedFace(PoseStack.Pose pose, VertexConsumer buffer, int color, float x1, float y1, float z1, float x2, float y2, float z2, boolean withRotationX, int packedOverlay, int packedLight, TextureAtlasSprite sprite)
+    {
+        if(withRotationX){
+            float dy = y1-y2;
+            float dz = z1-z2;
+            buffer.addVertex(pose, x1, y1, z1).setColor(color).setUv(sprite.getU(x1), sprite.getV(z1)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+            buffer.addVertex(pose, x1, y2, z2).setColor(color).setUv(sprite.getU(x1), sprite.getV(z2)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+            buffer.addVertex(pose, x2, y2, z2).setColor(color).setUv(sprite.getU(x2), sprite.getV(z2)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+            buffer.addVertex(pose, x2, y1, z1).setColor(color).setUv(sprite.getU(x2), sprite.getV(z1)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+
+        }
+        else{
+            float dy = y1-y2;
+            float dx = x1-x2;
+            buffer.addVertex(pose, x1, y1, z1).setColor(color).setUv(sprite.getU(x1), sprite.getV(z1)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+            buffer.addVertex(pose, x1, y1, z2).setColor(color).setUv(sprite.getU(x1), sprite.getV(z2)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+            buffer.addVertex(pose, x2, y2, z2).setColor(color).setUv(sprite.getU(x2), sprite.getV(z2)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+            buffer.addVertex(pose, x2, y2, z1).setColor(color).setUv(sprite.getU(x2), sprite.getV(z1)).setOverlay(packedOverlay).setLight(packedLight).setNormal(pose, 0, 1, 0);
+        }
     }
 }

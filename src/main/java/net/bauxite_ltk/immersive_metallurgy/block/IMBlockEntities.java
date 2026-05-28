@@ -3,6 +3,7 @@ package net.bauxite_ltk.immersive_metallurgy.block;
 import com.google.common.collect.ImmutableSet;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.block.metal.ElectricCableBlockEntity;
+import net.bauxite_ltk.immersive_metallurgy.block.metal.casting_channel.CastingChannelBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.block.sapCollector.SapCollectorBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -37,6 +38,10 @@ public class IMBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ElectricCableBlockEntity>> ELECTRIC_CABLE_MV = BLOCK_ENTITIES.register(
             "electric_cable_mv", makeType(ElectricCableBlockEntity::forMv, IMBlocks.ELECTRIC_CABLE_MV)
+    );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CastingChannelBlockEntity>> CASTING_CHANNEL = BLOCK_ENTITIES.register(
+            "casting_channel", makeType(CastingChannelBlockEntity::new, IMBlocks.CASTING_CHANNEL)
     );
 
 

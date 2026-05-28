@@ -23,7 +23,8 @@ public class IMBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(IMBlocks.ELECTRIC_CABLE_LV.get())
-                .add(IMBlocks.ELECTRIC_CABLE_MV.get());
+                .add(IMBlocks.ELECTRIC_CABLE_MV.get())
+                .add(IMBlocks.CASTING_CHANNEL.get());
 
         this.tag(BlockTags.LOGS_THAT_BURN)
                 .add(IMBlocks.MASON_PINE_LOG.get())

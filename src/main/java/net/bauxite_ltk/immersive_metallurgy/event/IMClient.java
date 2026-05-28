@@ -7,6 +7,7 @@ import net.bauxite_ltk.immersive_metallurgy.ImmersiveMetallurgy;
 import net.bauxite_ltk.immersive_metallurgy.block.IMBlockEntities;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.IMMultiblockLogic;
+import net.bauxite_ltk.immersive_metallurgy.callback.CastingChannelCallbacks;
 import net.bauxite_ltk.immersive_metallurgy.callback.ElectricCableCallbacks;
 import net.bauxite_ltk.immersive_metallurgy.fluid.FluidRendererExtension;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
@@ -19,6 +20,9 @@ import net.bauxite_ltk.immersive_metallurgy.particle.DripSapParticles;
 import net.bauxite_ltk.immersive_metallurgy.particle.IMParticleTypes;
 import net.bauxite_ltk.immersive_metallurgy.render.*;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -29,6 +33,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.model.DynamicFluidContainerModel;
@@ -55,8 +60,19 @@ public class IMClient {
 
     public static void modConstruction(){
         IEOBJCallbacks.register(IMUtils.modRL("electric_cable"), ElectricCableCallbacks.INSTANCE);
+        IEOBJCallbacks.register(IMUtils.modRL("casting_channel"), CastingChannelCallbacks.INSTANCE);
         //IEOBJCallbacks.register(IMUtils.modRL("electric_cable_mv"), ElectricCableCallbacks.INSTANCE);
         ImmersiveMetallurgy.LOGGER.info("ImmersiveMetallurgy register callbacks");
+    }
+
+    @SubscribeEvent
+    static void onClientSetup(FMLClientSetupEvent event) {
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.MASON_PINE_SAP.getSource(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.MASON_PINE_SAP.getFlowing(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.TURPENTINE_OIL.getSource(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.TURPENTINE_OIL.getFlowing(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getSource(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getFlowing(), RenderType.translucent());
     }
 
 
@@ -115,6 +131,8 @@ public class IMClient {
         registerBERenderNoContext(event, IMMultiblockLogic.FLOTATION_CELL.masterBE(), FlotationCellRender::new);
         registerBERenderNoContext(event, IMMultiblockLogic.THICKENER.masterBE(), ThickenerRender::new);
         registerBERenderNoContext(event, IMBlockEntities.SAP_COLLECTOR.get(), SapCollectorRender::new);
+        registerBERenderNoContext(event, IMBlockEntities.CASTING_CHANNEL.get(), CastingChannelBlockEntityRender::new);
+
         //registerBERenderNoContext(event, IMBlockEntities.ELECTRIC_CABLE.get(), ElectricCableSelectionRenderer::new);
     }
 
