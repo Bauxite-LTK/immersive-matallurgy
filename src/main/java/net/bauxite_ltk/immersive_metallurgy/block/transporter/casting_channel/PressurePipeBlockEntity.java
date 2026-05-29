@@ -1,4 +1,4 @@
-package net.bauxite_ltk.immersive_metallurgy.block.metal.casting_channel;
+package net.bauxite_ltk.immersive_metallurgy.block.transporter.casting_channel;
 
 import blusunrize.immersiveengineering.api.utils.DirectionUtils;
 import blusunrize.immersiveengineering.api.utils.SafeChunkUtils;

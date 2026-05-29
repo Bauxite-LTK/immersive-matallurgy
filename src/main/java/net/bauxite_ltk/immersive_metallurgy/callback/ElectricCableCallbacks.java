@@ -2,24 +2,17 @@ package net.bauxite_ltk.immersive_metallurgy.callback;
 
 import blusunrize.immersiveengineering.api.IEProperties;
 import blusunrize.immersiveengineering.api.client.ieobj.BlockCallback;
-import blusunrize.immersiveengineering.api.utils.DirectionUtils;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import com.mojang.math.Transformation;
-import it.unimi.dsi.fastutil.Hash;
-import net.bauxite_ltk.immersive_metallurgy.ImmersiveMetallurgy;
-import net.bauxite_ltk.immersive_metallurgy.block.metal.ElectricCableBlockEntity;
-import net.minecraft.Util;
+import net.bauxite_ltk.immersive_metallurgy.block.transporter.ElectricCableBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import org.apache.commons.compress.archivers.zip.PKWareExtraHeader;
 
 import javax.annotation.Nonnull;
 import java.util.*;
-
-import static net.minecraft.core.Direction.*;
 
 public class ElectricCableCallbacks implements BlockCallback<ElectricCableCallbacks.Key> {
 

@@ -1,7 +1,7 @@
 package net.bauxite_ltk.immersive_metallurgy.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.bauxite_ltk.immersive_metallurgy.block.metal.casting_channel.CastingChannelBlockEntity;
+import net.bauxite_ltk.immersive_metallurgy.block.transporter.casting_channel.CastingChannelBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.util.Helper;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;

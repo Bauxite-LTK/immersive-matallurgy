@@ -1,4 +1,4 @@
-package net.bauxite_ltk.immersive_metallurgy.block.metal;
+package net.bauxite_ltk.immersive_metallurgy.block.transporter;
 
 import blusunrize.immersiveengineering.common.blocks.IEBaseBlockEntity;
 import blusunrize.immersiveengineering.common.blocks.IEBlockInterfaces;

@@ -1,21 +1,11 @@
 package net.bauxite_ltk.immersive_metallurgy.event;
 
 import blusunrize.immersiveengineering.api.utils.SafeChunkUtils;
-import net.bauxite_ltk.immersive_metallurgy.block.IMBlocks;
-import net.bauxite_ltk.immersive_metallurgy.block.metal.ElectricCableBlockEntity;
-import net.bauxite_ltk.immersive_metallurgy.render.ElectricCableSelectionRenderer;
+import net.bauxite_ltk.immersive_metallurgy.block.transporter.ElectricCableBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 

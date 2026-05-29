@@ -2,8 +2,8 @@ package net.bauxite_ltk.immersive_metallurgy.block;
 
 import blusunrize.immersiveengineering.common.blocks.BlockItemIE;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlock;
-import net.bauxite_ltk.immersive_metallurgy.block.metal.ElectricCableBlock;
-import net.bauxite_ltk.immersive_metallurgy.block.metal.casting_channel.CastingChannelBlock;
+import net.bauxite_ltk.immersive_metallurgy.block.transporter.ElectricCableBlock;
+import net.bauxite_ltk.immersive_metallurgy.block.transporter.casting_channel.CastingChannelBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.sapCollector.SapCollectorBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableLeavesBlock;

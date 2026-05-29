@@ -1,4 +1,4 @@
-package net.bauxite_ltk.immersive_metallurgy.block.metal.casting_channel;
+package net.bauxite_ltk.immersive_metallurgy.block.transporter.casting_channel;
 
 import blusunrize.immersiveengineering.common.blocks.IEEntityBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.IMBlockEntities;

@@ -1,4 +1,4 @@
-package net.bauxite_ltk.immersive_metallurgy.block.metal;
+package net.bauxite_ltk.immersive_metallurgy.block.transporter;
 
 import blusunrize.immersiveengineering.api.utils.DirectionUtils;
 import blusunrize.immersiveengineering.api.utils.SafeChunkUtils;
