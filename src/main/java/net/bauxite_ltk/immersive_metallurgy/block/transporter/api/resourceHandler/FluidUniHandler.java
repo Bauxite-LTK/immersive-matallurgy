@@ -1,12 +1,14 @@
 package net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceHandler;
 
+import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 public class FluidUniHandler implements IUniHandler<FluidStack>, IFluidHandler {
     IFluidHandler handler;
 
-    private FluidUniHandler(IFluidHandler handler){
+    protected FluidUniHandler(IFluidHandler handler){
         this.handler = handler;
     }
 
@@ -15,8 +17,13 @@ public class FluidUniHandler implements IUniHandler<FluidStack>, IFluidHandler {
     }
 
     @Override
-    public int receiveResource(FluidStack resource, boolean simulate) {
-        return handler.fill(resource, simulate?FluidAction.SIMULATE:FluidAction.EXECUTE);
+    public int receiveResource(FluidStack fluidStack, boolean simulate) {
+        return handler.fill(fluidStack, simulate?FluidAction.SIMULATE:FluidAction.EXECUTE);
+    }
+
+    @Override
+    public int receiveResource(FluidStack fluidStack, int amount, boolean simulate) {
+        return handler.fill(fluidStack.copyWithAmount(amount), simulate?FluidAction.SIMULATE:FluidAction.EXECUTE);
     }
 
     @Override
@@ -40,7 +47,7 @@ public class FluidUniHandler implements IUniHandler<FluidStack>, IFluidHandler {
     }
 
     @Override
-    public int getStorages() {
+    public int getStoragesCount() {
         return handler.getTanks();
     }
 
@@ -48,9 +55,6 @@ public class FluidUniHandler implements IUniHandler<FluidStack>, IFluidHandler {
     public FluidStack getResource(int storageId) {
         return handler.getFluidInTank(storageId);
     }
-
-
-
 
 
     @Override
@@ -86,5 +90,35 @@ public class FluidUniHandler implements IUniHandler<FluidStack>, IFluidHandler {
     @Override
     public FluidStack drain(int i, FluidAction fluidAction) {
         return handler.drain(i,fluidAction);
+    }
+
+    public int getFluidAmount(int i){
+        return getResourceAmount(i);
+    }
+
+
+    public int setFluidAmount(Fluid fluid, int amount){
+        for(int i = 0; i < getTanks(); i++){
+            if(getFluidInTank(i).getFluid().isSame(fluid) || getFluidInTank(i).isEmpty()){
+                return setTankFluidAmount(i, fluid, amount);
+            }
+        }
+        return 0;
+    }
+
+    private int setTankFluidAmount(int i, Fluid fluid, int amount){
+        int thisAmount = getFluidAmount(i);
+        if(amount > getCapacity(i)) IMUtils.LOGGER.warn("FluidUniHandler Set Fluid Amount: Larger Than Capacity!");
+        if(amount == thisAmount) return getFluidAmount(i);
+        if(amount > thisAmount){
+            int fillResult = fill(new FluidStack(fluid, amount-thisAmount), IFluidHandler.FluidAction.EXECUTE);
+            if(fillResult != amount - thisAmount) IMUtils.LOGGER.error("FluidUniHandler Set Fluid Amount: Unexpected Fill Amount!");
+            return getFluidAmount(i);
+        }
+        else {
+            int drainResult = drain(thisAmount - amount, IFluidHandler.FluidAction.EXECUTE).getAmount();
+            if(drainResult != thisAmount - amount) IMUtils.LOGGER.error("FluidUniHandler Set Fluid Amount: Unexpected Drain Amount!");
+            return getFluidAmount(i);
+        }
     }
 }

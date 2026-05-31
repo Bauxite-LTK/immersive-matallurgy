@@ -302,37 +302,6 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
 //        }
 //        updateTickCount = 0;
 //
-
-
-    }
-
-    public void toggleSide(Direction attachmentDir, Direction connectionDir)
-    {
-        boolean newSideConnected = !sideConfigValue(attachmentDir, connectionDir);
-        setSide(attachmentDir, connectionDir, newSideConnected);
-    }
-
-    public void setSide(Direction attachmentDir, Direction connectionDir, boolean connectable)
-    {
-        setSide(attachmentDir, connectionDir, connectable, true);
-    }
-
-    public void setSide(Direction attachmentDir, Direction connectionDir, boolean connectable, boolean firstToUpdate)
-    {
-        setSideConfig(attachmentDir, connectionDir, connectable);
-//        if(connectable)
-//            setValidHandler(side);
-//        else
-//            invalidateHandler(side);
-        setChanged();
-        if(firstToUpdate)
-        {
-            BlockEntity neighborTile = getLevelNonnull().getBlockEntity(getBlockPos().relative(connectionDir));
-            if(neighborTile instanceof ElectricCableBlockEntity electricCable)
-                electricCable.setSide(attachmentDir, connectionDir.getOpposite(), connectable, false);
-            updateStraightConnection(connectionDir); //yes, this is not meant for neighborTile
-        }
-        getLevelNonnull().blockEvent(getBlockPos(), getBlockState().getBlock(), 0, 0);
     }
 
     public boolean updateStraightConnection(Direction connectionDir)

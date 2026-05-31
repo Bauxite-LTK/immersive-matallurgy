@@ -12,8 +12,6 @@ import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceHandle
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceHandler.blt.BLTSingleFluidUniHandler;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceStorage.FluidUniStorage;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceStorage.IUniStorage;
-import net.bauxite_ltk.immersive_metallurgy.block.transporter.casting_channel.PressurePipeBlockEntity;
-import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -25,21 +23,23 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements BlocklikeResourceTransporter<FluidStack> {
+
+public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements IBlocklikeResourceTransporter<FluidStack> {
 
     /**
      * FluidResourceStorage works same as FluidTank
      * {@link IUniStorage} provides unified methods for handling specific type of Resources
      * In this case, {@link FluidUniStorage} handles {@link FluidStack}.
      */
-    FluidUniStorage tank;
+    public final FluidUniStorage tank;
+
+    public int forceAllocatedExecuteCount = 0;
 
     //Record six faces' connections
     protected byte connections = 0;
@@ -58,15 +58,13 @@ public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements Bl
     );
 
     protected final Map<Direction, IFluidHandler> sidedHandlers = new EnumMap<>(Direction.class);
-    {
-        for(Direction f : DirectionUtils.VALUES)
-            sidedHandlers.put(f, new BLTSingleFluidUniHandler(tank,this, f));
-    }
 
-    private BlocklikeFluidTransporterBE(
+    protected BlocklikeFluidTransporterBE(
             FluidUniStorage storage, BlockEntityType<?> blockEntityType, BlockPos pos, BlockState blockState) {
         super(blockEntityType,pos,blockState);
         tank = storage;
+        for(Direction f : DirectionUtils.VALUES)
+            sidedHandlers.put(f, new BLTSingleFluidUniHandler(FluidUniHandler.cast(tank),this, f));
     }
 
     public static BlocklikeFluidTransporterBE create(
@@ -78,6 +76,75 @@ public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements Bl
                 blockState
         );
     }
+
+    int tickCount = 0;
+    @Override
+    public boolean shouldTick() {
+        if(tickCount<5) return false;
+        else return true;
+    }
+
+    @Override
+    public void tickServer() {
+        forceAllocatedExecuteCount = 0;
+        if(shouldTick()){
+            checkHeightLevelForSendingUpdate();
+        }
+        IBlocklikeResourceTransporter.super.tickServer();
+        if(tickCount<5) tickCount++;
+        else tickCount = 0;
+    }
+
+
+
+
+    @Override
+    public void readCustomNBT(CompoundTag nbt, boolean descPacket, HolderLookup.Provider provider) {
+        int[] config = nbt.getIntArray("sideConfig");
+        for(int i = 0; i < 6; ++i)
+        {
+            Direction curDir = Direction.from3DDataValue(i);
+            if(i < config.length)
+            {
+                boolean connected = config[i]!=0;
+                sideConfig.put(curDir, connected);
+                if(connected)
+                    setValidHandler(curDir);
+                else
+                    invalidateHandler(curDir);
+            }
+            else
+            {
+                sideConfig.put(curDir, false);
+                invalidateHandler(curDir);
+            }
+        }
+        int oldTankAmount = tank.getResourceAmount();
+        tank.readFromNBT(provider, nbt.getCompound("tank"));
+
+        byte oldConns = connections;
+        connections = nbt.getByte("connections");
+        if(level!=null&&level.isClientSide&&(connections!=oldConns || tank.getResourceAmount()!= oldTankAmount))
+        {
+            BlockState state = level.getBlockState(worldPosition);
+            level.sendBlockUpdated(worldPosition, state, state, 3);
+            markContainingBlockForUpdate(getBlockState());
+        }
+    }
+
+
+    @Override
+    public void writeCustomNBT(CompoundTag nbt, boolean descPacket, HolderLookup.Provider provider) {
+        int[] config = new int[6];
+        for(int i = 0; i < 6; ++i)
+            if(sideConfig.getBoolean(Direction.from3DDataValue(i)))
+                config[i] = 1;
+        nbt.putIntArray("sideConfig", config);
+        nbt.put("tank", tank.writeToNBT(provider, new CompoundTag()));
+        nbt.putByte("connections", connections);
+    }
+
+
 
     @Override
     public void allocateResourceLocal(BlockFace sourceKey, boolean tryEmptySelf) {
@@ -157,6 +224,60 @@ public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements Bl
         return fill;
     }
 
+    @Override
+    public int forceAllocateResource(BlockFace sourceKey, FluidStack resource, int amount, boolean simulate) {
+        int last = amount;
+        last -= tank.receiveResource(resource,last,simulate);
+        for(Direction output : getData(sourceKey).outputs){
+            IFluidHandler handler = neighbors.get(output).getCapability();
+            if(handler != null && !(handler instanceof BLTSingleFluidUniHandler)){
+                last -= handler.fill(resource.copyWithAmount(last), simulate? IFluidHandler.FluidAction.SIMULATE : IFluidHandler.FluidAction.EXECUTE);
+            }
+        }
+        return amount - last;
+    }
+
+
+    int lastHeightLevel = 0;
+
+    public void checkHeightLevelForSendingUpdate(){
+        int currentHeightLevel = getFluidHeightLevel(tank.getResourceAmount(), tank.getCapacity());
+        if(currentHeightLevel != lastHeightLevel){
+            lastHeightLevel = currentHeightLevel;
+            if (level != null && !level.isClientSide) {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
+        }
+    }
+
+    // height level : 0~5
+    public static int getFluidHeightLevel(int tankAmount, int tankCapacity){
+        if(tankAmount == 0) return 0;
+        if(tankAmount == tankCapacity) return 6;
+        return 1 + (tankAmount + tankCapacity/8) / (tankCapacity/4);
+    }
+
+
+    protected void invalidateHandler(Direction side)
+    {
+        IFluidHandler handler = sidedHandlers.get(side);
+        if(handler!=null)
+        {
+            sidedHandlers.put(side, null);
+            invalidateCapabilities();
+        }
+    }
+
+    protected void setValidHandler(Direction side)
+    {
+        IFluidHandler handler = sidedHandlers.get(side);
+        if(handler==null)
+        {
+            sidedHandlers.put(side, new BLTSingleFluidUniHandler(FluidUniHandler.cast(tank),this, side));
+            invalidateCapabilities();
+        }
+    }
+
 
     @Override
     public Class<FluidStack> getResourceClass() {
@@ -164,7 +285,7 @@ public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements Bl
     }
 
     @Override
-    public IUniStorage<FluidStack> getStorage() {
+    public IUniHandler<FluidStack> getSelfHandler() {
         return tank;
     }
 
@@ -195,18 +316,5 @@ public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements Bl
 
 
 
-    @Override
-    public boolean shouldTick() {
-        return false;
-    }
 
-    @Override
-    public void readCustomNBT(CompoundTag nbt, boolean descPacket, HolderLookup.Provider provider) {
-
-    }
-
-    @Override
-    public void writeCustomNBT(CompoundTag nbt, boolean descPacket, HolderLookup.Provider provider) {
-
-    }
 }

@@ -5,24 +5,21 @@ import blusunrize.immersiveengineering.common.blocks.ticking.IEServerTickableBE;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectIntImmutablePair;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceHandler.IUniHandler;
-import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceStorage.IUniStorage;
-import net.bauxite_ltk.immersive_metallurgy.block.transporter.casting_channel.PressurePipeBlockEntity;
+import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceHandler.blt.BLTSingleFluidUniHandler;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.*;
 
-public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
+public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
     Class<R> getResourceClass();
 
-    IUniStorage<R> getStorage();
+    IUniHandler<R> getSelfHandler();
 
     List<TransportationData> getTDList();
 
@@ -34,11 +31,15 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
     IUniHandler<R> getNeighborCapability(Direction direction);
 
-    default boolean isNeighborInvalid(Direction direction){
+    default boolean isNeighborCapabilityInvalid(Direction direction){
         return getNeighborCapability(direction)==null;
     }
 
-    BlocklikeResourceTransporter<?> getNeighborInstance(Direction direction);
+    IBlocklikeResourceTransporter<?> getNeighborInstance(Direction direction);
+
+    default boolean isNeighborInstanceInvalid(Direction direction){
+        return getNeighborInstance(direction) == null;
+    }
 
     void allocateResourceLocal(BlockFace sourceKey, boolean tryEmptySelf);
 
@@ -50,14 +51,16 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
     default void tickServer(){
         if(shouldTick()){
             removeInvalidConnectionInfo();
-            List<TransportationData> tdList = getTDList();
+            List<TransportationData> tdList = List.copyOf(getTDList());
             for(TransportationData data : tdList){
                 BlockFace sourceKey = data.sourceKey;
                 TransportationData.Status status = data.status;
 
                 if(status.equals(TransportationData.Status.SOURCE)){
+                    //if(sourceKey.faceDir == null) throw new RuntimeException("WTF");
+                    IMUtils.LOGGER.info("Source update subnet pos:{}", getBlockPos());
                     rootUpdateSubnet(sourceKey);
-                    if(isNeighborInvalid(data.input) || getStorage().isEmpty()) {
+                    if(isNeighborCapabilityInvalid(data.input) || getSelfHandler().isAllEmpty()) {
                         IMUtils.LOGGER.info("set subroot");
                         data.setStatus(TransportationData.Status.DRAIN);
                         data.removeInput();
@@ -65,13 +68,14 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
                 }
 
                 else if(status.equals(TransportationData.Status.DRAIN)){
-
+                    IMUtils.LOGGER.info("drain update subnet pos:{}", getBlockPos());
+                    BlockFace drainKey = new BlockFace(getBlockPos(),null);
                     subrootUpdateSubnet(sourceKey,
-                            new BlockFace(getBlockPos(),null)
+                            drainKey
                     );
-                    if(isClaimedByOtherRoot(sourceKey) || getStorage().isEmpty()){
+                    if(isClaimedByOtherRoot(drainKey) || getSelfHandler().isAllEmpty()){
                         for(Direction nextDir : data.outputs){
-                            if(getNeighborInstance(nextDir)!= null && getNeighborInstance(nextDir).getData(sourceKey) != null){
+                            if(!isNeighborInstanceInvalid(nextDir) && getNeighborInstance(nextDir).hasData(sourceKey)){
                                 getNeighborInstance(nextDir).getData(sourceKey).setStatus(TransportationData.Status.DRAIN);
                             }
                         }
@@ -81,7 +85,9 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
                 }
 
                 else if(status.equals(TransportationData.Status.COMMON)){
-                    if (isNeighborInvalid(data.input)){
+                    if (isNeighborCapabilityInvalid(data.input)){
+                        //FIXME FUCK THIS SHIT CODE
+                        IMUtils.LOGGER.info("common set sub source pos:{}", getBlockPos());
                         data.setStatus(TransportationData.Status.DRAIN);
                     }
                 }
@@ -91,7 +97,14 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
     }
 
     default void rootUpdateSubnet(BlockFace sourceKey){
-        BlockPos sourceTransporterPos = sourceKey.pos.relative(sourceKey.faceDir);
+        BlockPos sourceTransporterPos;
+        try {
+            sourceTransporterPos = sourceKey.pos.relative(sourceKey.faceDir);
+        }
+        catch(NullPointerException e){
+            IMUtils.LOGGER.error("sourceKey.faceDir is null");
+            return;
+        }
         List<BlockPos> openList = new LinkedList<>();
         List<BlockPos> closeList = new LinkedList<>();
         openList.add(sourceTransporterPos);
@@ -108,7 +121,8 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
             if (getLevel() != null) be = SafeChunkUtils.getSafeBE(getLevel(), curPos);
             if(be == null) continue;
 
-            if(be instanceof BlocklikeResourceTransporter<?> blocklikeTransporter){
+            if(be instanceof IBlocklikeResourceTransporter<?> blocklikeTransporter
+                    && blocklikeTransporter.getResourceClass().equals(getResourceClass())){
                 blocklikeTransporter.tryClaimNext(sourceKey);
                 blocklikeTransporter.allocateResourceLocal(sourceKey, false);
                 for(Direction direction : blocklikeTransporter.getData(sourceKey).outputs){
@@ -121,9 +135,7 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
     default void subrootUpdateSubnet(BlockFace oldSourceKey, BlockFace newSourceKey){
         BlockPos sourceTransporterPos;
-        if(oldSourceKey.faceDir != null)
-            sourceTransporterPos = oldSourceKey.pos.relative(oldSourceKey.faceDir);
-        else sourceTransporterPos = oldSourceKey.pos;
+        sourceTransporterPos = newSourceKey.pos;
 
         List<BlockPos> openList = new LinkedList<>();
         List<BlockPos> closeList = new LinkedList<>();
@@ -137,11 +149,11 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
             BlockEntity be = null;
             if (getLevel() != null) be = SafeChunkUtils.getSafeBE(getLevel(), curPos);
             if(be == null) continue;
-            if(be instanceof BlocklikeResourceTransporter<?> blocklikeTransporter
+            if(be instanceof IBlocklikeResourceTransporter<?> blocklikeTransporter
                     && blocklikeTransporter.getResourceClass().equals(getResourceClass())){
 
-                if(oldSourceKey != newSourceKey && getData(oldSourceKey) != null){
-                    getData(oldSourceKey).sourceKey = newSourceKey;
+                if(oldSourceKey != newSourceKey && blocklikeTransporter.hasData(oldSourceKey)){
+                    blocklikeTransporter.getData(oldSourceKey).resetSourceForDrain(newSourceKey);
                 }
                 blocklikeTransporter.tryClaimNext(newSourceKey);
                 blocklikeTransporter.allocateResourceLocal(newSourceKey, true);
@@ -178,13 +190,13 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
         // from nextList, try claim neighbor pipe
         for(Direction outputDir : getData(sourceKey).outputs){
-            BlocklikeResourceTransporter<?> neighbor = getNeighborInstance(outputDir);
+            IBlocklikeResourceTransporter<?> neighbor = getNeighborInstance(outputDir);
             int thisDepth = getData(sourceKey).depthInNetwork;
             if(neighbor!=null){
 
                 //if pipe is not in subnet, then add it
                 if(!neighbor.hasData(sourceKey)){
-                    neighbor.getTDList().add(TransportationData.forCommon(sourceKey, outputDir, thisDepth+1));
+                    neighbor.getTDList().add(TransportationData.forCommon(sourceKey, outputDir.getOpposite(), thisDepth+1));
                 }
 
                 // If depth of next is abnormally large, then reverse its next and previous direction
@@ -232,6 +244,53 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
         }
     }
 
+    default int startAllocateResourceGlobal(Direction sourceDir, R resource, int amount, boolean simulate){
+        BlockFace sourceKey = new BlockFace(getBlockPos().relative(sourceDir), sourceDir.getOpposite());
+        int lastAmount = amount;
+        BlockPos sourceTransporterPos;
+        try {
+            sourceTransporterPos = sourceKey.pos.relative(sourceKey.faceDir);
+        }
+        catch(NullPointerException e){
+            IMUtils.LOGGER.error("startAllocateResourceGlobal: sourceKey.faceDir is null");
+            return 0;
+        }
+        List<BlockPos> openList = new LinkedList<>();
+        List<BlockPos> closeList = new LinkedList<>();
+        openList.add(sourceTransporterPos);
+        for(int i = 0; i < 1024; i++){
+            //TFCTrihydrate.LOGGER.info("rootUpdateSubnet: i = {}", i);
+            if(openList.isEmpty() || lastAmount == 0) break;
+
+            BlockPos curPos = openList.getFirst();
+            openList.removeFirst();
+
+            if(closeList.contains(curPos)) continue;
+
+            BlockEntity be = null;
+            if (getLevel() != null) be = SafeChunkUtils.getSafeBE(getLevel(), curPos);
+            if(be == null) continue;
+
+            if(be instanceof IBlocklikeResourceTransporter<?> transporter
+                    && transporter.getResourceClass().equals(getResourceClass())){
+                @SuppressWarnings("unchecked")
+                IBlocklikeResourceTransporter<R> typed = (IBlocklikeResourceTransporter<R>)transporter;
+                int fill = typed.forceAllocateResource(sourceKey,resource,amount,simulate);
+                lastAmount -= fill;
+                if(typed.hasData(sourceKey)) { // avoid this method execute earlier than current transporter is claimed by sourceKey
+                    for (Direction direction : typed.getData(sourceKey).outputs) {
+                        openList.addLast(curPos.relative(direction));
+                    }
+                }
+                closeList.addFirst(curPos);
+            }
+        }
+        return amount - lastAmount;
+    }
+
+    int forceAllocateResource(BlockFace sourceKey ,R resource, int amount, boolean simulate);
+
+
 
 
 
@@ -260,10 +319,10 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
         getTDList().removeIf(info -> info.status.equals(TransportationData.Status.INVALID));
     }
 
-    private boolean isSelfSource(BlockFace source){
+    private boolean isSelfSource(BlockFace sourceKey){
         List<TransportationData> tdList = getTDList();
         for(TransportationData data : tdList){
-            if(data.sourceKey.equals(source)){
+            if(data.sourceKey.equals(sourceKey)){
                 return false;
             }
         }
@@ -273,7 +332,7 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
     private boolean isClaimedByOtherRoot(BlockFace originalSource){
         List<TransportationData> tdList = getTDList();
         for(TransportationData data : tdList){
-            if(data.sourceKey != originalSource && data.status.equals(TransportationData.Status.SOURCE)) return true;
+            if(data.sourceKey != originalSource && data.sourceKey.faceDir != null) return true;
         }
         return false;
     }
@@ -294,14 +353,20 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
     default void trySetSource(Direction receiveFrom){
         if(this.isNewInput(receiveFrom)){
-            BlocklikeResourceTransporter.BlockFace sourceBlockFace = new BlocklikeResourceTransporter.BlockFace(this.getBlockPos().relative(receiveFrom), receiveFrom.getOpposite());
+            IBlocklikeResourceTransporter.BlockFace sourceBlockFace = new IBlocklikeResourceTransporter.BlockFace(this.getBlockPos().relative(receiveFrom), receiveFrom.getOpposite());
             IMUtils.LOGGER.info("Set Source");
-            if(!this.isSelfSource(sourceBlockFace)){
+            if(this.isSelfSource(sourceBlockFace)){
                 this.getTDList().add(TransportationData.forSource(sourceBlockFace));
-                this.getData(sourceBlockFace).setInput(receiveFrom);
             }
         }
     }
+
+    default boolean isDirectionSourceFace(Direction direction){
+        BlockFace otherFace = new BlockFace(getBlockPos().relative(direction), direction.getOpposite());
+        return hasData(otherFace) && getData(otherFace).status.equals(TransportationData.Status.SOURCE);
+    }
+
+
 
 
     record BlockFace(BlockPos pos, Direction faceDir){}
@@ -327,6 +392,7 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
         }
 
         public static TransportationData forSource(BlockFace sourceKey){
+            if(sourceKey.faceDir == null) throw new RuntimeException("Fuck");
             return new TransportationData(sourceKey, Status.SOURCE, sourceKey.faceDir.getOpposite(), 0);
         }
 
@@ -336,6 +402,10 @@ public interface BlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
         public void setStatus(Status status){
             this.status = status;
+        }
+
+        public void resetSourceForDrain(BlockFace drainerKey){
+            this.sourceKey = drainerKey;
         }
 
         public void addOutput(Direction output){
