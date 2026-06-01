@@ -23,10 +23,36 @@ public class IMItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(IMTags.Items.PURE_ORE_CHUNKS).add(IMItems.Ores.RAW_IRON_ORE_CHUNK.get());
-        tag(IMTags.Items.PURE_COARSE_POWDERS).add(IMItems.Ores.RAW_IRON_ORE_COARSE_POWDER.get());
-        tag(IMTags.Items.ORE_FINES).add(IMItems.Ores.RAW_IRON_ORE_FINES.get());
-        tag(IMTags.Items.CONCENTRATE_PELLETS).add(IMItems.Ores.RAW_IRON_CONCENTRATE_PELLET.get());
+        tag(IMTags.Items.PURE_ORE_CHUNKS)
+                .add(IMItems.Ores.RAW_IRON_ORE_CHUNK.get())
+                .add(IMItems.Ores.RAW_GOLD_ORE_CHUNK.get())
+                .add(IMItems.Ores.RAW_COPPER_ORE_CHUNK.get())
+                .add(IMItems.Ores.RAW_SILVER_ORE_CHUNK.get())
+                .add(IMItems.Ores.RAW_LEAD_ORE_CHUNK.get())
+                .add(IMItems.Ores.RAW_NICKEL_ORE_CHUNK.get());
+        tag(IMTags.Items.PURE_COARSE_POWDERS)
+                .add(IMItems.Ores.RAW_IRON_ORE_COARSE_POWDER.get())
+                .add(IMItems.Ores.RAW_GOLD_ORE_COARSE_POWDER.get())
+                .add(IMItems.Ores.RAW_COPPER_ORE_COARSE_POWDER.get())
+                .add(IMItems.Ores.RAW_SILVER_ORE_COARSE_POWDER.get())
+                .add(IMItems.Ores.RAW_LEAD_ORE_COARSE_POWDER.get())
+                .add(IMItems.Ores.RAW_NICKEL_ORE_COARSE_POWDER.get());
+        tag(IMTags.Items.ORE_FINES)
+                .add(IMItems.Ores.RAW_IRON_ORE_FINES.get())
+                .add(IMItems.Ores.RAW_GOLD_ORE_FINES.get())
+                .add(IMItems.Ores.RAW_COPPER_ORE_FINES.get())
+                .add(IMItems.Ores.RAW_SILVER_ORE_FINES.get())
+                .add(IMItems.Ores.RAW_LEAD_ORE_FINES.get())
+                .add(IMItems.Ores.RAW_NICKEL_ORE_FINES.get());
+        tag(IMTags.Items.CONCENTRATE_PELLETS)
+                .add(IMItems.Ores.RAW_IRON_CONCENTRATE_PELLET.get())
+                .add(IMItems.Ores.RAW_GOLD_CONCENTRATE_PELLET.get())
+                .add(IMItems.Ores.RAW_COPPER_CONCENTRATE_PELLET.get())
+                .add(IMItems.Ores.RAW_SILVER_CONCENTRATE_PELLET.get())
+                .add(IMItems.Ores.RAW_LEAD_CONCENTRATE_PELLET.get())
+                .add(IMItems.Ores.RAW_NICKEL_CONCENTRATE_PELLET.get());
+
+
 
         this.tag(ItemTags.LOGS_THAT_BURN)
                 .add(IMBlocks.MASON_PINE_LOG.get().asItem())

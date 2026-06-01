@@ -234,12 +234,6 @@ public class SapCollectorBlockEntity extends BlockEntity implements IEBlockInter
             FluidStack fluidStack = tile.tank.drain(maxDrain, fluidAction);
             tile.setChanged();
 
-            //TODO
-            // Not Update to Client Now.
-            // We need to decrease the update frequency to client
-            // If the fluid in tank rise or drop to specific height level,
-            // like 0, 0.33, 0.66, 1, then we do Update to Client
-
             return fluidStack;
         }
     }

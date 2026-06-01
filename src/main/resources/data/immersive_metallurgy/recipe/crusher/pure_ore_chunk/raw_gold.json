@@ -1,0 +1,11 @@
+{
+  "type": "immersiveengineering:crusher",
+  "energy": 3200,
+  "input": {
+    "item": "immersive_metallurgy:pure_ore_chunk_raw_gold"
+  },
+  "result": {
+    "count": 4,
+    "id": "immersive_metallurgy:pure_coarse_powder_raw_gold"
+  }
+}

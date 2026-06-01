@@ -1,0 +1,5 @@
+{
+  "loader": "neoforge:fluid_container",
+  "parent": "neoforge:item/bucket",
+  "fluid": "immersive_metallurgy:molten_copper"
+}

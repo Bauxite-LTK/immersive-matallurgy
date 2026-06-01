@@ -24,8 +24,24 @@ public class IMBlockEntities {
             BuiltInRegistries.BLOCK_ENTITY_TYPE, IMUtils.MOD_ID
     );
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> CAN_SOLIDIFY_LIQUID = BLOCK_ENTITIES.register(
-            "can_solidify_liquid", makeType(CanSolidifyLiquidBlockEntity::new, IMBlocks.MOLTEN_PIG_IRON));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> MOLTEN_PIG_IRON = BLOCK_ENTITIES.register(
+            "molten_pig_iron", makeType(CanSolidifyLiquidBlockEntity::forPigIron, IMBlocks.MOLTEN_PIG_IRON));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> MOLTEN_GOLD = BLOCK_ENTITIES.register(
+            "molten_gold", makeType(CanSolidifyLiquidBlockEntity::forGold, IMBlocks.MOLTEN_GOLD));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> MOLTEN_COPPER = BLOCK_ENTITIES.register(
+            "molten_copper", makeType(CanSolidifyLiquidBlockEntity::forCopper, IMBlocks.MOLTEN_COPPER));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> MOLTEN_SILVER = BLOCK_ENTITIES.register(
+            "molten_silver", makeType(CanSolidifyLiquidBlockEntity::forSilver, IMBlocks.MOLTEN_SILVER));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> MOLTEN_LEAD = BLOCK_ENTITIES.register(
+            "molten_lead", makeType(CanSolidifyLiquidBlockEntity::forLead, IMBlocks.MOLTEN_LEAD));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> MOLTEN_NICKEL = BLOCK_ENTITIES.register(
+            "molten_nickel", makeType(CanSolidifyLiquidBlockEntity::forNickel, IMBlocks.MOLTEN_NICKEL));
+
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SapCollectorBlockEntity>> SAP_COLLECTOR = BLOCK_ENTITIES.register(
             "sap_collector", makeType(SapCollectorBlockEntity::new, IMBlocks.SAP_COLLECTOR)

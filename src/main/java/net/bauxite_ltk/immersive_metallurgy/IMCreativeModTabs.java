@@ -49,6 +49,56 @@ public class IMCreativeModTabs {
                 output.accept(IMItems.RAW_IRON_TAILING_SLURRY_BUCKET);
                 output.accept(IMItems.MOLTEN_PIG_IRON_BUCKET.get());
 
+                output.accept(IMItems.Ores.RAW_GOLD_ORE_CHUNK);
+                output.accept(IMItems.Ores.RAW_GOLD_ORE_COARSE_POWDER);
+                output.accept(IMItems.Ores.RAW_GOLD_ORE_FINES);
+                output.accept(IMItems.Ores.RAW_GOLD_CONCENTRATE_PELLET);
+                output.accept(IMItems.RAW_GOLD_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_GOLD_PROCESSED_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_GOLD_CONCENTRATE_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_GOLD_TAILING_SLURRY_BUCKET);
+                output.accept(IMItems.MOLTEN_GOLD_BUCKET.get());
+
+                output.accept(IMItems.Ores.RAW_COPPER_ORE_CHUNK);
+                output.accept(IMItems.Ores.RAW_COPPER_ORE_COARSE_POWDER);
+                output.accept(IMItems.Ores.RAW_COPPER_ORE_FINES);
+                output.accept(IMItems.Ores.RAW_COPPER_CONCENTRATE_PELLET);
+                output.accept(IMItems.RAW_COPPER_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_COPPER_PROCESSED_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_COPPER_CONCENTRATE_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_COPPER_TAILING_SLURRY_BUCKET);
+                output.accept(IMItems.MOLTEN_COPPER_BUCKET.get());
+
+                output.accept(IMItems.Ores.RAW_SILVER_ORE_CHUNK);
+                output.accept(IMItems.Ores.RAW_SILVER_ORE_COARSE_POWDER);
+                output.accept(IMItems.Ores.RAW_SILVER_ORE_FINES);
+                output.accept(IMItems.Ores.RAW_SILVER_CONCENTRATE_PELLET);
+                output.accept(IMItems.RAW_SILVER_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_SILVER_PROCESSED_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_SILVER_CONCENTRATE_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_SILVER_TAILING_SLURRY_BUCKET);
+                output.accept(IMItems.MOLTEN_SILVER_BUCKET.get());
+
+                output.accept(IMItems.Ores.RAW_LEAD_ORE_CHUNK);
+                output.accept(IMItems.Ores.RAW_LEAD_ORE_COARSE_POWDER);
+                output.accept(IMItems.Ores.RAW_LEAD_ORE_FINES);
+                output.accept(IMItems.Ores.RAW_LEAD_CONCENTRATE_PELLET);
+                output.accept(IMItems.RAW_LEAD_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_LEAD_PROCESSED_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_LEAD_CONCENTRATE_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_LEAD_TAILING_SLURRY_BUCKET);
+                output.accept(IMItems.MOLTEN_LEAD_BUCKET.get());
+
+                output.accept(IMItems.Ores.RAW_NICKEL_ORE_CHUNK);
+                output.accept(IMItems.Ores.RAW_NICKEL_ORE_COARSE_POWDER);
+                output.accept(IMItems.Ores.RAW_NICKEL_ORE_FINES);
+                output.accept(IMItems.Ores.RAW_NICKEL_CONCENTRATE_PELLET);
+                output.accept(IMItems.RAW_NICKEL_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_NICKEL_PROCESSED_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_NICKEL_CONCENTRATE_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_NICKEL_TAILING_SLURRY_BUCKET);
+                output.accept(IMItems.MOLTEN_NICKEL_BUCKET.get());
+
                 output.accept(IMBlocks.CASTING_CHANNEL);
 
             }).build()

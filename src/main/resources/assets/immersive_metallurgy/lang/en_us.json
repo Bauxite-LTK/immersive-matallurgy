@@ -6,6 +6,27 @@
   "block.immersive_metallurgy.fluid.molten_pig_iron": "Molten Pig Iron",
   "fluid.immersive_metallurgy.molten_pig_iron": "Molten Pig Iron",
 
+  "item.immersive_metallurgy.bucket.molten_gold": "Molten Gold Bucket",
+  "block.immersive_metallurgy.fluid.molten_gold": "Molten Gold",
+  "fluid.immersive_metallurgy.molten_gold": "Molten Gold",
+
+  "item.immersive_metallurgy.bucket.molten_copper": "Molten Copper Bucket",
+  "block.immersive_metallurgy.fluid.molten_copper": "Molten Copper",
+  "fluid.immersive_metallurgy.molten_copper": "Molten Copper",
+  
+  "item.immersive_metallurgy.bucket.molten_silver": "Molten Silver Bucket",
+  "block.immersive_metallurgy.fluid.molten_silver": "Molten Silver",
+  "fluid.immersive_metallurgy.molten_silver": "Molten Silver",
+
+  "item.immersive_metallurgy.bucket.molten_lead": "Molten Lead Bucket",
+  "block.immersive_metallurgy.fluid.molten_lead": "Molten Lead",
+  "fluid.immersive_metallurgy.molten_lead": "Molten Lead",
+
+  "item.immersive_metallurgy.bucket.molten_nickel": "Molten Nickel Bucket",
+  "block.immersive_metallurgy.fluid.molten_nickel": "Molten Nickel",
+  "fluid.immersive_metallurgy.molten_nickel": "Molten Nickel",
+
+
   "item.immersive_metallurgy.bucket.mason_pine_sap": "Mason Pine Sap Bucket",
   "block.immersive_metallurgy.fluid.mason_pine_sap": "Mason Pine Sap",
   "fluid.immersive_metallurgy.mason_pine_sap": "Mason Pine Sap",
@@ -17,6 +38,12 @@
   "item.immersive_metallurgy.bucket.terpineol": "Terpineol Bucket",
   "block.immersive_metallurgy.fluid.terpineol": "Terpineol",
   "fluid.immersive_metallurgy.terpineol": "Terpineol",
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_iron": "Raw Iron Chunk",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_iron": "Raw Iron Coarse Powder",
+  "item.immersive_metallurgy.ore_fines_raw_iron": "Raw Iron Ore Fines",
+  "item.immersive_metallurgy.concentrate_pellet_raw_iron": "Raw Iron Concentrate Pellet",
 
   "item.immersive_metallurgy.bucket.raw_iron_slurry": "Raw Iron Slurry Bucket",
   "block.immersive_metallurgy.fluid.raw_iron_slurry": "Raw Iron Slurry ",
@@ -36,6 +63,119 @@
 
 
 
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_gold": "Raw Gold Chunk",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_gold": "Raw Gold Coarse Powder",
+  "item.immersive_metallurgy.ore_fines_raw_gold": "Raw Gold Ore Fines",
+  "item.immersive_metallurgy.concentrate_pellet_raw_gold": "Raw Gold Concentrate Pellet",
+
+  "item.immersive_metallurgy.bucket.raw_gold_slurry": "Raw Gold Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_gold_slurry": "Raw Gold Slurry ",
+  "fluid.immersive_metallurgy.raw_gold_slurry": "Raw Gold Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_gold_processed_slurry": "Raw Gold Processed Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_gold_processed_slurry": "Raw Gold Processed Slurry ",
+  "fluid.immersive_metallurgy.raw_gold_processed_slurry": "Raw Gold Processed Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_gold_concentrate_slurry": "Raw Gold Concentrate Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_gold_concentrate_slurry": "Raw Gold Concentrate Slurry ",
+  "fluid.immersive_metallurgy.raw_gold_concentrate_slurry": "Raw Gold Concentrate Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_gold_tailing_slurry": "Raw Gold Tailing Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_gold_tailing_slurry": "Raw Gold Tailing Slurry ",
+  "fluid.immersive_metallurgy.raw_gold_tailing_slurry": "Raw Gold Tailing Slurry",
+
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_copper": "Raw Copper Chunk",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_copper": "Raw Copper Coarse Powder",
+  "item.immersive_metallurgy.ore_fines_raw_copper": "Raw Copper Ore Fines",
+  "item.immersive_metallurgy.concentrate_pellet_raw_copper": "Raw Copper Concentrate Pellet",
+
+  "item.immersive_metallurgy.bucket.raw_copper_slurry": "Raw Copper Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_copper_slurry": "Raw Copper Slurry ",
+  "fluid.immersive_metallurgy.raw_copper_slurry": "Raw Copper Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_copper_processed_slurry": "Raw Copper Processed Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_copper_processed_slurry": "Raw Copper Processed Slurry ",
+  "fluid.immersive_metallurgy.raw_copper_processed_slurry": "Raw Copper Processed Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_copper_concentrate_slurry": "Raw Copper Concentrate Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_copper_concentrate_slurry": "Raw Copper Concentrate Slurry ",
+  "fluid.immersive_metallurgy.raw_copper_concentrate_slurry": "Raw Copper Concentrate Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_copper_tailing_slurry": "Raw Copper Tailing Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_copper_tailing_slurry": "Raw Copper Tailing Slurry ",
+  "fluid.immersive_metallurgy.raw_copper_tailing_slurry": "Raw Copper Tailing Slurry",
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_silver": "Raw Silver Chunk",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_silver": "Raw Silver Coarse Powder",
+  "item.immersive_metallurgy.ore_fines_raw_silver": "Raw Silver Ore Fines",
+  "item.immersive_metallurgy.concentrate_pellet_raw_silver": "Raw Silver Concentrate Pellet",
+
+  "item.immersive_metallurgy.bucket.raw_silver_slurry": "Raw Silver Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_silver_slurry": "Raw Silver Slurry ",
+  "fluid.immersive_metallurgy.raw_silver_slurry": "Raw Silver Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_silver_processed_slurry": "Raw Silver Processed Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_silver_processed_slurry": "Raw Silver Processed Slurry ",
+  "fluid.immersive_metallurgy.raw_silver_processed_slurry": "Raw Silver Processed Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_silver_concentrate_slurry": "Raw Silver Concentrate Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_silver_concentrate_slurry": "Raw Silver Concentrate Slurry ",
+  "fluid.immersive_metallurgy.raw_silver_concentrate_slurry": "Raw Silver Concentrate Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_silver_tailing_slurry": "Raw Silver Tailing Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_silver_tailing_slurry": "Raw Silver Tailing Slurry ",
+  "fluid.immersive_metallurgy.raw_silver_tailing_slurry": "Raw Silver Tailing Slurry",
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_lead": "Raw Lead Chunk",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_lead": "Raw Lead Coarse Powder",
+  "item.immersive_metallurgy.ore_fines_raw_lead": "Raw Lead Ore Fines",
+  "item.immersive_metallurgy.concentrate_pellet_raw_lead": "Raw Lead Concentrate Pellet",
+
+  "item.immersive_metallurgy.bucket.raw_lead_slurry": "Raw Lead Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_lead_slurry": "Raw Lead Slurry ",
+  "fluid.immersive_metallurgy.raw_lead_slurry": "Raw Lead Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_lead_processed_slurry": "Raw Lead Processed Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_lead_processed_slurry": "Raw Lead Processed Slurry ",
+  "fluid.immersive_metallurgy.raw_lead_processed_slurry": "Raw Lead Processed Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_lead_concentrate_slurry": "Raw Lead Concentrate Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_lead_concentrate_slurry": "Raw Lead Concentrate Slurry ",
+  "fluid.immersive_metallurgy.raw_lead_concentrate_slurry": "Raw Lead Concentrate Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_lead_tailing_slurry": "Raw Lead Tailing Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_lead_tailing_slurry": "Raw Lead Tailing Slurry ",
+  "fluid.immersive_metallurgy.raw_lead_tailing_slurry": "Raw Lead Tailing Slurry",
+
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_nickel": "Raw Nickel Chunk",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_nickel": "Raw Nickel Coarse Powder",
+  "item.immersive_metallurgy.ore_fines_raw_nickel": "Raw Nickel Ore Fines",
+  "item.immersive_metallurgy.concentrate_pellet_raw_nickel": "Raw Nickel Concentrate Pellet",
+
+  "item.immersive_metallurgy.bucket.raw_nickel_slurry": "Raw Nickel Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_nickel_slurry": "Raw Nickel Slurry ",
+  "fluid.immersive_metallurgy.raw_nickel_slurry": "Raw Nickel Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_nickel_processed_slurry": "Raw Nickel Processed Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_nickel_processed_slurry": "Raw Nickel Processed Slurry ",
+  "fluid.immersive_metallurgy.raw_nickel_processed_slurry": "Raw Nickel Processed Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_nickel_concentrate_slurry": "Raw Nickel Concentrate Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_nickel_concentrate_slurry": "Raw Nickel Concentrate Slurry ",
+  "fluid.immersive_metallurgy.raw_nickel_concentrate_slurry": "Raw Nickel Concentrate Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_nickel_tailing_slurry": "Raw Nickel Tailing Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_nickel_tailing_slurry": "Raw Nickel Tailing Slurry ",
+  "fluid.immersive_metallurgy.raw_nickel_tailing_slurry": "Raw Nickel Tailing Slurry",
+
+
   "block.immersive_metallurgy.electric_cable_lv": "LV Electric Cable",
   "block.immersive_metallurgy.electric_cable_mv": "MV Electric Cable",
   "block.immersive_metallurgy.sap_collector": "Sap Collector",
@@ -50,10 +190,12 @@
   "block.immersive_metallurgy.mason_pine_leaves": "Mason Pine Leaves",
   "block.immersive_metallurgy.mason_pine_sapling": "Mason Pine Sapling",
 
-  "item.immersive_metallurgy.pure_ore_chunk_raw_iron": "Raw Iron Chunk",
-  "item.immersive_metallurgy.pure_coarse_powder_raw_iron": "Raw Iron Coarse Powder",
-  "item.immersive_metallurgy.ore_fines_raw_iron": "Raw Iron Ore Fines",
-  "item.immersive_metallurgy.concentrate_pellet_raw_iron": "Raw Iron Concentrate Pellet",
+
+
+
+  
+  
+  
   "item.immersive_metallurgy.mason_pine_sap_bottle": "Mason Pine Sap Bottle",
   "item.immersive_metallurgy.colophony_bottle": "Colophony Bottle",
   "item.immersive_metallurgy.colophony": "Colophony",

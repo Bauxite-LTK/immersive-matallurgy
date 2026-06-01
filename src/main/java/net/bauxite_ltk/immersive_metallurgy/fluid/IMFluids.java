@@ -32,6 +32,33 @@ public class IMFluids {
                     IMBlocks.MOLTEN_PIG_IRON,
                     IMItems.MOLTEN_PIG_IRON_BUCKET);
 
+    public static final FluidHolder<BaseFlowingFluid> MOLTEN_GOLD =
+            registerMolten("gold",
+                    IMBlocks.MOLTEN_GOLD,
+                    IMItems.MOLTEN_GOLD_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> MOLTEN_COPPER =
+            registerMolten("copper",
+                    IMBlocks.MOLTEN_COPPER,
+                    IMItems.MOLTEN_COPPER_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> MOLTEN_SILVER =
+            registerMolten("silver",
+                    IMBlocks.MOLTEN_SILVER,
+                    IMItems.MOLTEN_SILVER_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> MOLTEN_LEAD =
+            registerMolten("lead",
+                    IMBlocks.MOLTEN_LEAD,
+                    IMItems.MOLTEN_LEAD_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> MOLTEN_NICKEL =
+            registerMolten("nickel",
+                    IMBlocks.MOLTEN_NICKEL,
+                    IMItems.MOLTEN_NICKEL_BUCKET);
+    
+    
+
     public static final FluidHolder<BaseFlowingFluid> MASON_PINE_SAP =
             register(
                     "mason_pine_sap",
@@ -68,6 +95,11 @@ public class IMFluids {
                     BaseFlowingFluid.Flowing::new
             );
 
+    /*
+     * ----------------------------------------------------
+     * Ore Slurry : Raw Iron
+     * ----------------------------------------------------
+     */
     public static final FluidHolder<BaseFlowingFluid> RAW_IRON_SLURRY =
             registerOreSlurry("raw_iron",
                     IMBlocks.RAW_IRON_SLURRY,
@@ -87,6 +119,137 @@ public class IMFluids {
             registerOreSlurry("raw_iron_tailing",
                     IMBlocks.RAW_IRON_TAILING_SLURRY,
                     IMItems.RAW_IRON_TAILING_SLURRY_BUCKET);
+
+    
+    /*
+     * ----------------------------------------------------
+     * Ore Slurry : Raw Gold
+     * ----------------------------------------------------
+     */
+    public static final FluidHolder<BaseFlowingFluid> RAW_GOLD_SLURRY =
+            registerOreSlurry("raw_gold",
+                    IMBlocks.RAW_GOLD_SLURRY,
+                    IMItems.RAW_GOLD_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_GOLD_PROCESSED_SLURRY =
+            registerOreSlurry("raw_gold_processed",
+                    IMBlocks.RAW_GOLD_PROCESSED_SLURRY,
+                    IMItems.RAW_GOLD_PROCESSED_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_GOLD_CONCENTRATE_SLURRY =
+            registerOreSlurry("raw_gold_concentrate",
+                    IMBlocks.RAW_GOLD_CONCENTRATE_SLURRY,
+                    IMItems.RAW_GOLD_CONCENTRATE_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_GOLD_TAILING_SLURRY =
+            registerOreSlurry("raw_gold_tailing",
+                    IMBlocks.RAW_GOLD_TAILING_SLURRY,
+                    IMItems.RAW_GOLD_TAILING_SLURRY_BUCKET);
+
+
+
+    /*
+     * ----------------------------------------------------
+     * Ore Slurry : Raw Copper
+     * ----------------------------------------------------
+     */
+    public static final FluidHolder<BaseFlowingFluid> RAW_COPPER_SLURRY =
+            registerOreSlurry("raw_copper",
+                    IMBlocks.RAW_COPPER_SLURRY,
+                    IMItems.RAW_COPPER_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_COPPER_PROCESSED_SLURRY =
+            registerOreSlurry("raw_copper_processed",
+                    IMBlocks.RAW_COPPER_PROCESSED_SLURRY,
+                    IMItems.RAW_COPPER_PROCESSED_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_COPPER_CONCENTRATE_SLURRY =
+            registerOreSlurry("raw_copper_concentrate",
+                    IMBlocks.RAW_COPPER_CONCENTRATE_SLURRY,
+                    IMItems.RAW_COPPER_CONCENTRATE_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_COPPER_TAILING_SLURRY =
+            registerOreSlurry("raw_copper_tailing",
+                    IMBlocks.RAW_COPPER_TAILING_SLURRY,
+                    IMItems.RAW_COPPER_TAILING_SLURRY_BUCKET);
+
+
+    /*
+     * ----------------------------------------------------
+     * Ore Slurry : Raw Silver
+     * ----------------------------------------------------
+     */
+    public static final FluidHolder<BaseFlowingFluid> RAW_SILVER_SLURRY =
+            registerOreSlurry("raw_silver",
+                    IMBlocks.RAW_SILVER_SLURRY,
+                    IMItems.RAW_SILVER_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_SILVER_PROCESSED_SLURRY =
+            registerOreSlurry("raw_silver_processed",
+                    IMBlocks.RAW_SILVER_PROCESSED_SLURRY,
+                    IMItems.RAW_SILVER_PROCESSED_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_SILVER_CONCENTRATE_SLURRY =
+            registerOreSlurry("raw_silver_concentrate",
+                    IMBlocks.RAW_SILVER_CONCENTRATE_SLURRY,
+                    IMItems.RAW_SILVER_CONCENTRATE_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_SILVER_TAILING_SLURRY =
+            registerOreSlurry("raw_silver_tailing",
+                    IMBlocks.RAW_SILVER_TAILING_SLURRY,
+                    IMItems.RAW_SILVER_TAILING_SLURRY_BUCKET);
+
+
+    /*
+     * ----------------------------------------------------
+     * Ore Slurry : Raw Lead
+     * ----------------------------------------------------
+     */
+    public static final FluidHolder<BaseFlowingFluid> RAW_LEAD_SLURRY =
+            registerOreSlurry("raw_lead",
+                    IMBlocks.RAW_LEAD_SLURRY,
+                    IMItems.RAW_LEAD_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_LEAD_PROCESSED_SLURRY =
+            registerOreSlurry("raw_lead_processed",
+                    IMBlocks.RAW_LEAD_PROCESSED_SLURRY,
+                    IMItems.RAW_LEAD_PROCESSED_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_LEAD_CONCENTRATE_SLURRY =
+            registerOreSlurry("raw_lead_concentrate",
+                    IMBlocks.RAW_LEAD_CONCENTRATE_SLURRY,
+                    IMItems.RAW_LEAD_CONCENTRATE_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_LEAD_TAILING_SLURRY =
+            registerOreSlurry("raw_lead_tailing",
+                    IMBlocks.RAW_LEAD_TAILING_SLURRY,
+                    IMItems.RAW_LEAD_TAILING_SLURRY_BUCKET);
+
+
+    /*
+     * ----------------------------------------------------
+     * Ore Slurry : Raw Nickel
+     * ----------------------------------------------------
+     */
+    public static final FluidHolder<BaseFlowingFluid> RAW_NICKEL_SLURRY =
+            registerOreSlurry("raw_nickel",
+                    IMBlocks.RAW_NICKEL_SLURRY,
+                    IMItems.RAW_NICKEL_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_NICKEL_PROCESSED_SLURRY =
+            registerOreSlurry("raw_nickel_processed",
+                    IMBlocks.RAW_NICKEL_PROCESSED_SLURRY,
+                    IMItems.RAW_NICKEL_PROCESSED_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_NICKEL_CONCENTRATE_SLURRY =
+            registerOreSlurry("raw_nickel_concentrate",
+                    IMBlocks.RAW_NICKEL_CONCENTRATE_SLURRY,
+                    IMItems.RAW_NICKEL_CONCENTRATE_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_NICKEL_TAILING_SLURRY =
+            registerOreSlurry("raw_nickel_tailing",
+                    IMBlocks.RAW_NICKEL_TAILING_SLURRY,
+                    IMItems.RAW_NICKEL_TAILING_SLURRY_BUCKET);
 
     private static FluidType.Properties waterLike()
     {

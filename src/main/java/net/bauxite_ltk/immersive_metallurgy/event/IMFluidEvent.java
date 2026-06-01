@@ -1,46 +1,212 @@
 package net.bauxite_ltk.immersive_metallurgy.event;
 
 import net.bauxite_ltk.immersive_metallurgy.ImmersiveMetallurgy;
+import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlockEntity;
+import net.bauxite_ltk.immersive_metallurgy.fluid.FluidRendererExtension;
+import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
 import net.bauxite_ltk.immersive_metallurgy.tags.IMTags;
+import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.client.model.DynamicFluidContainerModel;
 import net.neoforged.neoforge.event.entity.EntityEvent;
+
+import java.util.Objects;
 
 @EventBusSubscriber(modid = ImmersiveMetallurgy.MOD_ID, value = Dist.CLIENT)
 public class IMFluidEvent {
+    public static final ResourceLocation WATER_STILL = ResourceLocation.fromNamespaceAndPath("minecraft","block/water_still");
+    public static final ResourceLocation WATER_FLOW = ResourceLocation.fromNamespaceAndPath("minecraft","block/water_flow");
+
+    public static final ResourceLocation BUBBLE_STILL = IMUtils.modRL("block/bubble_still");
+
+    public static final ResourceLocation THICKLY_WATER_STILL = IMUtils.modRL("block/thickly_water_still");
+    public static final ResourceLocation THICKLY_WATER_FLOW = IMUtils.modRL("block/thickly_water_flow");
+
+
+    private static final ResourceLocation MOLTEN_STILL = IMUtils.modRL("block/molten_still");
+    private static final ResourceLocation MOLTEN_FLOW = IMUtils.modRL("block/molten_flow");
+
     @SubscribeEvent
-    public static void onEntityEnterFluid(EntityEvent.EnteringSection event) {
-        Entity entity = event.getEntity();
-        Level level = entity.level();
+    static void onClientSetup(FMLClientSetupEvent event) {
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.MASON_PINE_SAP.getSource(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.MASON_PINE_SAP.getFlowing(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.TURPENTINE_OIL.getSource(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.TURPENTINE_OIL.getFlowing(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getSource(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getFlowing(), RenderType.translucent());
+    }
 
-        if (!level.isClientSide && entity instanceof LivingEntity living) {
-            BlockPos pos = entity.blockPosition();
-            FluidState fluidState = level.getFluidState(pos);
 
-            // 检查实体是否进入危险流体
-            if (fluidState.is(IMTags.Fluids.TEMPERATURE_MOLTEN_FLUID)) {
-                level.playSound(null, pos, SoundEvents.LAVA_POP,
-                        SoundSource.BLOCKS, 0.5F, 1.0F);
+    @SubscribeEvent
+    public static void registerExtensions(RegisterClientExtensionsEvent event) {
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF3c2d2d, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.MOLTEN_PIG_IRON.getType());
 
-                // 发送消息给玩家
-                if (living instanceof Player player) {
-                    player.displayClientMessage(
-                            Component.literal("熔融液体温度过高！")
-                                    .withStyle(ChatFormatting.RED),
-                            true
-                    );
-                }
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFffd241, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.MOLTEN_GOLD.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFb44e3b, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.MOLTEN_COPPER.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFd4d2cb, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.MOLTEN_SILVER.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF413d50, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.MOLTEN_LEAD.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFa3a092, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.MOLTEN_NICKEL.getType());
+
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFb98051, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.MASON_PINE_SAP.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFf3c56c, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.TURPENTINE_OIL.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFffcb00, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.TERPINEOL.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFaf8a63, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.RAW_IRON_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFaf8a63, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_IRON_PROCESSED_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFaf8a63, BUBBLE_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_IRON_CONCENTRATE_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFaf8a63, THICKLY_WATER_STILL, THICKLY_WATER_FLOW, null, null),
+                IMFluids.RAW_IRON_TAILING_SLURRY.getType());
+
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFffc62f, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.RAW_GOLD_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFffc62f, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_GOLD_PROCESSED_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFffc62f, BUBBLE_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_GOLD_CONCENTRATE_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFffc62f, THICKLY_WATER_STILL, THICKLY_WATER_FLOW, null, null),
+                IMFluids.RAW_GOLD_TAILING_SLURRY.getType());
+
+
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFc16348, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.RAW_COPPER_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFc16348, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_COPPER_PROCESSED_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFc16348, BUBBLE_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_COPPER_CONCENTRATE_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFc16348, THICKLY_WATER_STILL, THICKLY_WATER_FLOW, null, null),
+                IMFluids.RAW_COPPER_TAILING_SLURRY.getType());
+
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFd4d2cb, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.RAW_SILVER_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFd4d2cb, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_SILVER_PROCESSED_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFd4d2cb, BUBBLE_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_SILVER_CONCENTRATE_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFd4d2cb, THICKLY_WATER_STILL, THICKLY_WATER_FLOW, null, null),
+                IMFluids.RAW_SILVER_TAILING_SLURRY.getType());
+
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF413d50, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.RAW_LEAD_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF413d50, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_LEAD_PROCESSED_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF413d50, BUBBLE_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_LEAD_CONCENTRATE_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF413d50, THICKLY_WATER_STILL, THICKLY_WATER_FLOW, null, null),
+                IMFluids.RAW_LEAD_TAILING_SLURRY.getType());
+
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF8a8854, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.RAW_NICKEL_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF8a8854, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_NICKEL_PROCESSED_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF8a8854, BUBBLE_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_NICKEL_CONCENTRATE_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF8a8854, THICKLY_WATER_STILL, THICKLY_WATER_FLOW, null, null),
+                IMFluids.RAW_NICKEL_TAILING_SLURRY.getType());
+
+    }
+
+    @SubscribeEvent
+    public static void registerColorHandlerItems(RegisterColorHandlersEvent.Item event){
+        for (Fluid fluid : BuiltInRegistries.FLUID)
+        {
+            if (Objects.requireNonNull(BuiltInRegistries.FLUID.getKey(fluid)).getNamespace().equals(IMUtils.MOD_ID))
+            {
+                event.register(new DynamicFluidContainerModel.Colors(), fluid.getBucket());
             }
         }
     }

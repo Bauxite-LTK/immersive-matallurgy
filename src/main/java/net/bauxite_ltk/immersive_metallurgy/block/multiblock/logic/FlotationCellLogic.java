@@ -166,7 +166,7 @@ public class FlotationCellLogic implements
         if(recipe==null){
             return;
         }
-        IMMultiblockProcessInMachine<FlotationCellRecipe> process = new IMMultiblockProcessInMachine<FlotationCellRecipe>(recipe);
+        IMMultiblockProcessInMachine<FlotationCellRecipe> process = new IMMultiblockProcessInMachine<>(recipe);
         process.setInputTanks(0, 1);
         state.processor.addProcessToQueue(process, level, false);
     }

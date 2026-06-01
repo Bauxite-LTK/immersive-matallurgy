@@ -1,0 +1,19 @@
+{
+  "type": "immersiveengineering:crusher",
+  "energy": 3200,
+  "input": {
+    "tag": "c:raw_materials/nickel"
+  },
+  "result": {
+    "count": 1,
+    "id": "immersive_metallurgy:pure_ore_chunk_raw_nickel"
+  },
+  "secondaries": [
+    {
+      "chance": 0.33333334,
+      "output": {
+        "id": "immersive_metallurgy:pure_ore_chunk_raw_nickel"
+      }
+    }
+  ]
+}

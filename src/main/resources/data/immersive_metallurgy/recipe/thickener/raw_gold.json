@@ -1,0 +1,17 @@
+{
+  "type": "immersive_metallurgy:thickener",
+  "energy": 12800,
+  "time": 8,
+  "result_fluid": {
+    "amount": 200,
+    "id": "minecraft:water"
+  },
+  "result_item": {
+    "count": 3,
+    "id": "immersive_metallurgy:ore_fines_raw_gold"
+  },
+  "input_fluid": {
+    "amount": 200,
+    "fluid": "immersive_metallurgy:raw_gold_concentrate_slurry"
+  }
+}
