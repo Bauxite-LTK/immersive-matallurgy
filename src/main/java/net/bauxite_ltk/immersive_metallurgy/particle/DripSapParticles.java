@@ -20,7 +20,6 @@ public class DripSapParticles extends TextureSheetParticle {
     private int phase;            // 0=hang, 1=fall, 2=land
     private int hangTicksLeft;
 
-    // === 构造器 ===
     private DripSapParticles(ClientLevel level, double x, double y, double z,
                                double xSpeed, double ySpeed, double zSpeed,
                                SpriteSet sprites) {
@@ -36,30 +35,30 @@ public class DripSapParticles extends TextureSheetParticle {
         this.yd = 0;
         this.zd = 0;
 
-        this.lifetime = 120;                // 最长存活
-        this.quadSize = 0.1F;              // 水滴大小
+        this.lifetime = 120;
+        this.quadSize = 0.1F;
         this.alpha = 0.92F;
 
-        // 颜色（可改，比如琥珀色树脂滴）
+
         this.rCol = 0.45F;
         this.gCol = 0.30F;
         this.bCol = 0.12F;
 
-        // 先用悬挂帧
-        this.setSprite(sprites.get(0, 2)); // 取第0帧 (hang)
+
+        this.setSprite(sprites.get(0, 2));
     }
 
-    // === 渲染类型：透明粒子 → 需要 PARTICLE_SHEET_TRANSLUCENT ===
+
     @Override
     public ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
-    // === 核心：每 tick 行为 ===
+
     @Override
     public void tick() {
         this.oRoll = this.roll;
-        // 微幅颤动（水平漂移）
+
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
@@ -116,7 +115,7 @@ public class DripSapParticles extends TextureSheetParticle {
         this.gravity = 0;
         this.quadSize = 0.18F;
         this.alpha = 0.85F;
-        this.lifetime = this.age + 8;    // 8 tick 后消掉
+        this.lifetime = this.age + 8;
 
         float f = Mth.randomBetween(this.random, 0.6F, 1.0F);
         this.level.playLocalSound(this.x, this.y, this.z, SoundEvents.POINTED_DRIPSTONE_DRIP_WATER, SoundSource.BLOCKS, f, 1.0F, false);

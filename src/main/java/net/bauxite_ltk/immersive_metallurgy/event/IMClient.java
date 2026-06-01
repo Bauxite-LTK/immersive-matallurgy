@@ -20,7 +20,6 @@ import net.bauxite_ltk.immersive_metallurgy.particle.DripSapParticles;
 import net.bauxite_ltk.immersive_metallurgy.particle.IMParticleTypes;
 import net.bauxite_ltk.immersive_metallurgy.render.*;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -41,23 +40,8 @@ import net.neoforged.neoforge.client.model.DynamicFluidContainerModel;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-// You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
 @EventBusSubscriber(modid = ImmersiveMetallurgy.MOD_ID, value = Dist.CLIENT)
 public class IMClient {
-
-    public static final ResourceLocation WATER_STILL = ResourceLocation.fromNamespaceAndPath("minecraft","block/water_still");
-    public static final ResourceLocation WATER_FLOW = ResourceLocation.fromNamespaceAndPath("minecraft","block/water_flow");
-
-    public static final ResourceLocation BUBBLE_STILL = IMUtils.modRL("block/bubble_still");
-
-    public static final ResourceLocation THICKY_WATER_STILL = IMUtils.modRL("block/thicky_water_still");
-    public static final ResourceLocation THICKY_WATER_FLOW = IMUtils.modRL("block/thicky_water_flow");
-
-
-    private static final ResourceLocation MOLTEN_STILL = IMUtils.modRL("block/molten_still");
-    private static final ResourceLocation MOLTEN_FLOW = IMUtils.modRL("block/molten_flow");
-
-
     public static void modConstruction(){
         IEOBJCallbacks.register(IMUtils.modRL("electric_cable"), ElectricCableCallbacks.INSTANCE);
         IEOBJCallbacks.register(IMUtils.modRL("casting_channel"), CastingChannelCallbacks.INSTANCE);
@@ -65,63 +49,8 @@ public class IMClient {
         ImmersiveMetallurgy.LOGGER.info("ImmersiveMetallurgy register callbacks");
     }
 
-    @SubscribeEvent
-    static void onClientSetup(FMLClientSetupEvent event) {
-        ItemBlockRenderTypes.setRenderLayer(IMFluids.MASON_PINE_SAP.getSource(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(IMFluids.MASON_PINE_SAP.getFlowing(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(IMFluids.TURPENTINE_OIL.getSource(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(IMFluids.TURPENTINE_OIL.getFlowing(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getSource(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getFlowing(), RenderType.translucent());
-    }
 
 
-    @SubscribeEvent
-    public static void registerExtensions(RegisterClientExtensionsEvent event) {
-        event.registerFluidType(
-                new FluidRendererExtension(0xFFf18579, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
-                IMFluids.MOLTEN_PIG_IRON.getType());
-
-        event.registerFluidType(
-                new FluidRendererExtension(0xFFb98051, WATER_STILL, WATER_FLOW, null, null),
-                IMFluids.MASON_PINE_SAP.getType());
-
-        event.registerFluidType(
-                new FluidRendererExtension(0xFFf3c56c, WATER_STILL, WATER_FLOW, null, null),
-                IMFluids.TURPENTINE_OIL.getType());
-
-        event.registerFluidType(
-                new FluidRendererExtension(0xFFffcb00, WATER_STILL, WATER_FLOW, null, null),
-                IMFluids.TERPINEOL.getType());
-
-        event.registerFluidType(
-                new FluidRendererExtension(0xFFaf8a63, MOLTEN_STILL, MOLTEN_FLOW, null, null),
-                IMFluids.RAW_IRON_SLURRY.getType());
-
-        event.registerFluidType(
-                new FluidRendererExtension(0xFFaf8a63, WATER_STILL, WATER_FLOW, null, null),
-                IMFluids.RAW_IRON_PROCESSED_SLURRY.getType());
-
-        event.registerFluidType(
-                new FluidRendererExtension(0xFFaf8a63, BUBBLE_STILL, WATER_FLOW, null, null),
-                IMFluids.RAW_IRON_CONCENTRATE_SLURRY.getType());
-
-        event.registerFluidType(
-                new FluidRendererExtension(0xFFaf8a63, THICKY_WATER_STILL, THICKY_WATER_FLOW, null, null),
-                IMFluids.RAW_IRON_TAILING_SLURRY.getType());
-
-    }
-
-    @SubscribeEvent
-    public static void registerColorHandlerItems(RegisterColorHandlersEvent.Item event){
-        for (Fluid fluid : BuiltInRegistries.FLUID)
-        {
-            if (Objects.requireNonNull(BuiltInRegistries.FLUID.getKey(fluid)).getNamespace().equals(IMUtils.MOD_ID))
-            {
-                event.register(new DynamicFluidContainerModel.Colors(), fluid.getBucket());
-            }
-        }
-    }
 
 
     @SubscribeEvent

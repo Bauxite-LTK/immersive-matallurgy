@@ -22,6 +22,32 @@ public class IMItemModelProvider extends ItemModelProvider {
         basicItem(IMItems.Ores.RAW_IRON_ORE_COARSE_POWDER.get());
         basicItem(IMItems.Ores.RAW_IRON_ORE_FINES.get());
         basicItem(IMItems.Ores.RAW_IRON_CONCENTRATE_PELLET.get());
+
+        basicItem(IMItems.Ores.RAW_GOLD_ORE_CHUNK.get());
+        basicItem(IMItems.Ores.RAW_GOLD_ORE_COARSE_POWDER.get());
+        basicItem(IMItems.Ores.RAW_GOLD_ORE_FINES.get());
+        basicItem(IMItems.Ores.RAW_GOLD_CONCENTRATE_PELLET.get());
+
+        basicItem(IMItems.Ores.RAW_COPPER_ORE_CHUNK.get());
+        basicItem(IMItems.Ores.RAW_COPPER_ORE_COARSE_POWDER.get());
+        basicItem(IMItems.Ores.RAW_COPPER_ORE_FINES.get());
+        basicItem(IMItems.Ores.RAW_COPPER_CONCENTRATE_PELLET.get());
+
+        basicItem(IMItems.Ores.RAW_SILVER_ORE_CHUNK.get());
+        basicItem(IMItems.Ores.RAW_SILVER_ORE_COARSE_POWDER.get());
+        basicItem(IMItems.Ores.RAW_SILVER_ORE_FINES.get());
+        basicItem(IMItems.Ores.RAW_SILVER_CONCENTRATE_PELLET.get());
+
+        basicItem(IMItems.Ores.RAW_LEAD_ORE_CHUNK.get());
+        basicItem(IMItems.Ores.RAW_LEAD_ORE_COARSE_POWDER.get());
+        basicItem(IMItems.Ores.RAW_LEAD_ORE_FINES.get());
+        basicItem(IMItems.Ores.RAW_LEAD_CONCENTRATE_PELLET.get());
+
+        basicItem(IMItems.Ores.RAW_NICKEL_ORE_CHUNK.get());
+        basicItem(IMItems.Ores.RAW_NICKEL_ORE_COARSE_POWDER.get());
+        basicItem(IMItems.Ores.RAW_NICKEL_ORE_FINES.get());
+        basicItem(IMItems.Ores.RAW_NICKEL_CONCENTRATE_PELLET.get());
+        
         basicItem(IMItems.COLOPHONY.get());
         basicItem(IMItems.MASON_PINE_SAP_BOTTLE.get());
         basicItem(IMItems.COLOPHONY_BOTTLE.get());

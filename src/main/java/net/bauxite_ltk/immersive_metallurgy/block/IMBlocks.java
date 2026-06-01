@@ -1,6 +1,8 @@
 package net.bauxite_ltk.immersive_metallurgy.block;
 
+import blusunrize.immersiveengineering.api.EnumMetals;
 import blusunrize.immersiveengineering.common.blocks.BlockItemIE;
+import blusunrize.immersiveengineering.common.register.IEBlocks;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.ElectricCableBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.casting_channel.CastingChannelBlock;
@@ -27,7 +29,15 @@ import java.util.function.Supplier;
 public class IMBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(IMUtils.MOD_ID);
 
-    public static final DeferredBlock<LiquidBlock> MOLTEN_PIG_IRON = registerNoItem("fluid/molten_pig_iron", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_PIG_IRON.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), Blocks.IRON_BLOCK, 100));
+    
+    public static final DeferredBlock<LiquidBlock> MOLTEN_PIG_IRON = registerNoItem("fluid/molten_pig_iron", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_PIG_IRON.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), Blocks.IRON_BLOCK, IMBlockEntities.MOLTEN_PIG_IRON,100, 0x3c2d2d));
+    public static final DeferredBlock<LiquidBlock> MOLTEN_GOLD = registerNoItem("fluid/molten_gold", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_GOLD.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), Blocks.GOLD_BLOCK,IMBlockEntities.MOLTEN_GOLD, 100, 0xffd241));
+    public static final DeferredBlock<LiquidBlock> MOLTEN_COPPER = registerNoItem("fluid/molten_copper", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_COPPER.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), Blocks.COPPER_BLOCK,IMBlockEntities.MOLTEN_COPPER,100, 0xc16348));
+    public static final DeferredBlock<LiquidBlock> MOLTEN_SILVER = registerNoItem("fluid/molten_silver", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_SILVER.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), IEBlocks.Metals.STORAGE.get(EnumMetals.SILVER).get(), IMBlockEntities.MOLTEN_SILVER ,100, 0xd4d2cb));
+    public static final DeferredBlock<LiquidBlock> MOLTEN_LEAD = registerNoItem("fluid/molten_lead", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_LEAD.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), IEBlocks.Metals.STORAGE.get(EnumMetals.LEAD).get(), IMBlockEntities.MOLTEN_LEAD ,100, 0x413d50));
+    public static final DeferredBlock<LiquidBlock> MOLTEN_NICKEL = registerNoItem("fluid/molten_nickel", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_NICKEL.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), IEBlocks.Metals.STORAGE.get(EnumMetals.NICKEL).get(), IMBlockEntities.MOLTEN_NICKEL ,100, 0xa3a092));
+
+
     public static final DeferredBlock<LiquidBlock> MASON_PINE_SAP = registerNoItem("fluid/mason_pine_sap", () -> new LiquidBlock(IMFluids.MASON_PINE_SAP.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
     public static final DeferredBlock<LiquidBlock> TURPENTINE_OIL = registerNoItem("fluid/turpentine_oil", () -> new LiquidBlock(IMFluids.TURPENTINE_OIL.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
     public static final DeferredBlock<LiquidBlock> TERPINEOL = registerNoItem("fluid/terpineol", () -> new LiquidBlock(IMFluids.TERPINEOL.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
@@ -50,6 +60,30 @@ public class IMBlocks {
     public static final DeferredBlock<LiquidBlock> RAW_IRON_CONCENTRATE_SLURRY = registerNoItem("fluid/raw_iron_concentrate_slurry", () -> new LiquidBlock(IMFluids.RAW_IRON_CONCENTRATE_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
     public static final DeferredBlock<LiquidBlock> RAW_IRON_TAILING_SLURRY = registerNoItem("fluid/raw_iron_tailing_slurry", () -> new LiquidBlock(IMFluids.RAW_IRON_TAILING_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
 
+    public static final DeferredBlock<LiquidBlock> RAW_GOLD_SLURRY = registerNoItem("fluid/raw_gold_slurry", () -> new LiquidBlock(IMFluids.RAW_GOLD_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_GOLD_PROCESSED_SLURRY = registerNoItem("fluid/raw_gold_processed_slurry", () -> new LiquidBlock(IMFluids.RAW_GOLD_PROCESSED_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_GOLD_CONCENTRATE_SLURRY = registerNoItem("fluid/raw_gold_concentrate_slurry", () -> new LiquidBlock(IMFluids.RAW_GOLD_CONCENTRATE_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_GOLD_TAILING_SLURRY = registerNoItem("fluid/raw_gold_tailing_slurry", () -> new LiquidBlock(IMFluids.RAW_GOLD_TAILING_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+
+    public static final DeferredBlock<LiquidBlock> RAW_COPPER_SLURRY = registerNoItem("fluid/raw_copper_slurry", () -> new LiquidBlock(IMFluids.RAW_COPPER_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_COPPER_PROCESSED_SLURRY = registerNoItem("fluid/raw_copper_processed_slurry", () -> new LiquidBlock(IMFluids.RAW_COPPER_PROCESSED_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_COPPER_CONCENTRATE_SLURRY = registerNoItem("fluid/raw_copper_concentrate_slurry", () -> new LiquidBlock(IMFluids.RAW_COPPER_CONCENTRATE_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_COPPER_TAILING_SLURRY = registerNoItem("fluid/raw_copper_tailing_slurry", () -> new LiquidBlock(IMFluids.RAW_COPPER_TAILING_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+
+    public static final DeferredBlock<LiquidBlock> RAW_SILVER_SLURRY = registerNoItem("fluid/raw_silver_slurry", () -> new LiquidBlock(IMFluids.RAW_SILVER_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_SILVER_PROCESSED_SLURRY = registerNoItem("fluid/raw_silver_processed_slurry", () -> new LiquidBlock(IMFluids.RAW_SILVER_PROCESSED_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_SILVER_CONCENTRATE_SLURRY = registerNoItem("fluid/raw_silver_concentrate_slurry", () -> new LiquidBlock(IMFluids.RAW_SILVER_CONCENTRATE_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_SILVER_TAILING_SLURRY = registerNoItem("fluid/raw_silver_tailing_slurry", () -> new LiquidBlock(IMFluids.RAW_SILVER_TAILING_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+
+    public static final DeferredBlock<LiquidBlock> RAW_LEAD_SLURRY = registerNoItem("fluid/raw_lead_slurry", () -> new LiquidBlock(IMFluids.RAW_LEAD_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_LEAD_PROCESSED_SLURRY = registerNoItem("fluid/raw_lead_processed_slurry", () -> new LiquidBlock(IMFluids.RAW_LEAD_PROCESSED_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_LEAD_CONCENTRATE_SLURRY = registerNoItem("fluid/raw_lead_concentrate_slurry", () -> new LiquidBlock(IMFluids.RAW_LEAD_CONCENTRATE_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_LEAD_TAILING_SLURRY = registerNoItem("fluid/raw_lead_tailing_slurry", () -> new LiquidBlock(IMFluids.RAW_LEAD_TAILING_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+
+    public static final DeferredBlock<LiquidBlock> RAW_NICKEL_SLURRY = registerNoItem("fluid/raw_nickel_slurry", () -> new LiquidBlock(IMFluids.RAW_NICKEL_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_NICKEL_PROCESSED_SLURRY = registerNoItem("fluid/raw_nickel_processed_slurry", () -> new LiquidBlock(IMFluids.RAW_NICKEL_PROCESSED_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_NICKEL_CONCENTRATE_SLURRY = registerNoItem("fluid/raw_nickel_concentrate_slurry", () -> new LiquidBlock(IMFluids.RAW_NICKEL_CONCENTRATE_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> RAW_NICKEL_TAILING_SLURRY = registerNoItem("fluid/raw_nickel_tailing_slurry", () -> new LiquidBlock(IMFluids.RAW_NICKEL_TAILING_SLURRY.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
 
 
     private static final Supplier<BlockBehaviour.Properties> METAL_PROPERTIES_NO_OVERLAY =

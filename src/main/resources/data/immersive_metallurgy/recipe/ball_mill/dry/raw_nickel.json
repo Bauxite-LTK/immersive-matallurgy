@@ -1,0 +1,12 @@
+{
+  "type": "immersive_metallurgy:ball_mill",
+  "energy": 2400,
+  "time": 100,
+  "result_item": {
+    "count": 4,
+    "id": "immersive_metallurgy:ore_fines_raw_nickel"
+  },
+  "input_item": {
+    "item": "immersive_metallurgy:pure_coarse_powder_raw_nickel"
+  }
+}

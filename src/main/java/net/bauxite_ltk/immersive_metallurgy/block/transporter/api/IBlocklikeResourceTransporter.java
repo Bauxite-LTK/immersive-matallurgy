@@ -86,7 +86,6 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
                 else if(status.equals(TransportationData.Status.COMMON)){
                     if (isNeighborCapabilityInvalid(data.input)){
-                        //FIXME FUCK THIS SHIT CODE
                         IMUtils.LOGGER.info("common set sub source pos:{}", getBlockPos());
                         data.setStatus(TransportationData.Status.DRAIN);
                     }

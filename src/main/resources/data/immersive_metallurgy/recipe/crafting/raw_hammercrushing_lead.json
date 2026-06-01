@@ -1,0 +1,10 @@
+{
+  "type": "immersiveengineering:hammer_crushing",
+  "input": {
+    "tag": "c:raw_materials/lead"
+  },
+  "result": {
+    "count": 1,
+    "id": "immersive_metallurgy:pure_ore_chunk_raw_lead"
+  }
+}

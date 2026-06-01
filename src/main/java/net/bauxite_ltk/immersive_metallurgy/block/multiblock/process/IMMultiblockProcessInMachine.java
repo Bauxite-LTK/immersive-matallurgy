@@ -14,6 +14,7 @@ import net.neoforged.neoforge.fluids.IFluidTank;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 
+import java.util.List;
 import java.util.function.BiFunction;
 
 public class IMMultiblockProcessInMachine<R extends MultiblockRecipe>
@@ -72,24 +73,40 @@ public class IMMultiblockProcessInMachine<R extends MultiblockRecipe>
         return false;
     }
 
-
     @Override
-    protected boolean canOutputFluid(ProcessContext.ProcessContextInMachine<R> context, FluidStack output)
+    public boolean canProcess(ProcessContext.ProcessContextInMachine<R> context, Level level)
+    {
+        LevelDependentData<R> levelData = getLevelData(level);
+        if(levelData.recipe() ==null)
+            return true;
+        if(context.getEnergy().extractEnergy(levelData.energyPerTick(), true)==levelData.energyPerTick())
+        {
+            List<ItemStack> outputs = getRecipeItemOutputs(level, context);
+            if(outputs!=null)
+                for(ItemStack output : outputs)
+                    if(!output.isEmpty()&&!canOutputItem(context, output))
+                        return false;
+            List<FluidStack> fluidOutputs = levelData.recipe().getFluidOutputs();
+            if(fluidOutputs!=null)
+                for(int i = 0; i < fluidOutputs.size(); i++){
+                    FluidStack output = fluidOutputs.get(i);
+                    if(!canOutputFluidOrdered(context,output, i))
+                        return false;
+                }
+            return context.additionalCanProcessCheck(this, level);
+        }
+        return false;
+    }
+
+    protected boolean canOutputFluidOrdered(ProcessContext.ProcessContextInMachine<R> context, FluidStack output, int order)
     {
         IFluidTank[] tanks = context.getInternalTanks();
         int[] outputTanks = context.getOutputTanks();
-        for(int iOutputTank : outputTanks){
-            if(tanks[iOutputTank].getFluidAmount() == tanks[iOutputTank].getCapacity()){
-                return false;
-            }
-        }
+        int outputIndex = outputTanks[order];
+        if(tanks[outputIndex].getFluidAmount() == tanks[outputIndex].getCapacity())
+            return false;
 
-        for(int iOutputTank : outputTanks) {
-            if (tanks[iOutputTank].fill(output, IFluidHandler.FluidAction.SIMULATE) == output.getAmount()){
-                return true;
-            }
-        }
-        return false;
+        return tanks[outputIndex].fill(output, IFluidHandler.FluidAction.SIMULATE) == output.getAmount();
     }
 
 }

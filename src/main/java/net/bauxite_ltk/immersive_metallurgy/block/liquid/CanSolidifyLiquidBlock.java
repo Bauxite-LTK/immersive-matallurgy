@@ -1,15 +1,10 @@
 package net.bauxite_ltk.immersive_metallurgy.block.liquid;
 
-import net.bauxite_ltk.immersive_metallurgy.ImmersiveMetallurgy;
 import net.bauxite_ltk.immersive_metallurgy.block.IMBlockEntities;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -25,13 +20,17 @@ public class CanSolidifyLiquidBlock extends LiquidBlock implements EntityBlock {
 
     int solidifyTicks;
     Block solid;
+    final int baseColor;
+    Supplier<BlockEntityType<CanSolidifyLiquidBlockEntity>> instanceBE;
 
-
-    public CanSolidifyLiquidBlock( FlowingFluid fluid, Properties properties, Block solid, int solidifyTicks) {
+    public CanSolidifyLiquidBlock(FlowingFluid fluid, Properties properties, Block solid, Supplier<BlockEntityType<CanSolidifyLiquidBlockEntity>> instanceBE , int solidifyTicks, int baseColor) {
         super(fluid, properties);
         this.solid = solid;
         this.solidifyTicks = solidifyTicks;
+        this.baseColor = baseColor;
+        this.instanceBE = instanceBE;
     }
+
 
 
 
@@ -48,9 +47,9 @@ public class CanSolidifyLiquidBlock extends LiquidBlock implements EntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        CanSolidifyLiquidBlockEntity be = IMBlockEntities.CAN_SOLIDIFY_LIQUID.get().create(blockPos, blockState);
+        CanSolidifyLiquidBlockEntity be = instanceBE.get().create(blockPos, blockState);
         if(be != null){
-            be.setSolidProperties(solid, solidifyTicks);
+            be.setSolidProperties(solid, solidifyTicks, baseColor);
         }
         return be;
     }

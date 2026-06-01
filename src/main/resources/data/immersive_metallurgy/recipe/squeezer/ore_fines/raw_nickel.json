@@ -1,0 +1,13 @@
+{
+  "type": "immersiveengineering:squeezer",
+  "energy": 6400,
+  "input": {
+    "basePredicate": {
+      "item": "immersive_metallurgy:ore_fines_raw_nickel"
+    },
+    "count": 10
+  },
+  "result": {
+    "item": "immersive_metallurgy:concentrate_pellet_raw_nickel"
+  }
+}
