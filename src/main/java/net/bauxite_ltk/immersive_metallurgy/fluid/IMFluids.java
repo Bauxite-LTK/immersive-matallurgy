@@ -56,8 +56,16 @@ public class IMFluids {
             registerMolten("nickel",
                     IMBlocks.MOLTEN_NICKEL,
                     IMItems.MOLTEN_NICKEL_BUCKET);
-    
-    
+
+    public static final FluidHolder<BaseFlowingFluid> MOLTEN_URANIUM =
+            registerMolten("uranium",
+                    IMBlocks.MOLTEN_URANIUM,
+                    IMItems.MOLTEN_URANIUM_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> MOLTEN_ALUMINUM =
+            registerMolten("aluminum",
+                    IMBlocks.MOLTEN_ALUMINUM,
+                    IMItems.MOLTEN_ALUMINUM_BUCKET);
 
     public static final FluidHolder<BaseFlowingFluid> MASON_PINE_SAP =
             register(
@@ -250,6 +258,58 @@ public class IMFluids {
             registerOreSlurry("raw_nickel_tailing",
                     IMBlocks.RAW_NICKEL_TAILING_SLURRY,
                     IMItems.RAW_NICKEL_TAILING_SLURRY_BUCKET);
+
+
+    /*
+     * ----------------------------------------------------
+     * Ore Slurry : Raw Uranium
+     * ----------------------------------------------------
+     */
+    public static final FluidHolder<BaseFlowingFluid> RAW_URANIUM_SLURRY =
+            registerOreSlurry("raw_uranium",
+                    IMBlocks.RAW_URANIUM_SLURRY,
+                    IMItems.RAW_URANIUM_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_URANIUM_PROCESSED_SLURRY =
+            registerOreSlurry("raw_uranium_processed",
+                    IMBlocks.RAW_URANIUM_PROCESSED_SLURRY,
+                    IMItems.RAW_URANIUM_PROCESSED_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_URANIUM_CONCENTRATE_SLURRY =
+            registerOreSlurry("raw_uranium_concentrate",
+                    IMBlocks.RAW_URANIUM_CONCENTRATE_SLURRY,
+                    IMItems.RAW_URANIUM_CONCENTRATE_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_URANIUM_TAILING_SLURRY =
+            registerOreSlurry("raw_uranium_tailing",
+                    IMBlocks.RAW_URANIUM_TAILING_SLURRY,
+                    IMItems.RAW_URANIUM_TAILING_SLURRY_BUCKET);
+
+
+    /*
+     * ----------------------------------------------------
+     * Ore Slurry : Raw Aluminum
+     * ----------------------------------------------------
+     */
+    public static final FluidHolder<BaseFlowingFluid> RAW_ALUMINUM_SLURRY =
+            registerOreSlurry("raw_aluminum",
+                    IMBlocks.RAW_ALUMINUM_SLURRY,
+                    IMItems.RAW_ALUMINUM_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_ALUMINUM_PROCESSED_SLURRY =
+            registerOreSlurry("raw_aluminum_processed",
+                    IMBlocks.RAW_ALUMINUM_PROCESSED_SLURRY,
+                    IMItems.RAW_ALUMINUM_PROCESSED_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_ALUMINUM_CONCENTRATE_SLURRY =
+            registerOreSlurry("raw_aluminum_concentrate",
+                    IMBlocks.RAW_ALUMINUM_CONCENTRATE_SLURRY,
+                    IMItems.RAW_ALUMINUM_CONCENTRATE_SLURRY_BUCKET);
+
+    public static final FluidHolder<BaseFlowingFluid> RAW_ALUMINUM_TAILING_SLURRY =
+            registerOreSlurry("raw_aluminum_tailing",
+                    IMBlocks.RAW_ALUMINUM_TAILING_SLURRY,
+                    IMItems.RAW_ALUMINUM_TAILING_SLURRY_BUCKET);
 
     private static FluidType.Properties waterLike()
     {

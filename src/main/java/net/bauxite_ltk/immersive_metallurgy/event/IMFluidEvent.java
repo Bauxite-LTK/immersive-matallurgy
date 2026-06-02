@@ -83,6 +83,15 @@ public class IMFluidEvent {
                 new FluidRendererExtension(0xFFa3a092, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
                 IMFluids.MOLTEN_NICKEL.getType());
 
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF3c482f, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.MOLTEN_URANIUM.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFbdc4c7, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.MOLTEN_ALUMINUM.getType());
+        
+
 
         event.registerFluidType(
                 new FluidRendererExtension(0xFFb98051, WATER_STILL, WATER_FLOW, null, null),
@@ -197,6 +206,41 @@ public class IMFluidEvent {
         event.registerFluidType(
                 new FluidRendererExtension(0xFF8a8854, THICKLY_WATER_STILL, THICKLY_WATER_FLOW, null, null),
                 IMFluids.RAW_NICKEL_TAILING_SLURRY.getType());
+
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF3c482f, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.RAW_URANIUM_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF3c482f, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_URANIUM_PROCESSED_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF3c482f, BUBBLE_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_URANIUM_CONCENTRATE_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF3c482f, THICKLY_WATER_STILL, THICKLY_WATER_FLOW, null, null),
+                IMFluids.RAW_URANIUM_TAILING_SLURRY.getType());
+        
+
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFcf8e88, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                IMFluids.RAW_ALUMINUM_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFcf8e88, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_ALUMINUM_PROCESSED_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFcf8e88, BUBBLE_STILL, WATER_FLOW, null, null),
+                IMFluids.RAW_ALUMINUM_CONCENTRATE_SLURRY.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFcf8e88, THICKLY_WATER_STILL, THICKLY_WATER_FLOW, null, null),
+                IMFluids.RAW_ALUMINUM_TAILING_SLURRY.getType());
 
     }
 

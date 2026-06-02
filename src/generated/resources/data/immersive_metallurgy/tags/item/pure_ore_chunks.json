@@ -1,6 +1,10 @@
 {
   "values": [
     "immersive_metallurgy:pure_ore_chunk_raw_iron",
-    "immersive_metallurgy:pure_ore_chunk_raw_gold"
+    "immersive_metallurgy:pure_ore_chunk_raw_gold",
+    "immersive_metallurgy:pure_ore_chunk_raw_copper",
+    "immersive_metallurgy:pure_ore_chunk_raw_silver",
+    "immersive_metallurgy:pure_ore_chunk_raw_lead",
+    "immersive_metallurgy:pure_ore_chunk_raw_nickel"
   ]
 }

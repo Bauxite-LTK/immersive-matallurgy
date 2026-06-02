@@ -1,6 +1,10 @@
 {
   "values": [
     "immersive_metallurgy:concentrate_pellet_raw_iron",
-    "immersive_metallurgy:concentrate_pellet_raw_gold"
+    "immersive_metallurgy:concentrate_pellet_raw_gold",
+    "immersive_metallurgy:concentrate_pellet_raw_copper",
+    "immersive_metallurgy:concentrate_pellet_raw_silver",
+    "immersive_metallurgy:concentrate_pellet_raw_lead",
+    "immersive_metallurgy:concentrate_pellet_raw_nickel"
   ]
 }

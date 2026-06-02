@@ -99,6 +99,26 @@ public class IMCreativeModTabs {
                 output.accept(IMItems.RAW_NICKEL_TAILING_SLURRY_BUCKET);
                 output.accept(IMItems.MOLTEN_NICKEL_BUCKET.get());
 
+                output.accept(IMItems.Ores.RAW_URANIUM_ORE_CHUNK);
+                output.accept(IMItems.Ores.RAW_URANIUM_ORE_COARSE_POWDER);
+                output.accept(IMItems.Ores.RAW_URANIUM_ORE_FINES);
+                output.accept(IMItems.Ores.RAW_URANIUM_CONCENTRATE_PELLET);
+                output.accept(IMItems.RAW_URANIUM_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_URANIUM_PROCESSED_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_URANIUM_CONCENTRATE_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_URANIUM_TAILING_SLURRY_BUCKET);
+                output.accept(IMItems.MOLTEN_URANIUM_BUCKET.get());
+
+                output.accept(IMItems.Ores.RAW_ALUMINUM_ORE_CHUNK);
+                output.accept(IMItems.Ores.RAW_ALUMINUM_ORE_COARSE_POWDER);
+                output.accept(IMItems.Ores.RAW_ALUMINUM_ORE_FINES);
+                output.accept(IMItems.Ores.RAW_ALUMINUM_CONCENTRATE_PELLET);
+                output.accept(IMItems.RAW_ALUMINUM_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_ALUMINUM_PROCESSED_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_ALUMINUM_CONCENTRATE_SLURRY_BUCKET);
+                output.accept(IMItems.RAW_ALUMINUM_TAILING_SLURRY_BUCKET);
+                output.accept(IMItems.MOLTEN_ALUMINUM_BUCKET.get());
+
                 output.accept(IMBlocks.CASTING_CHANNEL);
 
             }).build()

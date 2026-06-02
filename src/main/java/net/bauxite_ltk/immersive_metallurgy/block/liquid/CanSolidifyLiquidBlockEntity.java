@@ -56,6 +56,14 @@ public class CanSolidifyLiquidBlockEntity extends BlockEntity{
         return new CanSolidifyLiquidBlockEntity(IMBlockEntities.MOLTEN_NICKEL.get(), pos, blockState);
     }
 
+    public static CanSolidifyLiquidBlockEntity forUranium(BlockPos pos, BlockState blockState){
+        return new CanSolidifyLiquidBlockEntity(IMBlockEntities.MOLTEN_URANIUM.get(), pos, blockState);
+    }
+
+    public static CanSolidifyLiquidBlockEntity forAluminum(BlockPos pos, BlockState blockState){
+        return new CanSolidifyLiquidBlockEntity(IMBlockEntities.MOLTEN_ALUMINUM.get(), pos, blockState);
+    }
+
     public void setSolidProperties(Block solid, int solidifyTicks, int baseColor){
         this.solid = solid;
         this.solidifyTicks = solidifyTicks;

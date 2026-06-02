@@ -47,6 +47,16 @@ public class IMItemModelProvider extends ItemModelProvider {
         basicItem(IMItems.Ores.RAW_NICKEL_ORE_COARSE_POWDER.get());
         basicItem(IMItems.Ores.RAW_NICKEL_ORE_FINES.get());
         basicItem(IMItems.Ores.RAW_NICKEL_CONCENTRATE_PELLET.get());
+
+        basicItem(IMItems.Ores.RAW_URANIUM_ORE_CHUNK.get());
+        basicItem(IMItems.Ores.RAW_URANIUM_ORE_COARSE_POWDER.get());
+        basicItem(IMItems.Ores.RAW_URANIUM_ORE_FINES.get());
+        basicItem(IMItems.Ores.RAW_URANIUM_CONCENTRATE_PELLET.get());
+
+        basicItem(IMItems.Ores.RAW_ALUMINUM_ORE_CHUNK.get());
+        basicItem(IMItems.Ores.RAW_ALUMINUM_ORE_COARSE_POWDER.get());
+        basicItem(IMItems.Ores.RAW_ALUMINUM_ORE_FINES.get());
+        basicItem(IMItems.Ores.RAW_ALUMINUM_CONCENTRATE_PELLET.get());
         
         basicItem(IMItems.COLOPHONY.get());
         basicItem(IMItems.MASON_PINE_SAP_BOTTLE.get());

@@ -57,6 +57,22 @@ public class IMItems {
                             new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
                     )
             );
+
+    public static final DeferredItem<Item> MOLTEN_URANIUM_BUCKET =
+            ITEMS.register("bucket/molten_uranium",
+                    () -> new BucketItem(
+                            IMFluids.MOLTEN_URANIUM.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
+
+    public static final DeferredItem<Item> MOLTEN_ALUMINUM_BUCKET =
+            ITEMS.register("bucket/molten_aluminum",
+                    () -> new BucketItem(
+                            IMFluids.MOLTEN_ALUMINUM.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
     
     
 
@@ -303,6 +319,79 @@ public class IMItems {
                     )
             );
 
+
+
+    /*
+    -----------------------------------------------------------
+      Slurry Fluid Bucket
+      Ore: RAW URANIUM
+    -----------------------------------------------------------
+    */
+    public static final DeferredItem<Item> RAW_URANIUM_SLURRY_BUCKET =
+            ITEMS.register("bucket/raw_uranium_slurry",
+                    () -> new BucketItem(
+                            IMFluids.RAW_URANIUM_SLURRY.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
+    public static final DeferredItem<Item> RAW_URANIUM_PROCESSED_SLURRY_BUCKET =
+            ITEMS.register("bucket/raw_uranium_processed_slurry",
+                    () -> new BucketItem(
+                            IMFluids.RAW_URANIUM_PROCESSED_SLURRY.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
+    public static final DeferredItem<Item> RAW_URANIUM_CONCENTRATE_SLURRY_BUCKET =
+            ITEMS.register("bucket/raw_uranium_concentrate_slurry",
+                    () -> new BucketItem(
+                            IMFluids.RAW_URANIUM_CONCENTRATE_SLURRY.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
+    public static final DeferredItem<Item> RAW_URANIUM_TAILING_SLURRY_BUCKET =
+            ITEMS.register("bucket/raw_uranium_tailing_slurry",
+                    () -> new BucketItem(
+                            IMFluids.RAW_URANIUM_TAILING_SLURRY.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
+
+
+    /*
+    -----------------------------------------------------------
+      Slurry Fluid Bucket
+      Ore: RAW ALUMINUM
+    -----------------------------------------------------------
+    */
+    public static final DeferredItem<Item> RAW_ALUMINUM_SLURRY_BUCKET =
+            ITEMS.register("bucket/raw_aluminum_slurry",
+                    () -> new BucketItem(
+                            IMFluids.RAW_ALUMINUM_SLURRY.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
+    public static final DeferredItem<Item> RAW_ALUMINUM_PROCESSED_SLURRY_BUCKET =
+            ITEMS.register("bucket/raw_aluminum_processed_slurry",
+                    () -> new BucketItem(
+                            IMFluids.RAW_ALUMINUM_PROCESSED_SLURRY.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
+    public static final DeferredItem<Item> RAW_ALUMINUM_CONCENTRATE_SLURRY_BUCKET =
+            ITEMS.register("bucket/raw_aluminum_concentrate_slurry",
+                    () -> new BucketItem(
+                            IMFluids.RAW_ALUMINUM_CONCENTRATE_SLURRY.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
+    public static final DeferredItem<Item> RAW_ALUMINUM_TAILING_SLURRY_BUCKET =
+            ITEMS.register("bucket/raw_aluminum_tailing_slurry",
+                    () -> new BucketItem(
+                            IMFluids.RAW_ALUMINUM_TAILING_SLURRY.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
+
     public static final DeferredItem<Item> MASON_PINE_SAP_BOTTLE =
             ITEMS.registerItem("mason_pine_sap_bottle", Item::new, new Item.Properties().stacksTo(16));
 
@@ -342,6 +431,17 @@ public class IMItems {
         public static final DeferredItem<Item> RAW_NICKEL_ORE_COARSE_POWDER = ITEMS.registerSimpleItem("pure_coarse_powder_raw_nickel");
         public static final DeferredItem<Item> RAW_NICKEL_ORE_FINES = ITEMS.registerSimpleItem("ore_fines_raw_nickel");
         public static final DeferredItem<Item> RAW_NICKEL_CONCENTRATE_PELLET = ITEMS.registerSimpleItem("concentrate_pellet_raw_nickel");
+
+
+        public static final DeferredItem<Item> RAW_URANIUM_ORE_CHUNK = ITEMS.registerSimpleItem("pure_ore_chunk_raw_uranium");
+        public static final DeferredItem<Item> RAW_URANIUM_ORE_COARSE_POWDER = ITEMS.registerSimpleItem("pure_coarse_powder_raw_uranium");
+        public static final DeferredItem<Item> RAW_URANIUM_ORE_FINES = ITEMS.registerSimpleItem("ore_fines_raw_uranium");
+        public static final DeferredItem<Item> RAW_URANIUM_CONCENTRATE_PELLET = ITEMS.registerSimpleItem("concentrate_pellet_raw_uranium");
+
+        public static final DeferredItem<Item> RAW_ALUMINUM_ORE_CHUNK = ITEMS.registerSimpleItem("pure_ore_chunk_raw_aluminum");
+        public static final DeferredItem<Item> RAW_ALUMINUM_ORE_COARSE_POWDER = ITEMS.registerSimpleItem("pure_coarse_powder_raw_aluminum");
+        public static final DeferredItem<Item> RAW_ALUMINUM_ORE_FINES = ITEMS.registerSimpleItem("ore_fines_raw_aluminum");
+        public static final DeferredItem<Item> RAW_ALUMINUM_CONCENTRATE_PELLET = ITEMS.registerSimpleItem("concentrate_pellet_raw_aluminum");
 
 
     }

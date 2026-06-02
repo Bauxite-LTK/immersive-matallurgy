@@ -42,6 +42,12 @@ public class IMBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> MOLTEN_NICKEL = BLOCK_ENTITIES.register(
             "molten_nickel", makeType(CanSolidifyLiquidBlockEntity::forNickel, IMBlocks.MOLTEN_NICKEL));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> MOLTEN_URANIUM = BLOCK_ENTITIES.register(
+            "molten_uranium", makeType(CanSolidifyLiquidBlockEntity::forUranium, IMBlocks.MOLTEN_URANIUM));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> MOLTEN_ALUMINUM = BLOCK_ENTITIES.register(
+            "molten_aluminum", makeType(CanSolidifyLiquidBlockEntity::forAluminum, IMBlocks.MOLTEN_ALUMINUM));
+    
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SapCollectorBlockEntity>> SAP_COLLECTOR = BLOCK_ENTITIES.register(
             "sap_collector", makeType(SapCollectorBlockEntity::new, IMBlocks.SAP_COLLECTOR)

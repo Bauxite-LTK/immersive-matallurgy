@@ -5,6 +5,8 @@
     "immersive_metallurgy:molten_copper",
     "immersive_metallurgy:molten_silver",
     "immersive_metallurgy:molten_lead",
-    "immersive_metallurgy:molten_nickel"
+    "immersive_metallurgy:molten_nickel",
+    "immersive_metallurgy:molten_uranium",
+    "immersive_metallurgy:molten_aluminum"
   ]
 }

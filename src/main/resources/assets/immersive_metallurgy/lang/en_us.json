@@ -26,6 +26,13 @@
   "block.immersive_metallurgy.fluid.molten_nickel": "Molten Nickel",
   "fluid.immersive_metallurgy.molten_nickel": "Molten Nickel",
 
+  "item.immersive_metallurgy.bucket.molten_uranium": "Molten Uranium Bucket",
+  "block.immersive_metallurgy.fluid.molten_uranium": "Molten Uranium",
+  "fluid.immersive_metallurgy.molten_uranium": "Molten Uranium",
+
+  "item.immersive_metallurgy.bucket.molten_aluminum": "Molten Aluminum Bucket",
+  "block.immersive_metallurgy.fluid.molten_aluminum": "Molten Aluminum",
+  "fluid.immersive_metallurgy.molten_aluminum": "Molten Aluminum",
 
   "item.immersive_metallurgy.bucket.mason_pine_sap": "Mason Pine Sap Bucket",
   "block.immersive_metallurgy.fluid.mason_pine_sap": "Mason Pine Sap",
@@ -174,6 +181,50 @@
   "item.immersive_metallurgy.bucket.raw_nickel_tailing_slurry": "Raw Nickel Tailing Slurry Bucket",
   "block.immersive_metallurgy.fluid.raw_nickel_tailing_slurry": "Raw Nickel Tailing Slurry ",
   "fluid.immersive_metallurgy.raw_nickel_tailing_slurry": "Raw Nickel Tailing Slurry",
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_uranium": "Raw Uranium Chunk",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_uranium": "Raw Uranium Coarse Powder",
+  "item.immersive_metallurgy.ore_fines_raw_uranium": "Raw Uranium Ore Fines",
+  "item.immersive_metallurgy.concentrate_pellet_raw_uranium": "Raw Uranium Concentrate Pellet",
+
+  "item.immersive_metallurgy.bucket.raw_uranium_slurry": "Raw Uranium Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_uranium_slurry": "Raw Uranium Slurry ",
+  "fluid.immersive_metallurgy.raw_uranium_slurry": "Raw Uranium Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_uranium_processed_slurry": "Raw Uranium Processed Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_uranium_processed_slurry": "Raw Uranium Processed Slurry ",
+  "fluid.immersive_metallurgy.raw_uranium_processed_slurry": "Raw Uranium Processed Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_uranium_concentrate_slurry": "Raw Uranium Concentrate Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_uranium_concentrate_slurry": "Raw Uranium Concentrate Slurry ",
+  "fluid.immersive_metallurgy.raw_uranium_concentrate_slurry": "Raw Uranium Concentrate Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_uranium_tailing_slurry": "Raw Uranium Tailing Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_uranium_tailing_slurry": "Raw Uranium Tailing Slurry ",
+  "fluid.immersive_metallurgy.raw_uranium_tailing_slurry": "Raw Uranium Tailing Slurry",
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_aluminum": "Raw Aluminum Chunk",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_aluminum": "Raw Aluminum Coarse Powder",
+  "item.immersive_metallurgy.ore_fines_raw_aluminum": "Raw Aluminum Ore Fines",
+  "item.immersive_metallurgy.concentrate_pellet_raw_aluminum": "Raw Aluminum Concentrate Pellet",
+
+  "item.immersive_metallurgy.bucket.raw_aluminum_slurry": "Raw Aluminum Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_aluminum_slurry": "Raw Aluminum Slurry ",
+  "fluid.immersive_metallurgy.raw_aluminum_slurry": "Raw Aluminum Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_aluminum_processed_slurry": "Raw Aluminum Processed Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_aluminum_processed_slurry": "Raw Aluminum Processed Slurry ",
+  "fluid.immersive_metallurgy.raw_aluminum_processed_slurry": "Raw Aluminum Processed Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_aluminum_concentrate_slurry": "Raw Aluminum Concentrate Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_aluminum_concentrate_slurry": "Raw Aluminum Concentrate Slurry ",
+  "fluid.immersive_metallurgy.raw_aluminum_concentrate_slurry": "Raw Aluminum Concentrate Slurry",
+
+  "item.immersive_metallurgy.bucket.raw_aluminum_tailing_slurry": "Raw Aluminum Tailing Slurry Bucket",
+  "block.immersive_metallurgy.fluid.raw_aluminum_tailing_slurry": "Raw Aluminum Tailing Slurry ",
+  "fluid.immersive_metallurgy.raw_aluminum_tailing_slurry": "Raw Aluminum Tailing Slurry",
 
 
   "block.immersive_metallurgy.electric_cable_lv": "LV Electric Cable",

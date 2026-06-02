@@ -1,6 +1,10 @@
 {
   "values": [
     "immersive_metallurgy:pure_coarse_powder_raw_iron",
-    "immersive_metallurgy:pure_coarse_powder_raw_gold"
+    "immersive_metallurgy:pure_coarse_powder_raw_gold",
+    "immersive_metallurgy:pure_coarse_powder_raw_copper",
+    "immersive_metallurgy:pure_coarse_powder_raw_silver",
+    "immersive_metallurgy:pure_coarse_powder_raw_lead",
+    "immersive_metallurgy:pure_coarse_powder_raw_nickel"
   ]
 }
