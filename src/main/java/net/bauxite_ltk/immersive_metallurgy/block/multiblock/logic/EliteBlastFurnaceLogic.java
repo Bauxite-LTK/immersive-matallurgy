@@ -1,0 +1,359 @@
+package net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic;
+
+
+import blusunrize.immersiveengineering.api.energy.AveragingEnergyStorage;
+import blusunrize.immersiveengineering.api.fluid.FluidUtils;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.component.IClientTickableComponent;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.component.IServerTickableComponent;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.component.RedstoneControl;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.env.IInitialMultiblockContext;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.env.IMultiblockContext;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.logic.IMultiblockLogic;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.logic.IMultiblockState;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.util.CapabilityPosition;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.util.MultiblockFace;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.util.RelativeBlockFace;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.util.ShapeType;
+import blusunrize.immersiveengineering.api.tool.MachineInterfaceHandler;
+import blusunrize.immersiveengineering.common.blocks.multiblocks.process.MultiblockProcess;
+import blusunrize.immersiveengineering.common.blocks.multiblocks.process.MultiblockProcessor;
+import blusunrize.immersiveengineering.common.blocks.multiblocks.process.ProcessContext;
+import blusunrize.immersiveengineering.common.fluids.ArrayFluidHandler;
+import blusunrize.immersiveengineering.common.util.IESounds;
+import blusunrize.immersiveengineering.common.util.inventory.SlotwiseItemHandler;
+import blusunrize.immersiveengineering.common.util.inventory.WrappingItemHandler;
+import blusunrize.immersiveengineering.common.util.sound.MultiblockSound;
+import net.bauxite_ltk.immersive_metallurgy.block.multiblock.process.IMMultiblockProcessInMachine;
+import net.bauxite_ltk.immersive_metallurgy.block.multiblock.shapes.EliteBlastFurnaceShapes;
+import net.bauxite_ltk.immersive_metallurgy.crafting.BallMillRecipe;
+import net.bauxite_ltk.immersive_metallurgy.crafting.EliteBlastFurnaceRecipe;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.fluids.IFluidTank;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.function.BooleanSupplier;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+public class EliteBlastFurnaceLogic implements
+        IMultiblockLogic<EliteBlastFurnaceLogic.State>,
+        IServerTickableComponent<EliteBlastFurnaceLogic.State>,
+        IClientTickableComponent<EliteBlastFurnaceLogic.State> {
+    public static final BlockPos MASTER_OFFSET = new BlockPos(2, 1, 1);
+    public static final BlockPos REDSTONE_POS = new BlockPos(2, 2, 3);
+    private static final MultiblockFace OUTPUT_SLAG_OFFSET = new MultiblockFace(2,0,-1,RelativeBlockFace.BACK);
+    private static final MultiblockFace OUTPUT_METAL_OFFSET = new MultiblockFace(2,0,4,RelativeBlockFace.FRONT);
+    private static final MultiblockFace OUTPUT_GAS_OFFSET = new MultiblockFace(2,6,4,RelativeBlockFace.FRONT);
+    private static final MultiblockFace INPUT_AIR_RIGHT_OFFSET = new MultiblockFace(-1,0,1,RelativeBlockFace.LEFT);
+    private static final MultiblockFace INPUT_AIR_LEFT_OFFSET = new MultiblockFace(5,0,1,RelativeBlockFace.RIGHT);
+    private static final MultiblockFace INPUT_ORE_OFFSET = new MultiblockFace(2,7,1,RelativeBlockFace.DOWN);
+
+    private static final CapabilityPosition OUTPUT_METAL_CAP = CapabilityPosition.opposing(OUTPUT_METAL_OFFSET);
+    private static final CapabilityPosition OUTPUT_SLAG_CAP = CapabilityPosition.opposing(OUTPUT_SLAG_OFFSET);
+    private static final CapabilityPosition OUTPUT_GAS_CAP = CapabilityPosition.opposing(OUTPUT_GAS_OFFSET);
+
+    private static final CapabilityPosition INPUT_AIR_LEFT_CAP = CapabilityPosition.opposing(INPUT_AIR_LEFT_OFFSET);
+    private static final CapabilityPosition INPUT_AIR_RIGHT_CAP = CapabilityPosition.opposing(INPUT_AIR_RIGHT_OFFSET);
+    private static final CapabilityPosition INPUT_ORE_CAP = CapabilityPosition.opposing(INPUT_ORE_OFFSET);
+
+
+    public static final int HOT_AIR_CAPACITY = 48 * FluidType.BUCKET_VOLUME;
+    public static final int METAL_CAPACITY = 12 * FluidType.BUCKET_VOLUME;
+    public static final int GAS_CAPACITY = 48 * FluidType.BUCKET_VOLUME;
+    public static final int NUM_INPUT_SLOTS = 4;
+    public static final int OUTPUT_SLOT = NUM_INPUT_SLOTS;
+    public static final int NUM_SLOTS = 5;
+
+
+    public State createInitialState(IInitialMultiblockContext<State> capabilitySource) {
+        return new State(capabilitySource);
+    }
+    private int tankLastTick = 0;
+    @Override
+    public void tickServer(IMultiblockContext<State> context) {
+        final State state = context.getState();
+        final boolean active = state.processor.tickServer(state, context.getLevel(), state.rsState.isEnabled(context));
+        if(active!=state.active)
+        {
+            state.active = active;
+            context.requestMasterBESync();
+        }
+        tryEnqueueProcesses(state, context.getLevel().getRawLevel());
+        EliteBlastFurnaceTanks tanks = state.tanks;
+        boolean output1 = FluidUtils.multiblockFluidOutput(
+                state.fluidOutputMetal.get(), state.tanks.outputMetal,
+                -1, -1,null
+        );
+        boolean output2 = FluidUtils.multiblockFluidOutput(
+                state.fluidOutputGas.get(), state.tanks.outputGas,
+                -1, -1,null
+        );
+    }
+
+    private void tryEnqueueProcesses(State state, Level level) {
+        if(state.energy.getEnergyStored() <= 0||state.processor.getQueueSize() >= state.processor.getMaxQueueSize())
+            return;
+        final int[] usedInvSlots = new int[NUM_INPUT_SLOTS];
+        for(MultiblockProcess<?, ?> process : state.processor.getQueue())
+            if(process instanceof IMMultiblockProcessInMachine)
+                for(int i : ((IMMultiblockProcessInMachine<?>)process).getInputSlots())
+                    usedInvSlots[i]++;
+
+        Integer[] preferredSlots = new Integer[]{0, 1, 2, 3};
+        Arrays.sort(preferredSlots, 0, NUM_INPUT_SLOTS, Comparator.comparingInt(arg0 -> usedInvSlots[arg0]));
+
+        for(int slot : preferredSlots)
+        {
+            ItemStack stack = state.inventory.getStackInSlot(slot);
+            if(stack.getCount() <= usedInvSlots[slot])
+                continue;
+            stack = stack.copy();
+            stack.shrink(usedInvSlots[slot]);
+            RecipeHolder<EliteBlastFurnaceRecipe> recipe = EliteBlastFurnaceRecipe.findRecipe(level, stack);
+            if(recipe!=null && recipe.value().temperature <= state.temperature){
+                IMMultiblockProcessInMachine<EliteBlastFurnaceRecipe> process = new IMMultiblockProcessInMachine<>(recipe, slot);
+                state.processor.addProcessToQueue(process, level, false);
+            }
+        }
+    }
+
+
+    @Override
+    public void tickClient(IMultiblockContext<State> context) {
+        final State state = context.getState();
+        if(!state.isPlayingSound.getAsBoolean())
+        {
+            final Vec3 soundPos = context.getLevel().toAbsolute(new Vec3(3.5, 1.5, 1.5));
+            state.isPlayingSound = MultiblockSound.startSound(
+                    () -> state.active, context.isValid(), soundPos, IESounds.refinery , 0.5f
+            );
+        }
+    }
+
+    @Override
+    public void registerCapabilities(CapabilityRegistrar<State> register)
+    {
+        register.register(Capabilities.FluidHandler.BLOCK, (state,position) -> {
+            if(OUTPUT_GAS_CAP.equals(position))
+                return state.outputFluidGasCap;
+            else if(OUTPUT_METAL_CAP.equals(position))
+                return state.outputFluidMetalCap;
+            else if(INPUT_AIR_LEFT_CAP.equals(position))
+                return state.inputFluidAirLeftCap;
+            else if(INPUT_AIR_RIGHT_CAP.equals(position))
+                return state.inputFluidAirRightCap;
+            else
+                return null;
+        });
+
+        register.register(Capabilities.ItemHandler.BLOCK, (state, position) -> {
+            if(OUTPUT_SLAG_CAP.equals(position))
+                return state.outputItemSlagCap;
+            else if(INPUT_ORE_CAP.equals(position))
+                return state.inputItemOreCap;
+            else
+                return null;
+        });
+        register.registerAtBlockPos(MachineInterfaceHandler.IMachineInterfaceConnection.CAPABILITY, REDSTONE_POS, state -> state.mifHandler);
+    }
+
+
+    @Override
+    public Function<BlockPos, VoxelShape> shapeGetter(ShapeType forType)
+    {
+        return EliteBlastFurnaceShapes.SHAPE_GETTER;
+    }
+
+
+    public static class State implements IMultiblockState, ProcessContext.ProcessContextInMachine<EliteBlastFurnaceRecipe>
+    {
+        private final AveragingEnergyStorage energy = new AveragingEnergyStorage(1000);
+
+        private boolean active;
+        public final RedstoneControl.RSState rsState = RedstoneControl.RSState.enabledByDefault();
+        public final MultiblockProcessor.InMachineProcessor<EliteBlastFurnaceRecipe> processor;
+        public final EliteBlastFurnaceTanks tanks = new EliteBlastFurnaceTanks();
+        private final SlotwiseItemHandler inventory;
+        private int temperature = 0;
+
+
+        private final IFluidTank[] tankArray = {tanks.inputAirLeft, tanks.inputAirRight, tanks.outputMetal, tanks.outputGas};
+        private final Supplier<@Nullable IFluidHandler> fluidOutputMetal;
+        private final Supplier<@Nullable IFluidHandler> fluidOutputGas;
+        private final Supplier<@Nullable IItemHandler> ItemOutputSlag;
+        private final IItemHandler inputItemOreCap;
+        private final IItemHandler outputItemSlagCap;
+        private final IFluidHandler inputFluidAirLeftCap;
+        private final IFluidHandler inputFluidAirRightCap;
+        private final IFluidHandler outputFluidMetalCap;
+        private final IFluidHandler outputFluidGasCap;
+        private BooleanSupplier isPlayingSound = () -> false;
+        private final MachineInterfaceHandler.IMachineInterfaceConnection mifHandler;
+
+        public State(IInitialMultiblockContext<State> ctx)
+        {
+            final Runnable markDirty = ctx.getMarkDirtyRunnable();
+            //this.fluidOutput = ctx.getCapabilityAt(Capabilities.FluidHandler.BLOCK, OUTPUT_FLUID_OFFSET);
+            this.processor = new MultiblockProcessor.InMachineProcessor<>(
+                    1, 0, 1, markDirty, EliteBlastFurnaceRecipe.RECIPES::getById
+            );
+            this.inventory = SlotwiseItemHandler.makeWithGroups(List.of(
+                    new SlotwiseItemHandler.IOConstraintGroup(SlotwiseItemHandler.IOConstraint.NO_CONSTRAINT, NUM_INPUT_SLOTS),
+                    new SlotwiseItemHandler.IOConstraintGroup(SlotwiseItemHandler.IOConstraint.OUTPUT, 1)
+            ), markDirty);
+
+            this.fluidOutputMetal = ctx.getCapabilityAt(Capabilities.FluidHandler.BLOCK, OUTPUT_METAL_OFFSET);
+            this.ItemOutputSlag = ctx.getCapabilityAt(Capabilities.ItemHandler.BLOCK, OUTPUT_SLAG_OFFSET);
+            this.fluidOutputGas = ctx.getCapabilityAt(Capabilities.FluidHandler.BLOCK, OUTPUT_GAS_OFFSET);
+            this.inputFluidAirLeftCap = new ArrayFluidHandler(
+                    false, true, markDirty, tanks.inputAirLeft
+            );
+            this.inputFluidAirRightCap = new ArrayFluidHandler(
+                    false, true, markDirty, tanks.inputAirRight
+            );
+            this.inputItemOreCap = new WrappingItemHandler(
+                    getInventory(), true,false, new WrappingItemHandler.IntRange(0, NUM_INPUT_SLOTS)
+            );
+            this.outputItemSlagCap = new WrappingItemHandler(
+                        getInventory(),false,true, new WrappingItemHandler.IntRange(OUTPUT_SLOT, OUTPUT_SLOT+1)
+            );
+            this.outputFluidMetalCap = new ArrayFluidHandler(
+                true, false, markDirty, tanks.outputMetal
+            );
+            this.outputFluidGasCap = new ArrayFluidHandler(
+                    true, false, markDirty, tanks.outputGas
+            );
+            this.mifHandler = () -> new MachineInterfaceHandler.MachineCheckImplementation[]{
+                    new MachineInterfaceHandler.MachineCheckImplementation<>((BooleanSupplier)() -> this.active, MachineInterfaceHandler.BASIC_ACTIVE),
+                    new MachineInterfaceHandler.MachineCheckImplementation<>(energy, MachineInterfaceHandler.BASIC_ENERGY),
+                    new MachineInterfaceHandler.MachineCheckImplementation<>(tanks.inputAirLeft, MachineInterfaceHandler.BASIC_FLUID_IN),
+                    new MachineInterfaceHandler.MachineCheckImplementation<>(tanks.inputAirRight, MachineInterfaceHandler.BASIC_FLUID_IN),
+                    new MachineInterfaceHandler.MachineCheckImplementation<>(tanks.outputMetal, MachineInterfaceHandler.BASIC_FLUID_OUT),
+                    new MachineInterfaceHandler.MachineCheckImplementation<>(tanks.outputMetal, MachineInterfaceHandler.BASIC_FLUID_OUT),
+            };
+        }
+
+        @Override
+        public void writeSaveNBT(CompoundTag nbt, HolderLookup.Provider provider)
+        {
+            nbt.put("energy", energy.serializeNBT(provider));
+            nbt.put("inventory", inventory.serializeNBT(provider));
+            nbt.put("tanks", tanks.toNBT(provider));
+            nbt.put("processor", processor.toNBT(provider));
+        }
+
+        @Override
+        public void readSaveNBT(CompoundTag nbt, HolderLookup.Provider provider) {
+            energy.deserializeNBT(provider, nbt.get("energy"));
+            inventory.deserializeNBT(provider, nbt.getCompound("inventory"));
+            processor.fromNBT(
+                    nbt.get("processor"),
+                    (getRecipe, data, p) -> new IMMultiblockProcessInMachine<>(getRecipe, data),
+                    provider
+            );
+            tanks.readNBT(provider, nbt.getCompound("tanks"));
+        }
+
+        @Override
+        public void writeSyncNBT(CompoundTag nbt, HolderLookup.Provider provider)
+        {
+
+            nbt.putBoolean("active", active);
+            nbt.put("tanks", tanks.toNBT(provider));
+        }
+
+        @Override
+        public void readSyncNBT(CompoundTag nbt, HolderLookup.Provider provider)
+        {
+
+            active = nbt.getBoolean("active");
+            tanks.readNBT(provider,nbt.getCompound("tanks"));
+        }
+
+
+
+        @Override
+        public AveragingEnergyStorage getEnergy() { return energy; }
+
+        @Override
+        public IItemHandlerModifiable getInventory()
+        {
+            return inventory;
+        }
+
+        @Override
+        public IFluidTank[] getInternalTanks()
+        {
+            return tankArray;
+        }
+
+        //TODO OMG Here is so important!!!!
+        @Override
+        public int[] getOutputTanks()
+        {
+            return new int[]{2,3};
+        }
+
+        public boolean shouldRenderActive()
+        {
+            return true;
+        }
+
+        public boolean isActive()
+        {
+            return active;
+        }
+
+
+    }
+
+
+    public record EliteBlastFurnaceTanks(FluidTank inputAirLeft, FluidTank inputAirRight, FluidTank outputMetal, FluidTank outputGas)
+    {
+
+        public EliteBlastFurnaceTanks()
+        {
+            this(
+                    new FluidTank(HOT_AIR_CAPACITY),
+                    new FluidTank(HOT_AIR_CAPACITY),
+                    new FluidTank(METAL_CAPACITY),
+                    new FluidTank(GAS_CAPACITY));
+        }
+
+        public Tag toNBT(HolderLookup.Provider provider)
+        {
+            CompoundTag tag = new CompoundTag();
+            tag.put("inAirLeft", inputAirLeft.writeToNBT(provider, new CompoundTag()));
+            tag.put("inAirRight", inputAirRight.writeToNBT(provider, new CompoundTag()));
+            tag.put("outMetal", outputMetal.writeToNBT(provider, new CompoundTag()));
+            tag.put("outGas", outputGas.writeToNBT(provider, new CompoundTag()));
+            return tag;
+        }
+
+        public void readNBT(HolderLookup.Provider provider, CompoundTag tag)
+        {
+            inputAirLeft.readFromNBT(provider, tag.getCompound("inAirLeft"));
+            inputAirRight.readFromNBT(provider, tag.getCompound("inAirRight"));
+            outputMetal.readFromNBT(provider, tag.getCompound("outMetal"));
+            outputGas.readFromNBT(provider, tag.getCompound("outGas"));
+        }
+    }
+}

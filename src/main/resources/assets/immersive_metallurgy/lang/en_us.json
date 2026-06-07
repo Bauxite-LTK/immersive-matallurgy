@@ -255,6 +255,7 @@
   "block.immersive_metallurgy.flotation_cell": "Flotation Cell",
   "block.immersive_metallurgy.hydrocyclone": "Hydrocyclone",
   "block.immersive_metallurgy.thickener": "Thickener",
+  "block.immersive_metallurgy.elite_blast_furnace": "Elite Blast Furnace",
 
   "desc.immersive_metallurgy.info.thread_ift": "%1$s IF/tick (x%2$d)",
 

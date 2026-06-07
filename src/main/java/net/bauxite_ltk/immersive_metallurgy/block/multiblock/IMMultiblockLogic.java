@@ -4,10 +4,7 @@ import blusunrize.immersiveengineering.api.multiblocks.blocks.MultiblockRegistra
 import blusunrize.immersiveengineering.api.multiblocks.blocks.logic.IMultiblockLogic;
 import blusunrize.immersiveengineering.api.multiblocks.blocks.logic.IMultiblockState;
 import blusunrize.immersiveengineering.common.register.IEBlocks;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.BallMillLogic;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.FlotationCellLogic;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.HydrocycloneLogic;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.ThickenerLogic;
+import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.*;
 import net.bauxite_ltk.immersive_metallurgy.gui.IMMenuTypes;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -55,6 +52,13 @@ public class IMMultiblockLogic {
                     .structure(() -> IMMultiblocks.THICKENER)
                     .gui(IMMenuTypes.THICKENER)
                     .redstone(s -> s.rsState, ThickenerLogic.REDSTONE_POS)
+                    .build();
+
+    public static final MultiblockRegistration<EliteBlastFurnaceLogic.State> ELITE_BLAST_FURNACE =
+            metal(new EliteBlastFurnaceLogic(), "elite_blast_furnace")
+                    .structure(() -> IMMultiblocks.ELITE_BLAST_FURNACE)
+                    //.gui(IMMenuTypes.ELITE_BLAST_FURNACE)
+                    .redstone(s -> s.rsState, EliteBlastFurnaceLogic.REDSTONE_POS)
                     .build();
 
     private static <S extends IMultiblockState>

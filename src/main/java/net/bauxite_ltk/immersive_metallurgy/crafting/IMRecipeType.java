@@ -20,6 +20,7 @@ public class IMRecipeType {
     public static final IERecipeTypes.TypeWithClass<FlotationCellRecipe> FLOTATION_CELL = register("flotation_cell", FlotationCellRecipe.class);
     public static final IERecipeTypes.TypeWithClass<HydrocycloneRecipe> HYDROCYCLONE = register("hydrocyclone", HydrocycloneRecipe.class);
     public static final IERecipeTypes.TypeWithClass<ThickenerRecipe> THICKENER = register("thickener", ThickenerRecipe.class);
+    public static final IERecipeTypes.TypeWithClass<EliteBlastFurnaceRecipe> ELITE_BLAST_FURNACE = register("elite_blast_furnace", EliteBlastFurnaceRecipe.class);
 
 
 

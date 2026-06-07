@@ -8,10 +8,7 @@ import blusunrize.immersiveengineering.api.multiblocks.MultiblockHandler;
 import blusunrize.immersiveengineering.common.blocks.generic.WindowBlock;
 import blusunrize.immersiveengineering.common.blocks.multiblocks.IETemplateMultiblock;
 import com.google.common.collect.ImmutableList;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.BallMillMultiblock;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.FlotationCellMultiblock;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.HydrocycloneMultiblock;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.ThickenerMultiblock;
+import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.*;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -30,6 +27,7 @@ public class IMMultiblocks {
     public static IETemplateMultiblock FLOTATION_CELL;
     public static IETemplateMultiblock HYDROCYCLONE;
     public static IETemplateMultiblock THICKENER;
+    public static IETemplateMultiblock ELITE_BLAST_FURNACE;
 
 
     public static void init()
@@ -104,6 +102,7 @@ public class IMMultiblocks {
         FLOTATION_CELL = register(new FlotationCellMultiblock());
         HYDROCYCLONE = register(new HydrocycloneMultiblock());
         THICKENER = register(new ThickenerMultiblock());
+        ELITE_BLAST_FURNACE = register(new EliteBlastFurnaceMultiblock());
     }
 
 

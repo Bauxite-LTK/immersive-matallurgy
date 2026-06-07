@@ -14,7 +14,6 @@ public class CastingChannelBlock extends IEEntityBlock<CastingChannelBlockEntity
 
     public CastingChannelBlock(Properties blockProps) {
         super(IMBlockEntities.CASTING_CHANNEL, blockProps
-                //TODO Not solved
                 .lightLevel(state -> state.getValue(LIGHT_LEVEL))
                 .sound(SoundType.NETHERITE_BLOCK)
         );

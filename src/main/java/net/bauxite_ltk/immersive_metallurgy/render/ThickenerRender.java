@@ -31,9 +31,11 @@ public class ThickenerRender extends IEMultiblockRenderer<ThickenerLogic.State> 
         final MultiblockOrientation orientation = ctx.getLevel().getOrientation();
 
         matrixStack.pushPose();
+        matrixStack.translate(0.5, 0.5, 0.5);
         bufferIn = BERenderUtils.mirror(orientation, matrixStack, bufferIn);
         VertexConsumer buffer = bufferIn.getBuffer(RenderType.solid());
-        rotateForFacing(matrixStack, orientation.front());
+        rotateForFacingNoCentering(matrixStack, orientation.front());
+        matrixStack.translate(-0.5, -0.5, -0.5);
 
         boolean active = ctx.getState().shouldRenderActive();
         float agitatorAngle = ctx.getState().getAgitatorAngle()+ (active? 1.5f * partialTicks: 0);

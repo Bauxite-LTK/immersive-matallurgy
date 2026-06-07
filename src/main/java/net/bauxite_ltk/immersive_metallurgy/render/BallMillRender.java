@@ -29,9 +29,16 @@ public class BallMillRender extends IEMultiblockRenderer<BallMillLogic.State> {
 
         matrixStack.pushPose();
 
+
+
+        //rotateForFacing(matrixStack, orientation.front());
+        matrixStack.translate(0.5, 0.5, 0.5);
         bufferIn = BERenderUtils.mirror(orientation, matrixStack, bufferIn);
         VertexConsumer buffer = bufferIn.getBuffer(RenderType.solid());
-        rotateForFacing(matrixStack, orientation.front());
+        rotateForFacingNoCentering(matrixStack, orientation.front());
+        matrixStack.translate(-0.5, -0.5, -0.5);
+
+        //if(orientation.mirrored()) matrixStack.translate(1,0,0);
 
         boolean active = ctx.getState().shouldRenderActive();
         float barrelAngle = ctx.getState().getBarrelAngle()+ (active? 9 * partialTicks: 0);

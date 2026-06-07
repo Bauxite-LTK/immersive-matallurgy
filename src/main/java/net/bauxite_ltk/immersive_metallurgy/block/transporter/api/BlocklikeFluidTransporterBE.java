@@ -12,6 +12,7 @@ import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceHandle
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceHandler.blt.BLTSingleFluidUniHandler;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceStorage.FluidUniStorage;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceStorage.IUniStorage;
+import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -228,13 +229,18 @@ public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements IB
     public int forceAllocateResource(BlockFace sourceKey, FluidStack resource, int amount, boolean simulate) {
         int last = amount;
         last -= tank.receiveResource(resource,last,simulate);
-        for(Direction output : getData(sourceKey).outputs){
-            IFluidHandler handler = neighbors.get(output).getCapability();
-            if(handler != null && !(handler instanceof BLTSingleFluidUniHandler)){
-                last -= handler.fill(resource.copyWithAmount(last), simulate? IFluidHandler.FluidAction.SIMULATE : IFluidHandler.FluidAction.EXECUTE);
+        try {
+            for (Direction output : getData(sourceKey).outputs) {
+                IFluidHandler handler = neighbors.get(output).getCapability();
+                if (handler != null && !(handler instanceof BLTSingleFluidUniHandler)) {
+                    last -= handler.fill(resource.copyWithAmount(last), simulate ? IFluidHandler.FluidAction.SIMULATE : IFluidHandler.FluidAction.EXECUTE);
+                }
             }
+            return amount - last;
+        } catch (RuntimeException e){
+            IMUtils.LOGGER.warn("force allocate before claim");
+            return 0;
         }
-        return amount - last;
     }
 
 

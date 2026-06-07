@@ -15,6 +15,8 @@ import net.bauxite_ltk.immersive_metallurgy.block.IMBlockEntities;
 import net.bauxite_ltk.immersive_metallurgy.block.IMBlocks;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.BlocklikeFluidTransporterBE;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceStorage.FluidUniStorage;
+import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
+import net.bauxite_ltk.immersive_metallurgy.tags.IMTags;
 import net.bauxite_ltk.immersive_metallurgy.util.Helper;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.BlockPos;
@@ -65,7 +67,7 @@ public class CastingChannelBlockEntity extends BlocklikeFluidTransporterBE
 
     private void fluidLight(){
         int lightLevel = 0;
-        if(tank.getFluidInTank(0).getFluid().getFluidType().getLightLevel() > 0){
+        if(tank.getFluidInTank(0).is(IMTags.Fluids.TEMPERATURE_MOLTEN_FLUID)){
             lightLevel = 15;
         }
         level.setBlockAndUpdate(getBlockPos(),getState().setValue(CastingChannelBlock.LIGHT_LEVEL, lightLevel));

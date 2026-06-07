@@ -1,0 +1,7 @@
+# Made in Blockbench 5.1.4
+newmtl m_5d16e867-f8c1-1568-17ec-7ace54e90f95
+map_Kd immersive_metallurgy:block/multiblocks/elite_blast_furnace
+newmtl m_7fdd8924-c34d-9441-9318-9274f7ac4c17
+map_Kd immersiveengineering:block/multiblocks/multiblock_base
+newmtl m_e30b65a6-5eac-dd8b-e3c2-086f58264ff0
+map_Kd immersiveengineering:block/multiblocks/multiblock_components
