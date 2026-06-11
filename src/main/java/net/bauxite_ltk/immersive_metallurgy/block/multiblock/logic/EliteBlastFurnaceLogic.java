@@ -62,8 +62,8 @@ public class EliteBlastFurnaceLogic implements
     private static final MultiblockFace OUTPUT_SLAG_OFFSET = new MultiblockFace(2,0,-1,RelativeBlockFace.BACK);
     private static final MultiblockFace OUTPUT_METAL_OFFSET = new MultiblockFace(2,0,4,RelativeBlockFace.FRONT);
     private static final MultiblockFace OUTPUT_GAS_OFFSET = new MultiblockFace(2,6,4,RelativeBlockFace.FRONT);
-    private static final MultiblockFace INPUT_AIR_RIGHT_OFFSET = new MultiblockFace(-1,0,1,RelativeBlockFace.LEFT);
-    private static final MultiblockFace INPUT_AIR_LEFT_OFFSET = new MultiblockFace(5,0,1,RelativeBlockFace.RIGHT);
+    private static final MultiblockFace INPUT_AIR_LEFT_OFFSET = new MultiblockFace(-1,0,1,RelativeBlockFace.LEFT);
+    private static final MultiblockFace INPUT_AIR_RIGHT_OFFSET = new MultiblockFace(5,0,1,RelativeBlockFace.RIGHT);
     private static final MultiblockFace INPUT_ORE_OFFSET = new MultiblockFace(2,7,1,RelativeBlockFace.DOWN);
 
     private static final CapabilityPosition OUTPUT_METAL_CAP = CapabilityPosition.opposing(OUTPUT_METAL_OFFSET);
@@ -98,11 +98,26 @@ public class EliteBlastFurnaceLogic implements
         }
         tryEnqueueProcesses(state, context.getLevel().getRawLevel());
         EliteBlastFurnaceTanks tanks = state.tanks;
-        boolean output1 = FluidUtils.multiblockFluidOutput(
+        if(context.getLevel().shouldTickModulo(10)){
+            int heatUp = 0;
+            int curTemp = state.temperature;
+            if(!tanks.inputAirRight.isEmpty()){
+                int extractR = tanks.inputAirRight.drain(400, IFluidHandler.FluidAction.EXECUTE).getAmount();
+                heatUp += extractR;
+            }
+            if(!tanks.inputAirLeft.isEmpty()){
+                int extractL = tanks.inputAirLeft.drain(400, IFluidHandler.FluidAction.EXECUTE).getAmount();
+                heatUp += extractL;
+            }
+            int coolDown = curTemp>0? (curTemp+4)/2 : 0;
+            int deltaTemperature = Integer.compare(heatUp - coolDown, 0)*4;
+            state.temperature += deltaTemperature;
+        }
+        FluidUtils.multiblockFluidOutput(
                 state.fluidOutputMetal.get(), state.tanks.outputMetal,
                 -1, -1,null
         );
-        boolean output2 = FluidUtils.multiblockFluidOutput(
+        FluidUtils.multiblockFluidOutput(
                 state.fluidOutputGas.get(), state.tanks.outputGas,
                 -1, -1,null
         );
@@ -258,6 +273,7 @@ public class EliteBlastFurnaceLogic implements
             nbt.put("inventory", inventory.serializeNBT(provider));
             nbt.put("tanks", tanks.toNBT(provider));
             nbt.put("processor", processor.toNBT(provider));
+            nbt.putInt("temperature", temperature);
         }
 
         @Override
@@ -270,6 +286,7 @@ public class EliteBlastFurnaceLogic implements
                     provider
             );
             tanks.readNBT(provider, nbt.getCompound("tanks"));
+            temperature = nbt.getInt("temperature");
         }
 
         @Override
@@ -278,6 +295,7 @@ public class EliteBlastFurnaceLogic implements
 
             nbt.putBoolean("active", active);
             nbt.put("tanks", tanks.toNBT(provider));
+            nbt.putInt("temperature", temperature);
         }
 
         @Override
@@ -286,6 +304,7 @@ public class EliteBlastFurnaceLogic implements
 
             active = nbt.getBoolean("active");
             tanks.readNBT(provider,nbt.getCompound("tanks"));
+            temperature = nbt.getInt("temperature");
         }
 
 
@@ -297,6 +316,11 @@ public class EliteBlastFurnaceLogic implements
         public IItemHandlerModifiable getInventory()
         {
             return inventory;
+        }
+
+        public int getTemperature()
+        {
+            return temperature;
         }
 
         @Override

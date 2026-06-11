@@ -3,14 +3,8 @@ package net.bauxite_ltk.immersive_metallurgy.gui;
 import blusunrize.immersiveengineering.api.multiblocks.blocks.env.IMultiblockContext;
 import blusunrize.immersiveengineering.api.multiblocks.blocks.logic.IMultiblockState;
 import blusunrize.immersiveengineering.common.gui.IEContainerMenu;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.BallMillLogic;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.FlotationCellLogic;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.HydrocycloneLogic;
-import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.ThickenerLogic;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.BallMillMenu;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.FlotationCellMenu;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.HydrocycloneMenu;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.ThickenerMenu;
+import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.*;
+import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.*;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -49,6 +43,10 @@ public class IMMenuTypes {
 
     public static final MultiblockContainer<ThickenerLogic.State, ThickenerMenu> THICKENER = registerMultiblock(
             "thickener", ThickenerMenu::makeServer, ThickenerMenu::makeClient
+    );
+
+    public static final MultiblockContainer<EliteBlastFurnaceLogic.State, EliteBlastFurnaceMenu> ELITE_BLAST_FURNACE = registerMultiblock(
+            "elite_blast_furnace", EliteBlastFurnaceMenu::makeServer, EliteBlastFurnaceMenu::makeClient
     );
 
 

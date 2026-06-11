@@ -27,6 +27,10 @@ public class IMRecipeSerializers {
         ThickenerRecipe.SERIALIZER = RECIPE_SERIALIZERS.register(
                 "thickener", ThickenerRecipeSerializer::new
         );
+
+        EliteBlastFurnaceRecipe.SERIALIZER = RECIPE_SERIALIZERS.register(
+                "elite_blast_furnace", EliteBlastFurnaceRecipeSerializer::new
+        );
     }
 
     public static void init(IEventBus modEventBus){

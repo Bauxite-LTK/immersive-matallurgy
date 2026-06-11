@@ -93,7 +93,6 @@ public class SeparateMultiTankArea extends InfoArea {
             if(!fluid.isEmpty())
             {
                 int fluidHeight = 1 + (int)(area.getHeight()*(fluid.getAmount()/(float)capacity));
-                // TODO broken?
                 GuiHelper.drawRepeatedFluidSpriteGui(buffer, graphics.pose(), fluid, area.getX(), area.getY()+area.getHeight()-fluidHeight-sumHeight, area.getWidth(), fluidHeight);
                 sumHeight+=fluidHeight;
             }

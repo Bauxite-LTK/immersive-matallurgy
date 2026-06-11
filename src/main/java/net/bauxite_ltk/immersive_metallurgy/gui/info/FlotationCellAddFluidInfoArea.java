@@ -98,7 +98,6 @@ public class FlotationCellAddFluidInfoArea extends InfoArea {
         if(!fluid.isEmpty())
         {
             int fluidHeight = (int)(area.getHeight()*(fluid.getAmount()/capacity));
-            // TODO broken?
             GuiHelper.drawRepeatedFluidSpriteGui(buffer, graphics.pose(), fluid, area.getX(), area.getY()+area.getHeight()-fluidHeight, area.getWidth(), fluidHeight);
         }
         VertexConsumer builder = buffer.getBuffer(RenderType.guiOverlay());

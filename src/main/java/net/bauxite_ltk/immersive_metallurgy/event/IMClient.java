@@ -12,10 +12,7 @@ import net.bauxite_ltk.immersive_metallurgy.callback.ElectricCableCallbacks;
 import net.bauxite_ltk.immersive_metallurgy.fluid.FluidRendererExtension;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
 import net.bauxite_ltk.immersive_metallurgy.gui.IMMenuTypes;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.BallMillScreen;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.FlotationCellScreen;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.HydrocycloneScreen;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.ThickenerScreen;
+import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.*;
 import net.bauxite_ltk.immersive_metallurgy.particle.DripSapParticles;
 import net.bauxite_ltk.immersive_metallurgy.particle.IMParticleTypes;
 import net.bauxite_ltk.immersive_metallurgy.render.*;
@@ -98,6 +95,7 @@ public class IMClient {
         event.register(IMMenuTypes.FLOTATION_CELL.getType(), FlotationCellScreen::new);
         event.register(IMMenuTypes.HYDROCYCLONE.getType(), HydrocycloneScreen::new);
         event.register(IMMenuTypes.THICKENER.getType(), ThickenerScreen::new);
+        event.register(IMMenuTypes.ELITE_BLAST_FURNACE.getType(), EliteBlastFurnaceScreen::new);
 
     }
 

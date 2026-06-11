@@ -57,7 +57,7 @@ public class IMMultiblockLogic {
     public static final MultiblockRegistration<EliteBlastFurnaceLogic.State> ELITE_BLAST_FURNACE =
             metal(new EliteBlastFurnaceLogic(), "elite_blast_furnace")
                     .structure(() -> IMMultiblocks.ELITE_BLAST_FURNACE)
-                    //.gui(IMMenuTypes.ELITE_BLAST_FURNACE)
+                    .gui(IMMenuTypes.ELITE_BLAST_FURNACE)
                     .redstone(s -> s.rsState, EliteBlastFurnaceLogic.REDSTONE_POS)
                     .build();
 

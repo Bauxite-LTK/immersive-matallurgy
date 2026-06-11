@@ -26,8 +26,10 @@ public class HydrocycloneMenu extends IEContainerMenu {
         final HydrocycloneLogic.State state = ctx.mbContext().getState();
         return new HydrocycloneMenu(
                 multiblockCtx(type, id, ctx),
-                invPlayer, state.getInventory(),
-                state.getEnergy(), state.tanks,
+                invPlayer,
+                state.getInventory(),
+                state.getEnergy(),
+                state.tanks,
                 GetterAndSetter.getterOnly(state::getRecipeProgress)
         );
     }

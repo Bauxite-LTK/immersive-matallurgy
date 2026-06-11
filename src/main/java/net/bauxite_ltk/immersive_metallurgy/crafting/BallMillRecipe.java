@@ -25,7 +25,6 @@ public class BallMillRecipe extends MultiblockRecipe {
 
 
     public final FluidStack outputFluid;
-    @Nonnull
     public TagOutput outputItem;
 
     @Nullable
@@ -39,7 +38,7 @@ public class BallMillRecipe extends MultiblockRecipe {
     }
 
 
-    protected <T extends Recipe<?>> BallMillRecipe(FluidStack outputFluid, @Nonnull TagOutput outputItem,
+    protected <T extends Recipe<?>> BallMillRecipe(FluidStack outputFluid, TagOutput outputItem,
                                                    @Nullable SizedFluidIngredient inputFluid, IngredientWithSize inputItem,
                                                     int time, int energy) {
         super(TagOutput.EMPTY, IMRecipeType.BALL_MILL, time, energy, MULTIPLIERS);
