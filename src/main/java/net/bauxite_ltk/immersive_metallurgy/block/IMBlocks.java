@@ -4,6 +4,7 @@ import blusunrize.immersiveengineering.api.EnumMetals;
 import blusunrize.immersiveengineering.common.blocks.BlockItemIE;
 import blusunrize.immersiveengineering.common.register.IEBlocks;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlock;
+import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanVaporateLiquidBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.ElectricCableBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.casting_channel.CastingChannelBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.sapCollector.SapCollectorBlock;
@@ -38,6 +39,8 @@ public class IMBlocks {
     public static final DeferredBlock<LiquidBlock> MOLTEN_NICKEL = registerNoItem("fluid/molten_nickel", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_NICKEL.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), IEBlocks.Metals.STORAGE.get(EnumMetals.NICKEL).get(), IMBlockEntities.MOLTEN_NICKEL ,100, 0xa3a092));
     public static final DeferredBlock<LiquidBlock> MOLTEN_URANIUM = registerNoItem("fluid/molten_uranium", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_URANIUM.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), IEBlocks.Metals.STORAGE.get(EnumMetals.URANIUM).get(), IMBlockEntities.MOLTEN_URANIUM ,100, 0xa3a092));
     public static final DeferredBlock<LiquidBlock> MOLTEN_ALUMINUM = registerNoItem("fluid/molten_aluminum", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_ALUMINUM.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), IEBlocks.Metals.STORAGE.get(EnumMetals.ALUMINUM).get(), IMBlockEntities.MOLTEN_ALUMINUM ,100, 0xa3a092));
+
+    public static final DeferredBlock<LiquidBlock> HOT_AIR = registerNoItem("fluid/hot_air", () -> new CanVaporateLiquidBlock(IMFluids.HOT_AIR.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable(), IMBlockEntities.HOT_AIR ,5));
 
 
     public static final DeferredBlock<LiquidBlock> MASON_PINE_SAP = registerNoItem("fluid/mason_pine_sap", () -> new LiquidBlock(IMFluids.MASON_PINE_SAP.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));

@@ -67,6 +67,19 @@ public class IMFluids {
                     IMBlocks.MOLTEN_ALUMINUM,
                     IMItems.MOLTEN_ALUMINUM_BUCKET);
 
+    public static final FluidHolder<BaseFlowingFluid> HOT_AIR =
+            register(
+                    "hot_air",
+                    properties -> properties
+                            .block(IMBlocks.HOT_AIR)
+                            .bucket(IMItems.HOT_AIR_BUCKET),
+                    gasLike()
+                            .descriptionId("fluid.immersive_metallurgy.hot_air"),
+                    BaseFlowingFluid.Source::new,
+                    BaseFlowingFluid.Flowing::new
+            );
+
+
     public static final FluidHolder<BaseFlowingFluid> MASON_PINE_SAP =
             register(
                     "mason_pine_sap",
@@ -320,7 +333,7 @@ public class IMFluids {
                 .canConvertToSource(false)
                 .canDrown(true)
                 .canExtinguish(true)
-                .canHydrate(true)
+                //.canHydrate(true)
                 .canPushEntity(true)
                 .canSwim(true)
                 .supportsBoating(true);
@@ -343,6 +356,24 @@ public class IMFluids {
                 .canPushEntity(false)
                 .canSwim(false)
                 .supportsBoating(false);
+    }
+
+
+    private static FluidType.Properties gasLike()
+    {
+        return FluidType.Properties.create()
+                .adjacentPathType(PathType.OPEN)
+                .density(-10)
+                .viscosity(1000)
+                .temperature(300)
+                .canConvertToSource(false)
+                .canDrown(true)
+                .canExtinguish(false)
+                .canHydrate(false)
+                .canPushEntity(false)
+                .canSwim(false)
+                .supportsBoating(false)
+                .fallDistanceModifier(1.0f);
     }
 
 

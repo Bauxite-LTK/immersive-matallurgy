@@ -2,6 +2,7 @@ package net.bauxite_ltk.immersive_metallurgy.block;
 
 import com.google.common.collect.ImmutableSet;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlockEntity;
+import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanVaporateLiquidBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.ElectricCableBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.casting_channel.CastingChannelBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.block.sapCollector.SapCollectorBlockEntity;
@@ -47,7 +48,10 @@ public class IMBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanSolidifyLiquidBlockEntity>> MOLTEN_ALUMINUM = BLOCK_ENTITIES.register(
             "molten_aluminum", makeType(CanSolidifyLiquidBlockEntity::forAluminum, IMBlocks.MOLTEN_ALUMINUM));
-    
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanVaporateLiquidBlockEntity>> HOT_AIR = BLOCK_ENTITIES.register(
+            "hot_air", makeType(CanVaporateLiquidBlockEntity::forHotAir, IMBlocks.HOT_AIR));
+
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SapCollectorBlockEntity>> SAP_COLLECTOR = BLOCK_ENTITIES.register(
             "sap_collector", makeType(SapCollectorBlockEntity::new, IMBlocks.SAP_COLLECTOR)

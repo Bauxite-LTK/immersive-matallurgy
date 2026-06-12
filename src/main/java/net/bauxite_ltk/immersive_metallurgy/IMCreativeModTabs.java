@@ -120,6 +120,7 @@ public class IMCreativeModTabs {
                 output.accept(IMItems.MOLTEN_ALUMINUM_BUCKET.get());
 
                 output.accept(IMBlocks.CASTING_CHANNEL);
+                output.accept(IMItems.HOT_AIR_BUCKET);
 
             }).build()
     );

@@ -27,6 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 import java.util.*;
 
+@Deprecated(since = "2026-6-12")
 public abstract class PressurePipeBlockEntity extends IEBaseBlockEntity implements IEServerTickableBE{
 
     public FluidTank tank;

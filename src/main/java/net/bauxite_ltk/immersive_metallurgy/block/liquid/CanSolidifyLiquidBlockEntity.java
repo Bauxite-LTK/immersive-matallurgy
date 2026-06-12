@@ -11,6 +11,8 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -85,6 +87,8 @@ public class CanSolidifyLiquidBlockEntity extends BlockEntity{
             if(level.getFluidState(getBlockPos()).isSource()){
                 BlockState newState = solid.defaultBlockState();
                 level.setBlockAndUpdate(worldPosition, newState);
+                level.playSound(null,getBlockPos(), SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 1,1);
+
             }
             else{
                 level.setBlockAndUpdate(getBlockPos(), Blocks.AIR.defaultBlockState());

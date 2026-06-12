@@ -54,6 +54,8 @@ public class IMFluidEvent {
         ItemBlockRenderTypes.setRenderLayer(IMFluids.TURPENTINE_OIL.getFlowing(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getSource(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getFlowing(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.HOT_AIR.getSource(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.HOT_AIR.getFlowing(), RenderType.translucent());
     }
 
 
@@ -90,7 +92,10 @@ public class IMFluidEvent {
         event.registerFluidType(
                 new FluidRendererExtension(0xFFbdc4c7, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
                 IMFluids.MOLTEN_ALUMINUM.getType());
-        
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFFffcaca, WATER_STILL, WATER_FLOW, null, null),
+                IMFluids.HOT_AIR.getType());
 
 
         event.registerFluidType(

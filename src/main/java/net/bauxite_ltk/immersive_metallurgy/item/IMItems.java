@@ -73,6 +73,15 @@ public class IMItems {
                             new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
                     )
             );
+
+
+    public static final DeferredItem<Item> HOT_AIR_BUCKET =
+            ITEMS.register("bucket/hot_air",
+                    () -> new BucketItem(
+                            IMFluids.HOT_AIR.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
     
     
 
