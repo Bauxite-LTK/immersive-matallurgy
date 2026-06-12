@@ -1,0 +1,20 @@
+{
+  "type": "immersive_metallurgy:elite_blast_furnace",
+  "energy": 10,
+  "time": 10,
+  "temperature": 1500,
+  "result_metal": {
+    "amount": 100,
+    "id": "immersive_metallurgy:molten_pig_iron"
+  },
+  "result_gas": {
+    "amount": 500,
+    "id": "minecraft:water"
+  },
+  "result_slag": {
+    "id": "immersiveengineering:slag"
+  },
+  "input_ore": {
+    "item": "immersive_metallurgy:concentrate_pellet_raw_iron"
+  }
+}

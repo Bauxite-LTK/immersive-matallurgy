@@ -274,7 +274,7 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
                     && transporter.getResourceClass().equals(getResourceClass())){
                 @SuppressWarnings("unchecked")
                 IBlocklikeResourceTransporter<R> typed = (IBlocklikeResourceTransporter<R>)transporter;
-                int fill = typed.forceAllocateResource(sourceKey,resource,amount,simulate);
+                int fill = typed.forceAllocateResource(sourceKey,resource,lastAmount,simulate);
                 lastAmount -= fill;
                 if(typed.hasData(sourceKey)) { // avoid this method execute earlier than current transporter is claimed by sourceKey
                     for (Direction direction : typed.getData(sourceKey).outputs) {

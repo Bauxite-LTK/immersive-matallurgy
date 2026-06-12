@@ -20,12 +20,12 @@ import blusunrize.immersiveengineering.common.blocks.multiblocks.process.Multibl
 import blusunrize.immersiveengineering.common.blocks.multiblocks.process.ProcessContext;
 import blusunrize.immersiveengineering.common.fluids.ArrayFluidHandler;
 import blusunrize.immersiveengineering.common.util.IESounds;
+import blusunrize.immersiveengineering.common.util.Utils;
 import blusunrize.immersiveengineering.common.util.inventory.SlotwiseItemHandler;
 import blusunrize.immersiveengineering.common.util.inventory.WrappingItemHandler;
 import blusunrize.immersiveengineering.common.util.sound.MultiblockSound;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.process.IMMultiblockProcessInMachine;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.shapes.EliteBlastFurnaceShapes;
-import net.bauxite_ltk.immersive_metallurgy.crafting.BallMillRecipe;
 import net.bauxite_ltk.immersive_metallurgy.crafting.EliteBlastFurnaceRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -37,7 +37,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.IFluidTank;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -90,13 +89,21 @@ public class EliteBlastFurnaceLogic implements
     @Override
     public void tickServer(IMultiblockContext<State> context) {
         final State state = context.getState();
+        state.energy.receiveEnergy(1000,false);
         final boolean active = state.processor.tickServer(state, context.getLevel(), state.rsState.isEnabled(context));
         if(active!=state.active)
         {
             state.active = active;
             context.requestMasterBESync();
         }
+
+        // IE Multiblock Processor seems like it will fail while handle recipes that cost Energy of 0
+        // So for our Elite Blast Furnace Recipes, we have to set its energy cost to a non-zero value.
+        // With code below, we actually make tricks to avoid energy cost, by continuously insert energy into the machine.
+
+
         tryEnqueueProcesses(state, context.getLevel().getRawLevel());
+
         EliteBlastFurnaceTanks tanks = state.tanks;
         if(context.getLevel().shouldTickModulo(10)){
             int heatUp = 0;
@@ -112,6 +119,7 @@ public class EliteBlastFurnaceLogic implements
             int coolDown = curTemp>0? (curTemp+4)/2 : 0;
             int deltaTemperature = Integer.compare(heatUp - coolDown, 0)*4;
             state.temperature += deltaTemperature;
+            handleItemOutput(context);
         }
         FluidUtils.multiblockFluidOutput(
                 state.fluidOutputMetal.get(), state.tanks.outputMetal,
@@ -124,7 +132,7 @@ public class EliteBlastFurnaceLogic implements
     }
 
     private void tryEnqueueProcesses(State state, Level level) {
-        if(state.energy.getEnergyStored() <= 0||state.processor.getQueueSize() >= state.processor.getMaxQueueSize())
+        if(state.processor.getQueueSize() >= state.processor.getMaxQueueSize())
             return;
         final int[] usedInvSlots = new int[NUM_INPUT_SLOTS];
         for(MultiblockProcess<?, ?> process : state.processor.getQueue())
@@ -147,6 +155,26 @@ public class EliteBlastFurnaceLogic implements
                 IMMultiblockProcessInMachine<EliteBlastFurnaceRecipe> process = new IMMultiblockProcessInMachine<>(recipe, slot);
                 state.processor.addProcessToQueue(process, level, false);
             }
+        }
+    }
+
+    private void handleItemOutput(IMultiblockContext<EliteBlastFurnaceLogic.State> ctx)
+    {
+        final EliteBlastFurnaceLogic.State state = ctx.getState();
+        final ItemStack fullOutputStack = state.inventory.getStackInSlot(OUTPUT_SLOT);
+        if(fullOutputStack.isEmpty())
+            return;
+        int outputCount = Math.min(fullOutputStack.getCount(), 32);
+        ItemStack stack = fullOutputStack.copyWithCount(outputCount);
+        final ItemStack remaining = Utils.insertStackIntoInventory(state.itemOutputSlag, stack, false);
+        if(remaining.isEmpty())
+        {
+            fullOutputStack.shrink(outputCount);
+            ctx.markMasterDirty();
+        }
+        else{
+            fullOutputStack.shrink(outputCount - remaining.getCount());
+            ctx.markMasterDirty();
         }
     }
 
@@ -213,7 +241,7 @@ public class EliteBlastFurnaceLogic implements
         private final IFluidTank[] tankArray = {tanks.inputAirLeft, tanks.inputAirRight, tanks.outputMetal, tanks.outputGas};
         private final Supplier<@Nullable IFluidHandler> fluidOutputMetal;
         private final Supplier<@Nullable IFluidHandler> fluidOutputGas;
-        private final Supplier<@Nullable IItemHandler> ItemOutputSlag;
+        private final Supplier<@Nullable IItemHandler> itemOutputSlag;
         private final IItemHandler inputItemOreCap;
         private final IItemHandler outputItemSlagCap;
         private final IFluidHandler inputFluidAirLeftCap;
@@ -236,7 +264,7 @@ public class EliteBlastFurnaceLogic implements
             ), markDirty);
 
             this.fluidOutputMetal = ctx.getCapabilityAt(Capabilities.FluidHandler.BLOCK, OUTPUT_METAL_OFFSET);
-            this.ItemOutputSlag = ctx.getCapabilityAt(Capabilities.ItemHandler.BLOCK, OUTPUT_SLAG_OFFSET);
+            this.itemOutputSlag = ctx.getCapabilityAt(Capabilities.ItemHandler.BLOCK, OUTPUT_SLAG_OFFSET);
             this.fluidOutputGas = ctx.getCapabilityAt(Capabilities.FluidHandler.BLOCK, OUTPUT_GAS_OFFSET);
             this.inputFluidAirLeftCap = new ArrayFluidHandler(
                     false, true, markDirty, tanks.inputAirLeft
@@ -307,7 +335,11 @@ public class EliteBlastFurnaceLogic implements
             temperature = nbt.getInt("temperature");
         }
 
-
+        @Override
+        public int[] getOutputSlots()
+        {
+            return new int[]{OUTPUT_SLOT};
+        }
 
         @Override
         public AveragingEnergyStorage getEnergy() { return energy; }
@@ -329,7 +361,6 @@ public class EliteBlastFurnaceLogic implements
             return tankArray;
         }
 
-        //TODO OMG Here is so important!!!!
         @Override
         public int[] getOutputTanks()
         {

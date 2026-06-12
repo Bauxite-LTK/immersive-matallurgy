@@ -35,7 +35,7 @@ public class EliteBlastFurnaceRecipe extends MultiblockRecipe {
                                                             IngredientWithSize inputOre, int temperature,
                                                             int baseTime, int energy) {
 
-        super(TagOutput.EMPTY, IMRecipeType.FLOTATION_CELL, baseTime, 0, MULTIPLIERS);
+        super(TagOutput.EMPTY, IMRecipeType.ELITE_BLAST_FURNACE, baseTime, energy, MULTIPLIERS);
         this.outputMetal = outputMetal;
         this.outputGas = outputGas;
         this.outputSlag = outputSlag;
