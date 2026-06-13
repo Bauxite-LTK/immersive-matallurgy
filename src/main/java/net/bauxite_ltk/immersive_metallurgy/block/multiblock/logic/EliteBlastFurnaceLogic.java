@@ -27,6 +27,7 @@ import blusunrize.immersiveengineering.common.util.sound.MultiblockSound;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.process.IMMultiblockProcessInMachine;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.shapes.EliteBlastFurnaceShapes;
 import net.bauxite_ltk.immersive_metallurgy.crafting.EliteBlastFurnaceRecipe;
+import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -37,12 +38,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.IFluidTank;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -186,7 +189,19 @@ public class EliteBlastFurnaceLogic implements
         {
             final Vec3 soundPos = context.getLevel().toAbsolute(new Vec3(3.5, 1.5, 1.5));
             state.isPlayingSound = MultiblockSound.startSound(
-                    () -> state.active, context.isValid(), soundPos, IESounds.refinery , 0.5f
+                    () -> state.temperature>100, context.isValid(), soundPos, IESounds.refinery , (float) state.temperature / 3200
+            );
+        }
+        if(!state.isPlayingFlameSound.getAsBoolean()){
+            final Vec3 soundPos = context.getLevel().toAbsolute(new Vec3(3.5, 1.5, 1.5));
+            state.isPlayingFlameSound = MultiblockSound.startSound(
+                    () -> state.active, context.isValid(), soundPos, IESounds.sprayFire , 1f
+            );
+        }
+        if(!state.isPlayingBlastSound.getAsBoolean()){
+            final Vec3 soundPos = context.getLevel().toAbsolute(new Vec3(3.5, 1.5, 1.5));
+            state.isPlayingBlastSound = MultiblockSound.startSound(
+                    () -> state.active, context.isValid(), soundPos, IESounds.preheater , 1f
             );
         }
     }
@@ -249,6 +264,8 @@ public class EliteBlastFurnaceLogic implements
         private final IFluidHandler outputFluidMetalCap;
         private final IFluidHandler outputFluidGasCap;
         private BooleanSupplier isPlayingSound = () -> false;
+        private BooleanSupplier isPlayingFlameSound = () -> false;
+        private BooleanSupplier isPlayingBlastSound = () -> false;
         private final MachineInterfaceHandler.IMachineInterfaceConnection mifHandler;
 
         public State(IInitialMultiblockContext<State> ctx)
@@ -378,6 +395,8 @@ public class EliteBlastFurnaceLogic implements
         }
 
 
+
+
     }
 
 
@@ -387,8 +406,18 @@ public class EliteBlastFurnaceLogic implements
         public EliteBlastFurnaceTanks()
         {
             this(
-                    new FluidTank(HOT_AIR_CAPACITY),
-                    new FluidTank(HOT_AIR_CAPACITY),
+                    new FluidTank(HOT_AIR_CAPACITY){
+                        @Override
+                        public boolean isFluidValid(final FluidStack stack) {
+                            return stack.is(IMFluids.HOT_AIR.source());
+                        }
+                    },
+                    new FluidTank(HOT_AIR_CAPACITY){
+                        @Override
+                        public boolean isFluidValid(final FluidStack stack) {
+                            return stack.is(IMFluids.HOT_AIR.source());
+                        }
+                    },
                     new FluidTank(METAL_CAPACITY),
                     new FluidTank(GAS_CAPACITY));
         }

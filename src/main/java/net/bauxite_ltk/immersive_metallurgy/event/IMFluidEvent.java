@@ -46,6 +46,9 @@ public class IMFluidEvent {
     private static final ResourceLocation MOLTEN_STILL = IMUtils.modRL("block/molten_still");
     private static final ResourceLocation MOLTEN_FLOW = IMUtils.modRL("block/molten_flow");
 
+    private static final ResourceLocation GAS_STILL = IMUtils.modRL("block/gas_still");
+    private static final ResourceLocation GAS_FLOW = IMUtils.modRL("block/gas_flow");
+
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(IMFluids.MASON_PINE_SAP.getSource(), RenderType.translucent());
@@ -94,7 +97,7 @@ public class IMFluidEvent {
                 IMFluids.MOLTEN_ALUMINUM.getType());
 
         event.registerFluidType(
-                new FluidRendererExtension(0xFFffcaca, WATER_STILL, WATER_FLOW, null, null),
+                new FluidRendererExtension(0xFFffcaca, GAS_STILL, GAS_FLOW, null, null),
                 IMFluids.HOT_AIR.getType());
 
 
