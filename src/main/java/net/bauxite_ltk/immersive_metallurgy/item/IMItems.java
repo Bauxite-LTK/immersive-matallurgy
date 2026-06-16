@@ -82,6 +82,14 @@ public class IMItems {
                             new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
                     )
             );
+
+    public static final DeferredItem<Item> WATER_GAS_BUCKET =
+            ITEMS.register("bucket/water_gas",
+                    () -> new BucketItem(
+                            IMFluids.WATER_GAS.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
     
     
 

@@ -59,6 +59,8 @@ public class IMFluidEvent {
         ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getFlowing(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(IMFluids.HOT_AIR.getSource(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(IMFluids.HOT_AIR.getFlowing(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.WATER_GAS.getSource(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.WATER_GAS.getFlowing(), RenderType.translucent());
     }
 
 
@@ -99,6 +101,10 @@ public class IMFluidEvent {
         event.registerFluidType(
                 new FluidRendererExtension(0xFFffcaca, GAS_STILL, GAS_FLOW, null, null),
                 IMFluids.HOT_AIR.getType());
+
+        event.registerFluidType(
+                new FluidRendererExtension(0xFF4b5051, GAS_STILL, GAS_FLOW, null, null),
+                IMFluids.WATER_GAS.getType());
 
 
         event.registerFluidType(

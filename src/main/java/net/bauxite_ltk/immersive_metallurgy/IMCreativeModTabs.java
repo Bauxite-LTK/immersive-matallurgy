@@ -121,6 +121,7 @@ public class IMCreativeModTabs {
 
                 output.accept(IMBlocks.CASTING_CHANNEL);
                 output.accept(IMItems.HOT_AIR_BUCKET);
+                output.accept(IMItems.WATER_GAS_BUCKET);
 
             }).build()
     );

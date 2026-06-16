@@ -41,6 +41,7 @@ public class IMBlocks {
     public static final DeferredBlock<LiquidBlock> MOLTEN_ALUMINUM = registerNoItem("fluid/molten_aluminum", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_ALUMINUM.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), IEBlocks.Metals.STORAGE.get(EnumMetals.ALUMINUM).get(), IMBlockEntities.MOLTEN_ALUMINUM ,100, 0xa3a092));
 
     public static final DeferredBlock<LiquidBlock> HOT_AIR = registerNoItem("fluid/hot_air", () -> new CanVaporateLiquidBlock(IMFluids.HOT_AIR.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable(), IMBlockEntities.HOT_AIR ,5));
+    public static final DeferredBlock<LiquidBlock> WATER_GAS = registerNoItem("fluid/water_gas", () -> new CanVaporateLiquidBlock(IMFluids.WATER_GAS.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable(), IMBlockEntities.WATER_GAS ,5));
 
 
     public static final DeferredBlock<LiquidBlock> MASON_PINE_SAP = registerNoItem("fluid/mason_pine_sap", () -> new LiquidBlock(IMFluids.MASON_PINE_SAP.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));

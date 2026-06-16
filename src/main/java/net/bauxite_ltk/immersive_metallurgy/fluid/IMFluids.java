@@ -79,6 +79,18 @@ public class IMFluids {
                     BaseFlowingFluid.Flowing::new
             );
 
+    public static final FluidHolder<BaseFlowingFluid> WATER_GAS =
+            register(
+                    "water_gas",
+                    properties -> properties
+                            .block(IMBlocks.WATER_GAS)
+                            .bucket(IMItems.WATER_GAS_BUCKET),
+                    gasLike()
+                            .descriptionId("fluid.immersive_metallurgy.water_gas"),
+                    BaseFlowingFluid.Source::new,
+                    BaseFlowingFluid.Flowing::new
+            );
+
 
     public static final FluidHolder<BaseFlowingFluid> MASON_PINE_SAP =
             register(

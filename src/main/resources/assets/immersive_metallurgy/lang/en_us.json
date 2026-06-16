@@ -38,6 +38,10 @@
   "block.immersive_metallurgy.fluid.hot_air": "Hot Air",
   "fluid.immersive_metallurgy.hot_air": "Hot Air",
 
+  "item.immersive_metallurgy.bucket.water_gas": "Water Gas Bucket",
+  "block.immersive_metallurgy.fluid.water_gas": "Water Gas",
+  "fluid.immersive_metallurgy.water_gas": "Water Gas",
+
   "item.immersive_metallurgy.bucket.mason_pine_sap": "Mason Pine Sap Bucket",
   "block.immersive_metallurgy.fluid.mason_pine_sap": "Mason Pine Sap",
   "fluid.immersive_metallurgy.mason_pine_sap": "Mason Pine Sap",

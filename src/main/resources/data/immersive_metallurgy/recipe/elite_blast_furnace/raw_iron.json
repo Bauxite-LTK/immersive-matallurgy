@@ -9,7 +9,7 @@
   },
   "result_gas": {
     "amount": 500,
-    "id": "minecraft:water"
+    "id": "immersive_metallurgy:water_gas"
   },
   "result_slag": {
     "id": "immersiveengineering:slag"

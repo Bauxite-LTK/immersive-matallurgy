@@ -1,6 +1,7 @@
 package net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic;
 
 
+import blusunrize.immersiveengineering.api.ApiUtils;
 import blusunrize.immersiveengineering.api.energy.AveragingEnergyStorage;
 import blusunrize.immersiveengineering.api.fluid.FluidUtils;
 import blusunrize.immersiveengineering.api.multiblocks.blocks.component.IClientTickableComponent;
@@ -8,6 +9,7 @@ import blusunrize.immersiveengineering.api.multiblocks.blocks.component.IServerT
 import blusunrize.immersiveengineering.api.multiblocks.blocks.component.RedstoneControl;
 import blusunrize.immersiveengineering.api.multiblocks.blocks.env.IInitialMultiblockContext;
 import blusunrize.immersiveengineering.api.multiblocks.blocks.env.IMultiblockContext;
+import blusunrize.immersiveengineering.api.multiblocks.blocks.env.IMultiblockLevel;
 import blusunrize.immersiveengineering.api.multiblocks.blocks.logic.IMultiblockLogic;
 import blusunrize.immersiveengineering.api.multiblocks.blocks.logic.IMultiblockState;
 import blusunrize.immersiveengineering.api.multiblocks.blocks.util.CapabilityPosition;
@@ -19,6 +21,7 @@ import blusunrize.immersiveengineering.common.blocks.multiblocks.process.Multibl
 import blusunrize.immersiveengineering.common.blocks.multiblocks.process.MultiblockProcessor;
 import blusunrize.immersiveengineering.common.blocks.multiblocks.process.ProcessContext;
 import blusunrize.immersiveengineering.common.fluids.ArrayFluidHandler;
+import blusunrize.immersiveengineering.common.register.IEParticles;
 import blusunrize.immersiveengineering.common.util.IESounds;
 import blusunrize.immersiveengineering.common.util.Utils;
 import blusunrize.immersiveengineering.common.util.inventory.SlotwiseItemHandler;
@@ -28,8 +31,10 @@ import net.bauxite_ltk.immersive_metallurgy.block.multiblock.process.IMMultibloc
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.shapes.EliteBlastFurnaceShapes;
 import net.bauxite_ltk.immersive_metallurgy.crafting.EliteBlastFurnaceRecipe;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
+import net.bauxite_ltk.immersive_metallurgy.util.IMMultiblockSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
@@ -92,18 +97,18 @@ public class EliteBlastFurnaceLogic implements
     @Override
     public void tickServer(IMultiblockContext<State> context) {
         final State state = context.getState();
+
+        // IE Multiblock Processor seems like it will fail while handle recipes that cost Energy of 0.
+        // So we have to set its energy cost to a non-zero value for our Elite Blast Furnace Recipes.
+        // With code below, we actually make tricks to avoid energy cost, by continuously insert energy into the machine.
         state.energy.receiveEnergy(1000,false);
+
         final boolean active = state.processor.tickServer(state, context.getLevel(), state.rsState.isEnabled(context));
         if(active!=state.active)
         {
             state.active = active;
             context.requestMasterBESync();
         }
-
-        // IE Multiblock Processor seems like it will fail while handle recipes that cost Energy of 0
-        // So for our Elite Blast Furnace Recipes, we have to set its energy cost to a non-zero value.
-        // With code below, we actually make tricks to avoid energy cost, by continuously insert energy into the machine.
-
 
         tryEnqueueProcesses(state, context.getLevel().getRawLevel());
 
@@ -122,6 +127,8 @@ public class EliteBlastFurnaceLogic implements
             int coolDown = curTemp>0? (curTemp+4)/2 : 0;
             int deltaTemperature = Integer.compare(heatUp - coolDown, 0)*4;
             state.temperature += deltaTemperature;
+            context.markMasterDirty();
+            context.requestMasterBESync();
             handleItemOutput(context);
         }
         FluidUtils.multiblockFluidOutput(
@@ -188,8 +195,8 @@ public class EliteBlastFurnaceLogic implements
         if(!state.isPlayingSound.getAsBoolean())
         {
             final Vec3 soundPos = context.getLevel().toAbsolute(new Vec3(3.5, 1.5, 1.5));
-            state.isPlayingSound = MultiblockSound.startSound(
-                    () -> state.temperature>100, context.isValid(), soundPos, IESounds.refinery , (float) state.temperature / 3200
+            state.isPlayingSound = IMMultiblockSound.startSound(
+                    () -> state.temperature>100, context.isValid(), soundPos, IESounds.refinery , () -> (float) state.temperature / 3200
             );
         }
         if(!state.isPlayingFlameSound.getAsBoolean()){
@@ -204,6 +211,25 @@ public class EliteBlastFurnaceLogic implements
                     () -> state.active, context.isValid(), soundPos, IESounds.preheater , 1f
             );
         }
+
+        if(!state.active)
+            return;
+        final IMultiblockLevel level = context.getLevel();
+        final Level rawLevel = level.getRawLevel();
+        for(int i = 0; i < Math.max(1, state.processor.getQueueSize()*3); i++)
+        {
+            final Vec3 smokePos = level.toAbsolute(new Vec3(2.5,6.1,1.5));
+            rawLevel.addAlwaysVisibleParticle(
+                    ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                    smokePos.x, smokePos.y, smokePos.z,
+                    particleSpeed(0.009375), .0625, particleSpeed(0.009375)
+            );
+        }
+    }
+
+    private static double particleSpeed(double max)
+    {
+        return ApiUtils.RANDOM.nextDouble(-max, max);
     }
 
     @Override

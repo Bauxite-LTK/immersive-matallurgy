@@ -29,6 +29,10 @@ public class CanVaporateLiquidBlockEntity extends BlockEntity{
         return new CanVaporateLiquidBlockEntity(IMBlockEntities.HOT_AIR.get(), pos, blockState);
     }
 
+    public static CanVaporateLiquidBlockEntity forWaterGas(BlockPos pos, BlockState blockState){
+        return new CanVaporateLiquidBlockEntity(IMBlockEntities.WATER_GAS.get(), pos, blockState);
+    }
+
 
     public void setVaporateProperties(int vaporateTicks){
         this.vaporateTicks = vaporateTicks;
