@@ -61,6 +61,13 @@ public class IMMultiblockLogic {
                     .redstone(s -> s.rsState, EliteBlastFurnaceLogic.REDSTONE_POS)
                     .build();
 
+    public static final MultiblockRegistration<HotAirFurnaceLogic.State> HOT_AIR_FURNACE =
+            metal(new HotAirFurnaceLogic(), "hot_air_furnace")
+                    .structure(() -> IMMultiblocks.HOT_AIR_FURNACE)
+                    //.gui(IMMenuTypes.HOT_AIR_FURNACE)
+                    .redstone(s -> s.rsState, HotAirFurnaceLogic.REDSTONE_POS)
+                    .build();
+
     private static <S extends IMultiblockState>
     IMMultiblockBuilder<S> metal(IMultiblockLogic<S> logic, String name)
     {

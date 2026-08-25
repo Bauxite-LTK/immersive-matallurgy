@@ -375,6 +375,8 @@ public class IMFluids {
     {
         return FluidType.Properties.create()
                 .adjacentPathType(PathType.OPEN)
+                .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+                .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
                 .density(-10)
                 .viscosity(1000)
                 .temperature(300)

@@ -1,33 +1,20 @@
 package net.bauxite_ltk.immersive_metallurgy.block.multiblock;
 
-import blusunrize.immersiveengineering.api.EnumMetals;
-import blusunrize.immersiveengineering.api.IEProperties;
-import blusunrize.immersiveengineering.api.IETags;
-import blusunrize.immersiveengineering.api.multiblocks.BlockMatcher;
 import blusunrize.immersiveengineering.api.multiblocks.MultiblockHandler;
-import blusunrize.immersiveengineering.common.blocks.generic.WindowBlock;
 import blusunrize.immersiveengineering.common.blocks.multiblocks.IETemplateMultiblock;
-import com.google.common.collect.ImmutableList;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.*;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CrossCollisionBlock;
-import net.minecraft.world.level.block.HopperBlock;
-import net.minecraft.world.level.block.state.properties.Property;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
-
 public class IMMultiblocks {
-    public static final List<MultiblockHandler.IMultiblock> TFCTH_MULTIBLOCKS = new ArrayList<>();
+    public static final List<MultiblockHandler.IMultiblock> IM_MULTIBLOCKS = new ArrayList<>();
     public static IETemplateMultiblock BALL_MILL;
     public static IETemplateMultiblock FLOTATION_CELL;
     public static IETemplateMultiblock HYDROCYCLONE;
     public static IETemplateMultiblock THICKENER;
     public static IETemplateMultiblock ELITE_BLAST_FURNACE;
+    public static IETemplateMultiblock HOT_AIR_FURNACE;
 
 
     public static void init()
@@ -97,19 +84,20 @@ public class IMMultiblocks {
 //                return found;
 //        });
 
-        //Init IE multiblocks
+        //Init  multiblocks
         BALL_MILL = register(new BallMillMultiblock());
         FLOTATION_CELL = register(new FlotationCellMultiblock());
         HYDROCYCLONE = register(new HydrocycloneMultiblock());
         THICKENER = register(new ThickenerMultiblock());
         ELITE_BLAST_FURNACE = register(new EliteBlastFurnaceMultiblock());
+        HOT_AIR_FURNACE = register(new HotAirFurnaceMultiblock());
     }
 
 
     private static <T extends MultiblockHandler.IMultiblock>
     T register(T multiblock)
     {
-        TFCTH_MULTIBLOCKS.add(multiblock);
+        IM_MULTIBLOCKS.add(multiblock);
         MultiblockHandler.registerMultiblock(multiblock);
         return multiblock;
     }

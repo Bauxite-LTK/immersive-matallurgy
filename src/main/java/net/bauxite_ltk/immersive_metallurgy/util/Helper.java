@@ -54,8 +54,36 @@ public class Helper {
         return FORMATTER.format(number);
     }
 
-
     public static void applyRotationX(double pivotY, double pivotZ, double degree, PoseStack poseStack){
+        //Rx(y,z) = T(y,z) * Rx(0,0) * T(-y,-z)
+        poseStack.translate(0, pivotY / 16.0, pivotZ / 16.0);
+        poseStack.mulPose(Axis.XP.rotationDegrees((float) degree));
+        poseStack.translate(0, -pivotY / 16.0, -pivotZ / 16.0);
+    }
+
+    public static void applyRotationY(double pivotX, double pivotZ, double degree, PoseStack poseStack){
+        //Rx(x,z) = T(x,z) * R(0,0) * T(-x,-z)
+        poseStack.translate(pivotX / 16.0, 0, pivotZ / 16.0);
+        poseStack.mulPose(Axis.YP.rotationDegrees((float) degree));
+        poseStack.translate(pivotX / 16.0, 0, -pivotZ / 16.0);
+    }
+
+    public static void applyRotationZ(double pivotX, double pivotY, double degree, PoseStack poseStack){
+        //Rx(x,z) = T(x,z) * R(0,0) * T(-x,-z)
+        poseStack.translate(pivotX / 16.0, pivotY / 16.0, 0);
+        poseStack.mulPose(Axis.ZP.rotationDegrees((float) degree));
+        poseStack.translate(pivotX / 16.0, -pivotY / 16.0, 0);
+    }
+
+    public static void applyScale(double pivotX, double pivotY, double pivotZ, float scaleX, float scaleY, float scaleZ, PoseStack poseStack){
+        poseStack.translate(pivotX / 16.0, pivotY / 16.0, pivotZ / 16.0);
+        poseStack.scale(scaleX, scaleY, scaleZ);
+        poseStack.translate(-pivotX / 16.0, -pivotY / 16.0, -pivotZ / 16.0);
+    }
+
+
+
+    public static void applyRotationX_old(double pivotY, double pivotZ, double degree, PoseStack poseStack){
         double arcDegree = -degree/180 * Math.PI;
         //transY, transZ are the Y and Z position of the pivot after *directly* applying the rotation.
         double transY = Math.cos(arcDegree)*pivotY + Math.sin(arcDegree)*pivotZ;
@@ -66,7 +94,7 @@ public class Helper {
         poseStack.mulPose(Axis.XP.rotationDegrees((float) degree));
     }
 
-    public static void applyRotationY( double pivotX, double pivotZ, double degree, PoseStack poseStack){
+    public static void applyRotationY_old( double pivotX, double pivotZ, double degree, PoseStack poseStack){
         double arcDegree = -degree/180 * Math.PI;
         //transY, transZ are the Y and Z position of the pivot after *directly* applying the rotation.
         double transZ = Math.cos(arcDegree)*pivotZ + Math.sin(arcDegree)*pivotX;
@@ -77,7 +105,7 @@ public class Helper {
         poseStack.mulPose(Axis.YP.rotationDegrees((float) degree));
     }
 
-    public static void applyRotationZ(double pivotX, double pivotY, double degree, PoseStack poseStack){
+    public static void applyRotationZ_old(double pivotX, double pivotY, double degree, PoseStack poseStack){
         double arcDegree = -degree/180 * Math.PI;
         //transY, transZ are the Y and Z position of the pivot after *directly* applying the rotation.
         double transX = Math.cos(arcDegree)*pivotX + Math.sin(arcDegree)*pivotY;

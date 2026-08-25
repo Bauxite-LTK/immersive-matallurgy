@@ -1,0 +1,7 @@
+# Made in Blockbench 5.1.6
+newmtl m_9c62120c-f879-f759-338a-3f38d2d498f8
+map_Kd immersiveengineering:block/multiblocks/multiblock_base
+newmtl m_9c665e2e-965c-0485-ccd6-dd35cf4edd2f
+map_Kd immersive_metallurgy:block/multiblocks/hot_air_furnace
+newmtl m_b9841124-3397-aa63-6242-581bef32c803
+map_Kd immersiveengineering:block/multiblocks/multiblock_components

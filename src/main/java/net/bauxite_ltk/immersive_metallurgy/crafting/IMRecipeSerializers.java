@@ -31,6 +31,10 @@ public class IMRecipeSerializers {
         EliteBlastFurnaceRecipe.SERIALIZER = RECIPE_SERIALIZERS.register(
                 "elite_blast_furnace", EliteBlastFurnaceRecipeSerializer::new
         );
+
+        HotAirFurnaceRecipe.SERIALIZER = RECIPE_SERIALIZERS.register(
+                "hot_air_furnace", HotAirFurnaceRecipeSerializer::new
+        );
     }
 
     public static void init(IEventBus modEventBus){

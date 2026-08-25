@@ -1,7 +1,6 @@
 package net.bauxite_ltk.immersive_metallurgy.block.liquid;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -16,12 +15,12 @@ import java.util.function.Supplier;
 
 public class CanVaporateLiquidBlock extends LiquidBlock implements EntityBlock {
 
-    int vaporateTicks;
+    int evaporateTicks;
     Supplier<BlockEntityType<CanVaporateLiquidBlockEntity>> instanceBE;
 
-    public CanVaporateLiquidBlock(FlowingFluid fluid, Properties properties, Supplier<BlockEntityType<CanVaporateLiquidBlockEntity>> instanceBE , int vaporateTicks) {
+    public CanVaporateLiquidBlock(FlowingFluid fluid, Properties properties, Supplier<BlockEntityType<CanVaporateLiquidBlockEntity>> instanceBE , int evaporateTicks) {
         super(fluid, properties);
-        this.vaporateTicks = vaporateTicks;
+        this.evaporateTicks = evaporateTicks;
         this.instanceBE = instanceBE;
     }
 
@@ -34,7 +33,7 @@ public class CanVaporateLiquidBlock extends LiquidBlock implements EntityBlock {
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         CanVaporateLiquidBlockEntity be = instanceBE.get().create(blockPos, blockState);
         if(be != null){
-            be.setVaporateProperties(vaporateTicks);
+            be.setVaporateProperties(evaporateTicks);
         }
         return be;
     }

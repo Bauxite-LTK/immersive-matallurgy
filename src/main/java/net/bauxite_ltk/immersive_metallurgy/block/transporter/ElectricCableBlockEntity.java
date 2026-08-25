@@ -636,7 +636,7 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
         Vec3 hitVec = new Vec3(hitX,hitY,hitZ);
         if(heldItem.is(instanceCableItem)){
 
-            Direction fd = side;
+            Direction fd = null;
             List<AABB> boxes = getBoxes(new BoundingBoxKey(this, true,null,false,null, physicalConnectionsInfo));
             for(AABB box : boxes) {
                 if (box.inflate(.002).contains(hitVec)) {
@@ -650,7 +650,7 @@ public class ElectricCableBlockEntity extends IEBaseBlockEntity implements IElec
                     break;
                 }
             }
-            if(!isAttachOn(fd)) {
+            if(fd!= null && !isAttachOn(fd)) {
                 activateFace(fd);
                 updateFrontCornerConnection(fd);
                 updateAllRootNode();
