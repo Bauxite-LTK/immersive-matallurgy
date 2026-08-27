@@ -68,6 +68,13 @@ public class IMMultiblockLogic {
                     .redstone(s -> s.rsState, HotAirFurnaceLogic.REDSTONE_POS)
                     .build();
 
+    public static final MultiblockRegistration<ContinuousCastingMachineLogic.State> CONTINUOUS_CASTING_MACHINE =
+            metal(new ContinuousCastingMachineLogic(), "continuous_casting_machine")
+                    .structure(() -> IMMultiblocks.CONTINUOUS_CASTING_MACHINE)
+                    //.gui(IMMenuTypes.HOT_AIR_FURNACE)
+                    .redstone(s -> s.rsState, ContinuousCastingMachineLogic.REDSTONE_POS)
+                    .build();
+
     private static <S extends IMultiblockState>
     IMMultiblockBuilder<S> metal(IMultiblockLogic<S> logic, String name)
     {

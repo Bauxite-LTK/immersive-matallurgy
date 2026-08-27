@@ -35,6 +35,14 @@ public class IMRecipeSerializers {
         HotAirFurnaceRecipe.SERIALIZER = RECIPE_SERIALIZERS.register(
                 "hot_air_furnace", HotAirFurnaceRecipeSerializer::new
         );
+
+        ContinuousCastingMachineRecipe.SERIALIZER = RECIPE_SERIALIZERS.register(
+                "continuous_casting_machine", ContinuousCastingMachineRecipeSerializer::new
+        );
+
+        ContinuousCastingMachineFuelRecipe.SERIALIZER = RECIPE_SERIALIZERS.register(
+                "continuous_casting_machine_fuel", ContinuousCastingMachineFuelRecipeSerializer::new
+        );
     }
 
     public static void init(IEventBus modEventBus){

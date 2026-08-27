@@ -10,10 +10,12 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
+import static net.bauxite_ltk.immersive_metallurgy.ImmersiveMetallurgy.MOD_ID;
+
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
-@Mod(value = ImmersiveMetallurgy.MOD_ID, dist = Dist.CLIENT)
+@Mod(value = MOD_ID, dist = Dist.CLIENT)
 // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-@EventBusSubscriber(modid = ImmersiveMetallurgy.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
 public class ImmersiveMetallurgyClient {
     public ImmersiveMetallurgyClient(ModContainer container) {
         // Allows NeoForge to create a config screen for this mod's configs.
@@ -25,7 +27,7 @@ public class ImmersiveMetallurgyClient {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-        ImmersiveMetallurgy.LOGGER.info("HELLO FROM CLIENT SETUP");
+        ImmersiveMetallurgy.LOGGER.info(MOD_ID +" Start Up");
         ImmersiveMetallurgy.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 }

@@ -1,14 +1,14 @@
 {
   "type": "immersive_metallurgy:elite_blast_furnace",
   "energy": 10,
-  "time": 10,
+  "time": 5,
   "temperature": 1500,
   "result_metal": {
     "amount": 100,
     "id": "immersive_metallurgy:molten_pig_iron"
   },
   "result_gas": {
-    "amount": 500,
+    "amount": 300,
     "id": "immersive_metallurgy:water_gas"
   },
   "result_slag": {

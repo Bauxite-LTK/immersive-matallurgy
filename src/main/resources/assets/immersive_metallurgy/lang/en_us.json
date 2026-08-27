@@ -264,6 +264,8 @@
   "block.immersive_metallurgy.hydrocyclone": "Hydrocyclone",
   "block.immersive_metallurgy.thickener": "Thickener",
   "block.immersive_metallurgy.elite_blast_furnace": "Elite Blast Furnace",
+  "block.immersive_metallurgy.hot_air_furnace": "Hot Air Furnace",
+  "block.immersive_metallurgy.continuous_casting_machine": "Continuous Casting Machine",
 
   "desc.immersive_metallurgy.info.thread_ift": "%1$s IF/tick (x%2$d)",
 

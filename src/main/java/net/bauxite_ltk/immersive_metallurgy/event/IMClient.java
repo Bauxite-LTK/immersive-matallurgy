@@ -58,6 +58,7 @@ public class IMClient {
         registerBERenderNoContext(event, IMMultiblockLogic.THICKENER.masterBE(), ThickenerRender::new);
         registerBERenderNoContext(event, IMBlockEntities.SAP_COLLECTOR.get(), SapCollectorRender::new);
         registerBERenderNoContext(event, IMBlockEntities.CASTING_CHANNEL.get(), CastingChannelBlockEntityRender::new);
+        registerBERenderNoContext(event, IMMultiblockLogic.CONTINUOUS_CASTING_MACHINE.masterBE(), ContinuousCastingMachineRenderer::new);
 
         //registerBERenderNoContext(event, IMBlockEntities.ELECTRIC_CABLE.get(), ElectricCableSelectionRenderer::new);
     }
@@ -85,6 +86,7 @@ public class IMClient {
         BallMillRender.BARREL = new IMDynamicModel(BallMillRender.NAME);
         FlotationCellRender.BLADE = new IMDynamicModel(FlotationCellRender.NAME);
         ThickenerRender.AGITATOR = new IMDynamicModel(ThickenerRender.NAME);
+        ContinuousCastingMachineRenderer.METAL = new IMDynamicModel(ContinuousCastingMachineRenderer.NAME);
 
     }
 
