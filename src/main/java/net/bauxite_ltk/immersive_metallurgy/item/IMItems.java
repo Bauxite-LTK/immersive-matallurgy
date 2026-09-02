@@ -7,6 +7,9 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 public class IMItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(IMUtils.MOD_ID);
 
@@ -463,9 +466,13 @@ public class IMItems {
 
     }
 
-    public static final DeferredItem<Item> COLOPHONY = ITEMS.register("colophony", ()-> new FurnaceFuelItem(new Item.Properties(), 1600));
+    public static final DeferredItem<Item> COLOPHONY = ITEMS.register("colophony", ()-> new FurnaceFuelItem(1600));
+    public static final DeferredItem<Item> PIG_IRON_INGOT = registerSimpleItemWithTooltip("ingot_pig_iron","ingot_pig_iron.idle");
+    public static final DeferredItem<Item> PIG_IRON_BLAST_FURNACE_PELLET = registerSimpleItemWithTooltip("blast_furnace_iron_pellet","blast_furnace_iron_pellet.idle");
 
-
+    public static DeferredItem<Item> registerSimpleItemWithTooltip(String name, String tooltip){
+        return ITEMS.register(name, () -> new IMBaseItem(tooltip, new Item.Properties()));
+    }
 
     public static void init(IEventBus modEventBus){
         try {

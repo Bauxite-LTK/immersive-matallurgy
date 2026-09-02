@@ -5,7 +5,15 @@
     "item": "immersive_metallurgy:pure_ore_chunk_raw_aluminum"
   },
   "result": {
-    "count": 4,
+    "count": 2,
     "id": "immersive_metallurgy:pure_coarse_powder_raw_aluminum"
-  }
+  },
+  "secondaries": [
+    {
+      "chance": 0.6666667,
+      "output": {
+        "id": "immersive_metallurgy:pure_coarse_powder_raw_aluminum"
+      }
+    }
+  ]
 }

@@ -98,6 +98,8 @@ public class IMClient {
         event.register(IMMenuTypes.HYDROCYCLONE.getType(), HydrocycloneScreen::new);
         event.register(IMMenuTypes.THICKENER.getType(), ThickenerScreen::new);
         event.register(IMMenuTypes.ELITE_BLAST_FURNACE.getType(), EliteBlastFurnaceScreen::new);
+        event.register(IMMenuTypes.HOT_AIR_FURNACE.getType(), HotAirFurnaceScreen::new);
+        event.register(IMMenuTypes.CONTINUOUS_CASTING_MACHINE.getType(), ContinuousCastingMachineScreen::new);
     }
 
     @SubscribeEvent

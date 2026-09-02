@@ -10,7 +10,7 @@
   },
   "secondaries": [
     {
-      "chance": 0.33333334,
+      "chance": 0.5,
       "output": {
         "id": "immersive_metallurgy:pure_ore_chunk_raw_uranium"
       }

@@ -12,6 +12,7 @@ import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableLeavesBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableRotatedPillarBlock;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
+import net.bauxite_ltk.immersive_metallurgy.item.IMBaseBlockItem;
 import net.bauxite_ltk.immersive_metallurgy.item.IMItems;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.bauxite_ltk.immersive_metallurgy.worldgen.tree.IMTreeGrowers;
@@ -58,6 +59,9 @@ public class IMBlocks {
     public static final DeferredBlock<FlameableBlock> MASON_PINE_PLANKS = registerBlock("mason_pine_planks", () -> new FlameableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS), 20,5));
     public static final DeferredBlock<LeavesBlock> MASON_PINE_LEAVES = registerBlock("mason_pine_leaves", () -> new FlameableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES), 60 ,30));
     public static final DeferredBlock<SaplingBlock> MASON_PINE_SAPLING = registerBlock("mason_pine_sapling", () -> new SaplingBlock(IMTreeGrowers.MASON_PINE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
+    public static final DeferredBlock<Block> PIG_IRON_BLOCK = registerBlock("pig_iron_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+
 
     public static final DeferredBlock<SapCollectorBlock> SAP_COLLECTOR = registerBlock("sap_collector", () -> new SapCollectorBlock(BlockBehaviour.Properties.of().noOcclusion().sound(SoundType.METAL).strength(3, 15)));
 
@@ -114,9 +118,9 @@ public class IMBlocks {
 
     private static final Supplier<BlockBehaviour.Properties> METAL_PROPERTIES_DYNAMIC = () -> METAL_PROPERTIES_NO_OCCLUSION.get().dynamicShape();
 
-    public static final DeferredBlock<ElectricCableBlock> ELECTRIC_CABLE_LV = registerBlockIE("electric_cable_lv", () -> ElectricCableBlock.forLv(METAL_PROPERTIES_DYNAMIC.get()));
-    public static final DeferredBlock<ElectricCableBlock> ELECTRIC_CABLE_MV = registerBlockIE("electric_cable_mv", () -> ElectricCableBlock.forMv(METAL_PROPERTIES_DYNAMIC.get()));
-    public static final DeferredBlock<CastingChannelBlock> CASTING_CHANNEL = registerBlockIE("casting_channel", () -> new CastingChannelBlock(METAL_PROPERTIES_DYNAMIC.get()));
+    public static final DeferredBlock<ElectricCableBlock> ELECTRIC_CABLE_LV = registerBlockIM("electric_cable_lv", "electric_cable_lv.idle", () -> ElectricCableBlock.forLv(METAL_PROPERTIES_DYNAMIC.get()));
+    public static final DeferredBlock<ElectricCableBlock> ELECTRIC_CABLE_MV = registerBlockIM("electric_cable_mv","electric_cable_mv.idle", () -> ElectricCableBlock.forMv(METAL_PROPERTIES_DYNAMIC.get()));
+    public static final DeferredBlock<CastingChannelBlock> CASTING_CHANNEL = registerBlockIM("casting_channel","casting_channel.idle", () -> new CastingChannelBlock(METAL_PROPERTIES_DYNAMIC.get()));
 
 
     public static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
@@ -135,8 +139,18 @@ public class IMBlocks {
         return toReturn;
     }
 
+    public static <T extends Block> DeferredBlock<T> registerBlockIM(String name, String tooltip, Supplier<T> block){
+        DeferredBlock<T> toReturn = BLOCKS.register(name,block);
+        registerBlockItemIM(name, tooltip, toReturn);
+        return toReturn;
+    }
+
     public static <T extends Block> void registerBlockItemIE(String name, DeferredBlock<T> block){
         IMItems.ITEMS.register(name, () -> new BlockItemIE(block.get(), new Item.Properties()));
+    }
+
+    public static <T extends Block> void registerBlockItemIM(String name, String tooltip, DeferredBlock<T> block){
+        IMItems.ITEMS.register(name, () -> new IMBaseBlockItem(block.get(), tooltip, new Item.Properties()));
     }
 
     private static <T extends Block> DeferredBlock<T> registerNoItem(String name, Supplier<T> block)

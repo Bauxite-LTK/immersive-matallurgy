@@ -9,8 +9,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.function.Supplier;
-
 public class IMRecipeType {
     private static final DeferredRegister<RecipeType<?>> REGISTER = DeferredRegister.create(
             Registries.RECIPE_TYPE, IMUtils.MOD_ID
@@ -23,7 +21,7 @@ public class IMRecipeType {
     public static final IERecipeTypes.TypeWithClass<EliteBlastFurnaceRecipe> ELITE_BLAST_FURNACE = register("elite_blast_furnace", EliteBlastFurnaceRecipe.class);
     public static final IERecipeTypes.TypeWithClass<HotAirFurnaceRecipe> HOT_AIR_FURNACE = register("hot_air_furnace", HotAirFurnaceRecipe.class);
     public static final IERecipeTypes.TypeWithClass<ContinuousCastingMachineRecipe> CONTINUOUS_CASTING_MACHINE = register("continuous_casting_machine", ContinuousCastingMachineRecipe.class);
-    public static final IERecipeTypes.TypeWithClass<ContinuousCastingMachineFuelRecipe> CONTINUOUS_CASTING_MACHINE_FUEL = register("continuous_casting_machine_fuel", ContinuousCastingMachineFuelRecipe.class);
+    public static final IERecipeTypes.TypeWithClass<GasFuelRecipe> GAS_FUEL = register("gas_fuel", GasFuelRecipe.class);
 
 
     private static <T extends Recipe<?>>

@@ -70,6 +70,10 @@ public class EliteBlastFurnaceRecipe extends MultiblockRecipe {
         return null;
     }
 
+    public int getTemperature(){
+        return temperature;
+    }
+
     @Override
     public int getMultipleProcessTicks() {
         return 0;

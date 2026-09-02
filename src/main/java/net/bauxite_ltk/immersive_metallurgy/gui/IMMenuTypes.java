@@ -49,6 +49,14 @@ public class IMMenuTypes {
             "elite_blast_furnace", EliteBlastFurnaceMenu::makeServer, EliteBlastFurnaceMenu::makeClient
     );
 
+    public static final MultiblockContainer<HotAirFurnaceLogic.State, HotAirFurnaceMenu> HOT_AIR_FURNACE = registerMultiblock(
+            "hot_air_furnace", HotAirFurnaceMenu::makeServer, HotAirFurnaceMenu::makeClient
+    );
+
+    public static final MultiblockContainer<ContinuousCastingMachineLogic.State, ContinuousCastingMachineMenu> CONTINUOUS_CASTING_MACHINE = registerMultiblock(
+            "continuous_casting_machine", ContinuousCastingMachineMenu::makeServer, ContinuousCastingMachineMenu::makeClient
+    );
+
 
     public static <S extends IMultiblockState, C extends IEContainerMenu>
     MultiblockContainer<S, C> registerMultiblock(

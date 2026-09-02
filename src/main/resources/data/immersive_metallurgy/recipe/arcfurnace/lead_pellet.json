@@ -1,0 +1,14 @@
+{
+  "type": "immersiveengineering:arc_furnace",
+  "additives": [],
+  "energy": 30720,
+  "input": {
+    "item": "immersive_metallurgy:concentrate_pellet_raw_lead"
+  },
+  "results": [
+    {
+      "tag": "c:ingots/lead"
+    }
+  ],
+  "time": 60
+}

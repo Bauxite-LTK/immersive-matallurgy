@@ -15,6 +15,6 @@
     "id": "immersiveengineering:slag"
   },
   "input_ore": {
-    "item": "immersive_metallurgy:concentrate_pellet_raw_iron"
+    "item": "immersive_metallurgy:blast_furnace_iron_pellet"
   }
 }

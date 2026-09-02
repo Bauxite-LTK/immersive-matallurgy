@@ -12,14 +12,8 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.IMMultiblockLogic;
-import net.bauxite_ltk.immersive_metallurgy.crafting.BallMillRecipe;
-import net.bauxite_ltk.immersive_metallurgy.crafting.FlotationCellRecipe;
-import net.bauxite_ltk.immersive_metallurgy.crafting.HydrocycloneRecipe;
-import net.bauxite_ltk.immersive_metallurgy.crafting.ThickenerRecipe;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.BallMillScreen;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.FlotationCellScreen;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.HydrocycloneScreen;
-import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.ThickenerScreen;
+import net.bauxite_ltk.immersive_metallurgy.crafting.*;
+import net.bauxite_ltk.immersive_metallurgy.gui.multiblock.*;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -55,7 +49,11 @@ public class JEIHelper implements IModPlugin
                 new BallMillCategory(guiHelper),
                 new FlotationCellCategory(guiHelper),
                 new HydrocycloneCategory(guiHelper),
-                new ThickenerCategory(guiHelper)
+                new ThickenerCategory(guiHelper),
+                new EliteBlastFurnaceCategory(guiHelper),
+                new HotAirFurnaceCategory(guiHelper),
+                new ContinuousCastingMachineCategory(guiHelper),
+                new GasFuelCategory(guiHelper)
         );
 
         slotDrawable = guiHelper.getSlotDrawable();
@@ -68,6 +66,10 @@ public class JEIHelper implements IModPlugin
         registration.addRecipes(JEIRecipeTypes.FLOTATION_CELL, getRecipes(FlotationCellRecipe.RECIPES));
         registration.addRecipes(JEIRecipeTypes.HYDROCYCLONE, getRecipes(HydrocycloneRecipe.RECIPES));
         registration.addRecipes(JEIRecipeTypes.THICKENER, getRecipes(ThickenerRecipe.RECIPES));
+        registration.addRecipes(JEIRecipeTypes.ELITE_BLAST_FURNACE, getRecipes(EliteBlastFurnaceRecipe.RECIPES));
+        registration.addRecipes(JEIRecipeTypes.HOT_AIR_FURNACE, getRecipes(HotAirFurnaceRecipe.RECIPES));
+        registration.addRecipes(JEIRecipeTypes.CONTINUOUS_CASTING_MACHINE, getRecipes(ContinuousCastingMachineRecipe.RECIPES));
+        registration.addRecipes(JEIRecipeTypes.GAS_FUEL, getRecipes(GasFuelRecipe.RECIPES));
 
     }
 
@@ -97,6 +99,10 @@ public class JEIHelper implements IModPlugin
         registration.addRecipeCatalyst(IMMultiblockLogic.FLOTATION_CELL.iconStack(), JEIRecipeTypes.FLOTATION_CELL);
         registration.addRecipeCatalyst(IMMultiblockLogic.HYDROCYCLONE.iconStack(), JEIRecipeTypes.HYDROCYCLONE);
         registration.addRecipeCatalyst(IMMultiblockLogic.THICKENER.iconStack(), JEIRecipeTypes.THICKENER);
+        registration.addRecipeCatalyst(IMMultiblockLogic.ELITE_BLAST_FURNACE.iconStack(), JEIRecipeTypes.ELITE_BLAST_FURNACE);
+        registration.addRecipeCatalyst(IMMultiblockLogic.HOT_AIR_FURNACE.iconStack(), JEIRecipeTypes.HOT_AIR_FURNACE);
+        registration.addRecipeCatalyst(IMMultiblockLogic.CONTINUOUS_CASTING_MACHINE.iconStack(), JEIRecipeTypes.CONTINUOUS_CASTING_MACHINE);
+        registration.addRecipeCatalyst(IMMultiblockLogic.CONTINUOUS_CASTING_MACHINE.iconStack(), JEIRecipeTypes.GAS_FUEL);
     }
 
     @Override
@@ -106,6 +112,10 @@ public class JEIHelper implements IModPlugin
         registration.addRecipeClickArea(FlotationCellScreen.class, 153, 59, 16, 14, JEIRecipeTypes.FLOTATION_CELL);
         registration.addRecipeClickArea(HydrocycloneScreen.class, 96, 38, 17, 13, JEIRecipeTypes.HYDROCYCLONE);
         registration.addRecipeClickArea(ThickenerScreen.class, 153, 59, 16, 14, JEIRecipeTypes.THICKENER);
+        registration.addRecipeClickArea(EliteBlastFurnaceScreen.class, 40, 10, 16, 14, JEIRecipeTypes.ELITE_BLAST_FURNACE);
+        registration.addRecipeClickArea(HotAirFurnaceScreen.class, 53, 35, 15, 13, JEIRecipeTypes.HOT_AIR_FURNACE);
+        registration.addRecipeClickArea(ContinuousCastingMachineScreen.class, 133, 13, 15, 13, JEIRecipeTypes.CONTINUOUS_CASTING_MACHINE);
+        registration.addRecipeClickArea(ContinuousCastingMachineScreen.class, 116, 13, 12, 10, JEIRecipeTypes.GAS_FUEL);
 
     }
 }

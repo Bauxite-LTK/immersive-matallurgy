@@ -82,18 +82,19 @@ public class EliteBlastFurnaceLogic implements
     private static final CapabilityPosition INPUT_ORE_CAP = CapabilityPosition.opposing(INPUT_ORE_OFFSET);
 
 
-    public static final int HOT_AIR_CAPACITY = 48 * FluidType.BUCKET_VOLUME;
+    public static final int HOT_AIR_CAPACITY = 400;
     public static final int METAL_CAPACITY = 12 * FluidType.BUCKET_VOLUME;
     public static final int GAS_CAPACITY = 48 * FluidType.BUCKET_VOLUME;
     public static final int NUM_INPUT_SLOTS = 4;
     public static final int OUTPUT_SLOT = NUM_INPUT_SLOTS;
     public static final int NUM_SLOTS = 5;
+    private static final int NATURAL_TEMPERATURE = 24;
 
 
     public State createInitialState(IInitialMultiblockContext<State> capabilitySource) {
         return new State(capabilitySource);
     }
-    private int tankLastTick = 0;
+
     @Override
     public void tickServer(IMultiblockContext<State> context) {
         final State state = context.getState();
@@ -103,7 +104,7 @@ public class EliteBlastFurnaceLogic implements
         // With code below, we actually make tricks to avoid energy cost, by continuously insert energy into the machine.
         state.energy.receiveEnergy(1000,false);
 
-        final boolean active = state.processor.tickServer(state, context.getLevel(), state.rsState.isEnabled(context));
+        boolean active = state.processor.tickServer(state, context.getLevel(), state.rsState.isEnabled(context));
         if(active!=state.active)
         {
             state.active = active;
@@ -114,23 +115,9 @@ public class EliteBlastFurnaceLogic implements
 
         EliteBlastFurnaceTanks tanks = state.tanks;
         if(context.getLevel().shouldTickModulo(10)){
-            int heatUp = 0;
-            int curTemp = state.temperature;
-            if(!tanks.inputAirRight.isEmpty()){
-                int extractR = tanks.inputAirRight.drain(400, IFluidHandler.FluidAction.EXECUTE).getAmount();
-                heatUp += extractR;
-            }
-            if(!tanks.inputAirLeft.isEmpty()){
-                int extractL = tanks.inputAirLeft.drain(400, IFluidHandler.FluidAction.EXECUTE).getAmount();
-                heatUp += extractL;
-            }
-            int coolDown = curTemp>0? (curTemp+4)/2 : 0;
-            int deltaTemperature = Integer.compare(heatUp - coolDown, 0)*4;
-            state.temperature += deltaTemperature;
-            context.markMasterDirty();
-            context.requestMasterBESync();
-            handleItemOutput(context);
+            heatUpOrCoolDown(context, state.rsState.isEnabled(context));
         }
+
         FluidUtils.multiblockFluidOutput(
                 state.fluidOutputMetal.get(), state.tanks.outputMetal,
                 -1, -1,null
@@ -166,6 +153,29 @@ public class EliteBlastFurnaceLogic implements
                 state.processor.addProcessToQueue(process, level, false);
             }
         }
+    }
+
+    private void heatUpOrCoolDown(IMultiblockContext<EliteBlastFurnaceLogic.State> ctx, boolean doHeat){
+        final State state = ctx.getState();
+        EliteBlastFurnaceTanks tanks = state.tanks;
+        int heatUp = 0;
+        int curTemp = state.temperature;
+        if(doHeat){
+            if(!tanks.inputAirRight.isEmpty()){
+                int extractR = tanks.inputAirRight.drain(400, IFluidHandler.FluidAction.EXECUTE).getAmount();
+                heatUp += extractR;
+            }
+            if(!tanks.inputAirLeft.isEmpty()){
+                int extractL = tanks.inputAirLeft.drain(400, IFluidHandler.FluidAction.EXECUTE).getAmount();
+                heatUp += extractL;
+            }
+        }
+        int coolDown = curTemp > NATURAL_TEMPERATURE ? (curTemp+4)/2 : 0;
+        int deltaTemperature = Integer.compare(heatUp - coolDown, 0)*4;
+        state.temperature += deltaTemperature;
+        ctx.markMasterDirty();
+        ctx.requestMasterBESync();
+        handleItemOutput(ctx);
     }
 
     private void handleItemOutput(IMultiblockContext<EliteBlastFurnaceLogic.State> ctx)
@@ -276,7 +286,7 @@ public class EliteBlastFurnaceLogic implements
         public final MultiblockProcessor.InMachineProcessor<EliteBlastFurnaceRecipe> processor;
         public final EliteBlastFurnaceTanks tanks = new EliteBlastFurnaceTanks();
         private final SlotwiseItemHandler inventory;
-        private int temperature = 0;
+        private int temperature = NATURAL_TEMPERATURE;
 
 
         private final IFluidTank[] tankArray = {tanks.inputAirLeft, tanks.inputAirRight, tanks.outputMetal, tanks.outputGas};
@@ -414,6 +424,7 @@ public class EliteBlastFurnaceLogic implements
         {
             return true;
         }
+
 
         public boolean isActive()
         {

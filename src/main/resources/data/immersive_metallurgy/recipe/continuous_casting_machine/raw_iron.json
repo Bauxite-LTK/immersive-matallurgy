@@ -1,13 +1,13 @@
 {
   "type": "immersive_metallurgy:continuous_casting_machine",
   "energy": 10240,
-  "time": 20,
+  "time": 40,
   "result_metal_item": {
-    "count": 4,
-    "id": "minecraft:iron_ingot"
+    "count": 8,
+    "id": "immersive_metallurgy:ingot_pig_iron"
   },
   "input_metal_liquid": {
-    "amount": 400,
+    "amount": 800,
     "fluid": "immersive_metallurgy:molten_pig_iron"
   }
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "immersive_metallurgy:pig_iron_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "immersive_metallurgy:ingot_pig_iron"
+  }
+}

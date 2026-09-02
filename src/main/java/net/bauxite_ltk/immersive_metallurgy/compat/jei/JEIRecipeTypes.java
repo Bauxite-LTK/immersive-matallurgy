@@ -12,6 +12,10 @@ public class JEIRecipeTypes {
     public static final RecipeType<RecipeHolder<FlotationCellRecipe>> FLOTATION_CELL = create(IMRecipeType.FLOTATION_CELL);
     public static final RecipeType<RecipeHolder<HydrocycloneRecipe>> HYDROCYCLONE = create(IMRecipeType.HYDROCYCLONE);
     public static final RecipeType<RecipeHolder<ThickenerRecipe>> THICKENER = create(IMRecipeType.THICKENER);
+    public static final RecipeType<RecipeHolder<EliteBlastFurnaceRecipe>> ELITE_BLAST_FURNACE = create(IMRecipeType.ELITE_BLAST_FURNACE);
+    public static final RecipeType<RecipeHolder<HotAirFurnaceRecipe>> HOT_AIR_FURNACE = create(IMRecipeType.HOT_AIR_FURNACE);
+    public static final RecipeType<RecipeHolder<ContinuousCastingMachineRecipe>> CONTINUOUS_CASTING_MACHINE = create(IMRecipeType.CONTINUOUS_CASTING_MACHINE);
+    public static final RecipeType<RecipeHolder<GasFuelRecipe>> GAS_FUEL = create(IMRecipeType.GAS_FUEL);
 
 
     private static <T extends Recipe<?>>

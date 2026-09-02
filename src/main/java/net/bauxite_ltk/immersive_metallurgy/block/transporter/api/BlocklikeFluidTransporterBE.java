@@ -156,7 +156,7 @@ public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements IB
         // Get total fluid amount in pipe to allocate
         // Only count fluid in pipe because we do not want to extract and reallocate fluid from consumer.
         int totalAmount = tank.getResourceAmount();
-        for(Direction dir : getData(sourceKey).outputs){
+        for(Direction dir : getDataBySourceKey(sourceKey).outputs){
             BlocklikeFluidTransporterBE fluidTransporterBE = getNeighborInstance(dir);
             if(fluidTransporterBE!=null){
                 if(fluidTransporterBE.tank.getResource().getFluid().isSame(fluid)){
@@ -168,19 +168,19 @@ public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements IB
         // Update localAllocateCache
         // Work to get the capacity limit of every local neighbor container, including self.
         // It is for the next part's allocate algorithm:
-        getData(sourceKey).clearLocalAllocateCache();
-        getData(sourceKey).addToLocalAllocateCacheSorted(this.tank, Math.min(this.tank.getCapacity(), totalAmount), tryEmptySelf);
-        for(Direction nextDir : getData(sourceKey).outputs){
+        getDataBySourceKey(sourceKey).clearLocalAllocateCache();
+        getDataBySourceKey(sourceKey).addToLocalAllocateCacheSorted(this.tank, Math.min(this.tank.getCapacity(), totalAmount), tryEmptySelf);
+        for(Direction nextDir : getDataBySourceKey(sourceKey).outputs){
             IFluidHandler handler = neighbors.get(nextDir).getCapability();
             int capacity = 0;
             if(handler instanceof BLTSingleFluidUniHandler && handler.getFluidInTank(0).getFluid().isSame(fluid)){
                 capacity = Math.min(this.tank.getCapacity(), totalAmount);
+                getDataBySourceKey(sourceKey).addToLocalAllocateCacheSorted(handler, capacity, tryEmptySelf);
             }
             else if (handler != null && handler.getTanks() > 0){
                 capacity = handler.fill(new FluidStack(fluid, totalAmount), IFluidHandler.FluidAction.SIMULATE);
+                getDataBySourceKey(sourceKey).addToLocalAllocateCacheSorted(handler, capacity, true);
             }
-            else continue;
-            getData(sourceKey).addToLocalAllocateCacheSorted(handler, capacity, tryEmptySelf);
         }
 
         // Execute Allocate Algorithm according to localAllocateCache.
@@ -189,7 +189,7 @@ public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements IB
         // Due to properties of Integer division, the process is equivalent to Round-robin from cache's tail to head.
         // that means if the fluid amount cannot be divided, handlers close to cache's tail will be more likely to obtain 1mB more than others
         // It is also equivalent to [Max-Min Fairness Algorithm]
-        List<Pair<IFluidHandler, Integer>> localAllocateCache = getData(sourceKey).getLocalAllocateCache();
+        List<Pair<IFluidHandler, Integer>> localAllocateCache = getDataBySourceKey(sourceKey).getLocalAllocateCache();
         int handlersCount = localAllocateCache.size();
         if(handlersCount <= 1) return;
 
@@ -230,7 +230,7 @@ public class BlocklikeFluidTransporterBE extends IEBaseBlockEntity implements IB
         int last = amount;
         last -= tank.receiveResource(resource,last,simulate);
         try {
-            for (Direction output : getData(sourceKey).outputs) {
+            for (Direction output : getDataBySourceKey(sourceKey).outputs) {
                 IFluidHandler handler = neighbors.get(output).getCapability();
                 if (handler != null && !(handler instanceof BLTSingleFluidUniHandler)) {
                     last -= handler.fill(resource.copyWithAmount(last), simulate ? IFluidHandler.FluidAction.SIMULATE : IFluidHandler.FluidAction.EXECUTE);

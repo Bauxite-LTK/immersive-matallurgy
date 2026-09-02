@@ -1,9 +1,0 @@
-{
-  "type": "immersive_metallurgy:continuous_casting_machine_fuel",
-  "burn_time": 10,
-  "input_gas": {
-    "amount": 100,
-    "fluid": "immersive_metallurgy:water_gas"
-  }
-
-}

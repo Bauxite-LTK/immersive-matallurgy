@@ -1,7 +1,7 @@
 {
   "type": "immersive_metallurgy:thickener",
-  "energy": 12800,
-  "time": 8,
+  "energy": 1280,
+  "time": 4,
   "result_fluid": {
     "amount": 200,
     "id": "minecraft:water"

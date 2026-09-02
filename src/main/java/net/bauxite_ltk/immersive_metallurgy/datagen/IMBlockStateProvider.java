@@ -21,6 +21,7 @@ public class IMBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(IMBlocks.MASON_PINE_PLANKS);
+        blockWithItem(IMBlocks.PIG_IRON_BLOCK);
 
         logBlock(IMBlocks.MASON_PINE_LOG.get());
         logBlock(IMBlocks.STRIPPED_MASON_PINE_LOG.get());

@@ -5,7 +5,6 @@ import blusunrize.immersiveengineering.common.blocks.ticking.IEServerTickableBE;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectIntImmutablePair;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceHandler.IUniHandler;
-import net.bauxite_ltk.immersive_metallurgy.block.transporter.api.resourceHandler.blt.BLTSingleFluidUniHandler;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -76,7 +75,7 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
                     if(isClaimedByOtherRoot(drainKey) || getSelfHandler().isAllEmpty()){
                         for(Direction nextDir : data.outputs){
                             if(!isNeighborInstanceInvalid(nextDir) && getNeighborInstance(nextDir).hasData(sourceKey)){
-                                getNeighborInstance(nextDir).getData(sourceKey).setStatus(TransportationData.Status.DRAIN);
+                                getNeighborInstance(nextDir).getDataBySourceKey(sourceKey).setStatus(TransportationData.Status.DRAIN);
                             }
                         }
                         data.setStatus(TransportationData.Status.INVALID);
@@ -124,7 +123,7 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
                     && blocklikeTransporter.getResourceClass().equals(getResourceClass())){
                 blocklikeTransporter.tryClaimNext(sourceKey);
                 blocklikeTransporter.allocateResourceLocal(sourceKey, false);
-                for(Direction direction : blocklikeTransporter.getData(sourceKey).outputs){
+                for(Direction direction : blocklikeTransporter.getDataBySourceKey(sourceKey).outputs){
                     openList.addLast(curPos.relative(direction));
                 }
                 closeList.addFirst(curPos);
@@ -152,11 +151,11 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
                     && blocklikeTransporter.getResourceClass().equals(getResourceClass())){
 
                 if(oldSourceKey != newSourceKey && blocklikeTransporter.hasData(oldSourceKey)){
-                    blocklikeTransporter.getData(oldSourceKey).resetSourceForDrain(newSourceKey);
+                    blocklikeTransporter.getDataBySourceKey(oldSourceKey).resetSourceForDrain(newSourceKey);
                 }
                 blocklikeTransporter.tryClaimNext(newSourceKey);
                 blocklikeTransporter.allocateResourceLocal(newSourceKey, true);
-                for(Direction direction : blocklikeTransporter.getData(newSourceKey).outputs){
+                for(Direction direction : blocklikeTransporter.getDataBySourceKey(newSourceKey).outputs){
                     openList.addLast(curPos.relative(direction));
                 }
                 closeList.addFirst(curPos);
@@ -170,27 +169,27 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
         for(int i = 0; i < 6; i++) {
             Direction dir = Direction.from3DDataValue(i);
             //node should not check previous direction
-            if(getData(sourceKey).input == dir) continue;
+            if(getDataBySourceKey(sourceKey).input == dir) continue;
             //check if the direction is connected
             if (((getConnectionByte() >> i) & 1) != 1) {
-                getData(sourceKey).removeOutput(dir);
+                getDataBySourceKey(sourceKey).removeOutput(dir);
                 continue;
             }
             //check if the direction has available handler
             IUniHandler<R> handler = getNeighborCapability(dir);
             if(handler!=null /*&& handler.getTanks() > 0*/){
-                getData(sourceKey).addOutput(dir);
+                getDataBySourceKey(sourceKey).addOutput(dir);
 
             }
             else{
-                getData(sourceKey).removeOutput(dir);
+                getDataBySourceKey(sourceKey).removeOutput(dir);
             }
         }
 
         // from nextList, try claim neighbor pipe
-        for(Direction outputDir : getData(sourceKey).outputs){
+        for(Direction outputDir : getDataBySourceKey(sourceKey).outputs){
             IBlocklikeResourceTransporter<?> neighbor = getNeighborInstance(outputDir);
-            int thisDepth = getData(sourceKey).depthInNetwork;
+            int thisDepth = getDataBySourceKey(sourceKey).depthInNetwork;
             if(neighbor!=null){
 
                 //if pipe is not in subnet, then add it
@@ -202,8 +201,8 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
                 // Note that depth will not smaller than thisDepth+1
                 // Because we use BFS in an indirection graph, if a new connection links to a smaller depth
                 // Then this path would have been detected earlier when BFS runs on the smaller depth node
-                else if(neighbor.getData(sourceKey).depthInNetwork > thisDepth + 1){
-                    TransportationData neighborInfo = neighbor.getData(sourceKey);
+                else if(neighbor.getDataBySourceKey(sourceKey).depthInNetwork > thisDepth + 1){
+                    TransportationData neighborInfo = neighbor.getDataBySourceKey(sourceKey);
                     neighborInfo.removeInput();
                     neighborInfo.setInput(outputDir.getOpposite());
                     neighborInfo.removeOutput(outputDir.getOpposite());
@@ -216,8 +215,8 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
                 // The path will rearrange, a series of node will be reversed.
                 // But at last, two BFS branches will merge into a single node (Proof is Down Below this method)
                 // At this point slower branch will see the depth is valid, but its nextList still needs to change.
-                else if(neighbor.getData(sourceKey).depthInNetwork == thisDepth + 1){
-                    TransportationData neighborInfo = neighbor.getData(sourceKey);
+                else if(neighbor.getDataBySourceKey(sourceKey).depthInNetwork == thisDepth + 1){
+                    TransportationData neighborInfo = neighbor.getDataBySourceKey(sourceKey);
                     //try to remove invalid nextDir of neighbor node
                     if(neighborInfo.outputs.contains(outputDir.getOpposite())){
                         neighborInfo.removeOutput(outputDir.getOpposite());
@@ -277,7 +276,7 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
                 int fill = typed.forceAllocateResource(sourceKey,resource,lastAmount,simulate);
                 lastAmount -= fill;
                 if(typed.hasData(sourceKey)) { // avoid this method execute earlier than current transporter is claimed by sourceKey
-                    for (Direction direction : typed.getData(sourceKey).outputs) {
+                    for (Direction direction : typed.getDataBySourceKey(sourceKey).outputs) {
                         openList.addLast(curPos.relative(direction));
                     }
                 }
@@ -293,7 +292,7 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
 
 
-    default TransportationData getData(BlockFace source){
+    default TransportationData getDataBySourceKey(BlockFace source){
         List<TransportationData> tdList = getTDList();
         for(TransportationData data: tdList){
             if(data.sourceKey.equals(source)){
@@ -362,7 +361,7 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
     default boolean isDirectionSourceFace(Direction direction){
         BlockFace otherFace = new BlockFace(getBlockPos().relative(direction), direction.getOpposite());
-        return hasData(otherFace) && getData(otherFace).status.equals(TransportationData.Status.SOURCE);
+        return hasData(otherFace) && getDataBySourceKey(otherFace).status.equals(TransportationData.Status.SOURCE);
     }
 
 
@@ -459,7 +458,8 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
             Conversely, self will be the last element in pipes' region and not try to empty self.
         -------------------------------------------------------------------------------------------------------*/
 
-        public void addToLocalAllocateCacheSorted(IFluidHandler handler, int capacity, boolean insertWhenEqual){
+        public void addToLocalAllocateCacheSorted(IFluidHandler handler, int capacity, boolean tryEmptySelf){
+            boolean insertWhenEqual = !tryEmptySelf;
             int size = localAllocateCache.size();
             for(int i = 0; i <= size; i++){
                 if(i == size){
@@ -468,7 +468,7 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
                 }
                 Pair<IFluidHandler, Integer> curPair = localAllocateCache.get(i);
                 if(capacity <= curPair.value()){
-                    if(!insertWhenEqual || capacity < curPair.value()){
+                    if(insertWhenEqual || capacity < curPair.value()){
                         localAllocateCache.add(i , ObjectIntImmutablePair.of(handler, capacity));
                         break;
                     }

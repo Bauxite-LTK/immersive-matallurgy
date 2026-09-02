@@ -23,13 +23,10 @@ import blusunrize.immersiveengineering.common.util.inventory.WrappingItemHandler
 import blusunrize.immersiveengineering.common.util.sound.MultiblockSound;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.process.ContinuousCastingMachineProcessInMachine;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.shapes.ContinuousCastingMachineShapes;
-import net.bauxite_ltk.immersive_metallurgy.crafting.ContinuousCastingMachineFuelRecipe;
+import net.bauxite_ltk.immersive_metallurgy.crafting.GasFuelRecipe;
 import net.bauxite_ltk.immersive_metallurgy.crafting.ContinuousCastingMachineRecipe;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
 import net.bauxite_ltk.immersive_metallurgy.tags.IMTags;
-import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -83,6 +80,7 @@ public class ContinuousCastingMachineLogic implements
     public static final int GAS_CAPACITY = 8 * FluidType.BUCKET_VOLUME;
     public static final int ENERGY_CAPACITY = 96000;
     public static final int MAX_FUEL_TICKS = 1200;
+    public static final int NUM_SLOTS = 1;
 
     @Override
     public State createInitialState(IInitialMultiblockContext<State> capabilitySource) {
@@ -172,7 +170,7 @@ public class ContinuousCastingMachineLogic implements
         final FluidStack inputGas = state.tanks.inputGas.getFluid();
 
         // Check fluid in the fuel tank. If it's invalid then quit.
-        RecipeHolder<ContinuousCastingMachineFuelRecipe> fuelRecipe = ContinuousCastingMachineFuelRecipe.findRecipe(level, inputGas);
+        RecipeHolder<GasFuelRecipe> fuelRecipe = GasFuelRecipe.findRecipe(level, inputGas);
         if(fuelRecipe == null) {
             return;
         }

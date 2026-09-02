@@ -19,7 +19,7 @@ public class ContinuousCastingMachineMultiblock extends IETemplateMultiblock {
 
     @Override
     public float getManualScale() {
-        return 12;
+        return 16;
     }
 
     @Override

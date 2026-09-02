@@ -1,9 +1,9 @@
 {
   "type": "immersive_metallurgy:ball_mill",
-  "energy": 2400,
-  "time": 100,
+  "energy": 4800,
+  "time": 200,
   "result_item": {
-    "count": 4,
+    "count": 5,
     "id": "immersive_metallurgy:ore_fines_raw_silver"
   },
   "input_item": {

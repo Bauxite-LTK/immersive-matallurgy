@@ -120,6 +120,9 @@ public class IMCreativeModTabs {
                 output.accept(IMItems.MOLTEN_ALUMINUM_BUCKET.get());
 
                 output.accept(IMBlocks.CASTING_CHANNEL);
+                output.accept(IMItems.PIG_IRON_BLAST_FURNACE_PELLET);
+                output.accept(IMItems.PIG_IRON_INGOT);
+                output.accept(IMBlocks.PIG_IRON_BLOCK);
                 output.accept(IMItems.HOT_AIR_BUCKET);
                 output.accept(IMItems.WATER_GAS_BUCKET);
 

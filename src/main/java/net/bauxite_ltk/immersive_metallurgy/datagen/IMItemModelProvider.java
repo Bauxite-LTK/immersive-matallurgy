@@ -59,6 +59,8 @@ public class IMItemModelProvider extends ItemModelProvider {
         basicItem(IMItems.Ores.RAW_ALUMINUM_CONCENTRATE_PELLET.get());
         
         basicItem(IMItems.COLOPHONY.get());
+        basicItem(IMItems.PIG_IRON_INGOT.get());
+        basicItem(IMItems.PIG_IRON_BLAST_FURNACE_PELLET.get());
         basicItem(IMItems.MASON_PINE_SAP_BOTTLE.get());
         basicItem(IMItems.COLOPHONY_BOTTLE.get());
 

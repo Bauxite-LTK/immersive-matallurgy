@@ -40,8 +40,8 @@ public class IMRecipeSerializers {
                 "continuous_casting_machine", ContinuousCastingMachineRecipeSerializer::new
         );
 
-        ContinuousCastingMachineFuelRecipe.SERIALIZER = RECIPE_SERIALIZERS.register(
-                "continuous_casting_machine_fuel", ContinuousCastingMachineFuelRecipeSerializer::new
+        GasFuelRecipe.SERIALIZER = RECIPE_SERIALIZERS.register(
+                "gas_fuel", GasFuelRecipeSerializer::new
         );
     }
 

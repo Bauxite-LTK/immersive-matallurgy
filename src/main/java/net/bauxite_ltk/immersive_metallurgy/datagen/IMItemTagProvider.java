@@ -51,7 +51,8 @@ public class IMItemTagProvider extends ItemTagsProvider {
                 .add(IMItems.Ores.RAW_COPPER_CONCENTRATE_PELLET.get())
                 .add(IMItems.Ores.RAW_SILVER_CONCENTRATE_PELLET.get())
                 .add(IMItems.Ores.RAW_LEAD_CONCENTRATE_PELLET.get())
-                .add(IMItems.Ores.RAW_NICKEL_CONCENTRATE_PELLET.get());
+                .add(IMItems.Ores.RAW_NICKEL_CONCENTRATE_PELLET.get())
+                .add(IMItems.PIG_IRON_BLAST_FURNACE_PELLET.get());
 
 
 
@@ -75,6 +76,8 @@ public class IMItemTagProvider extends ItemTagsProvider {
                 .add(IMBlocks.MASON_PINE_PLANKS.get().asItem());
 
         this.tag(ItemTags.SAPLINGS).add(IMBlocks.MASON_PINE_SAPLING.asItem());
+
+        this.tag(Tags.Items.INGOTS).add(IMItems.PIG_IRON_INGOT.get());
 
     }
 }

@@ -65,14 +65,14 @@ public class Helper {
         //Rx(x,z) = T(x,z) * R(0,0) * T(-x,-z)
         poseStack.translate(pivotX / 16.0, 0, pivotZ / 16.0);
         poseStack.mulPose(Axis.YP.rotationDegrees((float) degree));
-        poseStack.translate(pivotX / 16.0, 0, -pivotZ / 16.0);
+        poseStack.translate(-pivotX / 16.0, 0, -pivotZ / 16.0);
     }
 
     public static void applyRotationZ(double pivotX, double pivotY, double degree, PoseStack poseStack){
         //Rx(x,z) = T(x,z) * R(0,0) * T(-x,-z)
         poseStack.translate(pivotX / 16.0, pivotY / 16.0, 0);
         poseStack.mulPose(Axis.ZP.rotationDegrees((float) degree));
-        poseStack.translate(pivotX / 16.0, -pivotY / 16.0, 0);
+        poseStack.translate(-pivotX / 16.0, -pivotY / 16.0, 0);
     }
 
     public static void applyScale(double pivotX, double pivotY, double pivotZ, float scaleX, float scaleY, float scaleZ, PoseStack poseStack){

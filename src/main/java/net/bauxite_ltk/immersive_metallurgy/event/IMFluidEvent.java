@@ -67,7 +67,7 @@ public class IMFluidEvent {
     @SubscribeEvent
     public static void registerExtensions(RegisterClientExtensionsEvent event) {
         event.registerFluidType(
-                new FluidRendererExtension(0xFF3c2d2d, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
+                new FluidRendererExtension(0xFF4c3d3d, CanSolidifyLiquidBlockEntity::getColorFromTickRemain, MOLTEN_STILL, MOLTEN_FLOW, null, null),
                 IMFluids.MOLTEN_PIG_IRON.getType());
 
         event.registerFluidType(

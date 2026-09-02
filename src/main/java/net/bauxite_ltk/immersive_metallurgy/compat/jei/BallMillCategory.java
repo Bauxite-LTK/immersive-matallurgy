@@ -81,10 +81,10 @@ public class BallMillCategory extends IERecipeCategory<BallMillRecipe> {
             guiGraphics.pose().translate(-8, 0, 0);
 
             String text0 = I18n.get("desc.immersive_metallurgy.info.thread_ift", Helper.fDecimal(energy), 8);
-            guiGraphics.drawString(font, text0, bWidth / 2 - font.width(text0) / 2, bHeight - (font.lineHeight * 2), -1, false);
+            guiGraphics.drawString(font, text0, bWidth / 2 - font.width(text0) / 2, bHeight - (font.lineHeight * 2), 0xFFCCCCCC, false);
 
             String text1 = I18n.get("desc.immersiveengineering.info.ticks", Helper.fDecimal(time));
-            guiGraphics.drawString(font, text1, bWidth / 2 - font.width(text1) / 2, bHeight - font.lineHeight, -1, false);
+            guiGraphics.drawString(font, text1, bWidth / 2 - font.width(text1) / 2, bHeight - font.lineHeight, 0xFFCCCCCC, false);
         }
         guiGraphics.pose().popPose();
     }

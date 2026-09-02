@@ -1,13 +1,13 @@
 {
   "type": "immersive_metallurgy:ball_mill",
-  "energy": 6400,
-  "time": 200,
+  "energy": 4000,
+  "time": 100,
   "result_fluid": {
-    "amount": 500,
+    "amount": 250,
     "id": "immersive_metallurgy:raw_uranium_slurry"
   },
   "input_fluid": {
-    "amount": 500,
+    "amount": 250,
     "fluid": "minecraft:water"
   },
   "input_item": {

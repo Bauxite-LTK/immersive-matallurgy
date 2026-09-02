@@ -31,8 +31,7 @@ public class BallMillScreen extends IEContainerScreen<BallMillMenu> {
         return ImmutableList.of(
                 new FluidInfoArea(menu.tanks.input(), new Rect2i(leftPos+10, topPos+12, 16, 47), 20, 51, TANK),
                 new FluidInfoArea(menu.tanks.output(), new Rect2i(leftPos+118, topPos+12, 16, 47), 20, 51, TANK),
-                new EnergyInfoArea(leftPos+158, topPos+12, menu.energy),
-                new TemperatureInfoArea(GetterAndSetter.constant(1000),leftPos,topPos)
+                new EnergyInfoArea(leftPos+158, topPos+12, menu.energy)
         );
     }
 

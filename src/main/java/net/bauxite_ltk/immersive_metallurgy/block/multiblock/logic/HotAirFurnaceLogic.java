@@ -52,7 +52,7 @@ public class HotAirFurnaceLogic implements
         IServerTickableComponent<HotAirFurnaceLogic.State>,
         IClientTickableComponent<HotAirFurnaceLogic.State> {
     public static final BlockPos MASTER_OFFSET = new BlockPos(1, 0, 1);
-    public static final BlockPos REDSTONE_POS = new BlockPos(1, 3, 2);
+    public static final BlockPos REDSTONE_POS = new BlockPos(1, 3, 0);
     public static final MultiblockFace INPUT_GAS_OFFSET = new MultiblockFace(1,6,1, RelativeBlockFace.DOWN);
     public static final MultiblockFace OUTPUT_AIR_OFFSET = new MultiblockFace(1,3,3, RelativeBlockFace.FRONT);
 
@@ -61,7 +61,7 @@ public class HotAirFurnaceLogic implements
 
 
 
-    public static final int HOT_AIR_CAPACITY = 24 * FluidType.BUCKET_VOLUME;
+    public static final int HOT_AIR_CAPACITY = 2000;
 
     @Override
     public State createInitialState(IInitialMultiblockContext<State> capabilitySource) {

@@ -242,22 +242,31 @@
 
   "block.immersive_metallurgy.mason_pine_log": "Mason Pine Log",
   "block.immersive_metallurgy.mason_pine_log_live": "Mason Pine Trunk",
+  "block.immersive_metallurgy.mason_pine_log_sappy": "Sappy Mason Pine Trunk",
   "block.immersive_metallurgy.mason_pine_wood": "Mason Pine Log Wood",
   "block.immersive_metallurgy.stripped_mason_pine_log": "Stripped Mason Pine Log",
   "block.immersive_metallurgy.stripped_mason_pine_wood": "Stripped Mason Pine Log Wood",
   "block.immersive_metallurgy.mason_pine_planks": "Mason Pine Planks",
   "block.immersive_metallurgy.mason_pine_leaves": "Mason Pine Leaves",
   "block.immersive_metallurgy.mason_pine_sapling": "Mason Pine Sapling",
+  "block.immersive_metallurgy.pig_iron_block": "Pig Iron Block",
+
+  "tooltip.immersive_metallurgy.electric_cable_lv.idle": "§a▼§r 512 RF/t ",
+  "tooltip.immersive_metallurgy.electric_cable_mv.idle": "§a▼§r 2048 RF/t ",
+  "tooltip.immersive_metallurgy.casting_channel.idle": "§b●§r Trace Input",
+  "tooltip.immersive_metallurgy.ingot_pig_iron.idle": "Can process into Steel in §dArc Furnace§r",
+  "tooltip.immersive_metallurgy.blast_furnace_iron_pellet.idle": "§c▲§r 1500°C",
 
 
-
-
+  "gui.immersive_metallurgy.gas_fuel": "Gas Fuel",
   
   
   
   "item.immersive_metallurgy.mason_pine_sap_bottle": "Mason Pine Sap Bottle",
   "item.immersive_metallurgy.colophony_bottle": "Colophony Bottle",
   "item.immersive_metallurgy.colophony": "Colophony",
+  "item.immersive_metallurgy.ingot_pig_iron": "Pig Iron Ingot",
+  "item.immersive_metallurgy.blast_furnace_iron_pellet": "Blast Furnace Pellet",
 
   "block.immersive_metallurgy.ball_mill": "Ball Mill",
   "block.immersive_metallurgy.flotation_cell": "Flotation Cell",
@@ -268,6 +277,11 @@
   "block.immersive_metallurgy.continuous_casting_machine": "Continuous Casting Machine",
 
   "desc.immersive_metallurgy.info.thread_ift": "%1$s IF/tick (x%2$d)",
+  "desc.immersive_metallurgy.info.fuel_cost": "Fuel Cost: %1$s",
+  "desc.immersive_metallurgy.info.fuel_amount": "Fuel: %1$s",
+  "desc.immersive_metallurgy.info.fuel_info": "Fuel: %1$s/%2$s",
+  "desc.immersive_metallurgy.info.ift": "%1$s IF/tick",
+  "desc.immersive_metallurgy.info.temperature": "%1$s°C",
 
   "immersive_metallurgy.configuration.title": "Immersive Metallurgy Configs",
   "immersive_metallurgy.configuration.section.immersive_metallurgy.common.toml": "Immersive Metallurgy Configs",

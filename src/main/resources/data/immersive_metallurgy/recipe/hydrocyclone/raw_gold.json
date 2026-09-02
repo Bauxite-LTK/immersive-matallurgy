@@ -1,7 +1,7 @@
 {
   "type": "immersive_metallurgy:hydrocyclone",
   "energy": 1600,
-  "time": 20,
+  "time": 10,
   "result_fluid": {
     "amount": 500,
     "id": "immersive_metallurgy:raw_gold_processed_slurry"
@@ -10,7 +10,7 @@
     "item": "immersive_metallurgy:pure_coarse_powder_raw_gold"
   },
   "input_fluid": {
-    "amount": 1000,
+    "amount": 500,
     "fluid": "immersive_metallurgy:raw_gold_slurry"
   }
 }

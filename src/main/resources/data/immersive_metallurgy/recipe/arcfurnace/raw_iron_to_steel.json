@@ -1,0 +1,14 @@
+{
+  "type": "immersiveengineering:arc_furnace",
+  "additives": [],
+  "energy": 30720,
+  "input": {
+    "tag": "c:ingots/pig_iron"
+  },
+  "results": [
+    {
+      "tag": "c:ingots/steel"
+    }
+  ],
+  "time": 60
+}
