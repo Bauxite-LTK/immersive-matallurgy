@@ -55,6 +55,8 @@ public class IMBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanVaporateLiquidBlockEntity>> WATER_GAS = BLOCK_ENTITIES.register(
             "water_gas", makeType(CanVaporateLiquidBlockEntity::forWaterGas, IMBlocks.WATER_GAS));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CanVaporateLiquidBlockEntity>> BLAST_FURNACE_GAS = BLOCK_ENTITIES.register(
+            "blast_furnace_gas", makeType(CanVaporateLiquidBlockEntity::forBlastFurnaceGas, IMBlocks.BLAST_FURNACE_GAS));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SapCollectorBlockEntity>> SAP_COLLECTOR = BLOCK_ENTITIES.register(
             "sap_collector", makeType(SapCollectorBlockEntity::new, IMBlocks.SAP_COLLECTOR)

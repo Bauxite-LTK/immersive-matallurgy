@@ -1,0 +1,17 @@
+浮选机
+小心脚下！
+<&multiblock>
+浮选机是一种利用矿物颗粒亲水或疏水性，通过气泡将矿浆中的矿物选择性分离的器械。
+
+<&flotation_cell0>
+§l泡沫浮选§r
+浮选机可以接受<link;immersive_metallurgy:hydrocyclone;水力旋流器;hydrocyclone0>输出的§1细矿浆§r在一侧下方输入，背面上方位置加入少量<link;immersive_metallurgy:flotation_reagent;浮选剂;start>。正面上方位置输出§1精矿泡沫§r，另一侧下方位置输出§1细矿浆§r。
+§1精矿泡沫§r是吸附在浮选泡沫上被排出的精选矿物，可直接输出到<link;immersive_metallurgy:thickener;浓密机;multiblock>
+未被完全选择而沉入底部的细矿浆，可以输送到另一台§5浮选机§r进行第二次浮选。<np>
+
+<&flotation_cell1>
+§l精矿溢流§r
+和传统的机器不同，浮选机的§1精矿浆§r输出依赖"§2溢出§r"。<br>
+具体来说，只有浮选机内液体总量达到"§2溢出线(overflow)§r"，机器内的精矿泡沫才会逐渐转移到输出槽位。<br>
+§2溢出线§r的高度是§248000mB§r，需要足够的矿物用于初始化产线。<np>
+§7(其实可以用泵把浮选机输入槽的液体抽出来然后往里注水以排空泡沫)§r

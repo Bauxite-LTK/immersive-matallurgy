@@ -1,9 +1,12 @@
 package net.bauxite_ltk.immersive_metallurgy.worldgen;
 
+import net.bauxite_ltk.immersive_metallurgy.block.IMBlocks;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -15,9 +18,17 @@ import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import java.util.List;
 
 public class IMPlacedFeatures {
+    public static ResourceKey<PlacedFeature> MASON_PINE_PLACED_KEY = registerKey("mason_pine_placed");
+
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context){
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+
+        register(context, MASON_PINE_PLACED_KEY, configuredFeatures.getOrThrow(IMConfiguredFeatures.MASON_PINE_KEY),
+                VegetationPlacements.treePlacement(
+                        PlacementUtils.countExtra(1,0.05f,1),
+                        IMBlocks.MASON_PINE_SAPLING.get()
+                        ));
     }
 
     public static ResourceKey<PlacedFeature> registerKey(String name){

@@ -1,0 +1,10 @@
+{
+  "ore_chunk0": {
+    "type": "item_display",
+    "items": [
+      "minecraft:raw_iron",
+      "immersive_metallurgy:pure_ore_chunk_raw_iron",
+      "immersive_metallurgy:pure_coarse_powder_raw_iron"
+    ]
+  }
+}

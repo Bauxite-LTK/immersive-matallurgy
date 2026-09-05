@@ -1,0 +1,20 @@
+{
+  "multiblock": {
+    "type": "multiblock",
+    "name": "immersive_metallurgy:multiblocks/flotation_cell"
+  },
+  "flotation_cell0": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/raw_iron_processed_slurry",
+      "immersiveengineering:plantoil_bucket",
+      "immersive_metallurgy:bucket/terpineol"
+    ]
+  },
+  "flotation_cell1": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/raw_iron_concentrate_slurry"
+    ]
+  }
+}

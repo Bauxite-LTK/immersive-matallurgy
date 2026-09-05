@@ -1,0 +1,24 @@
+{
+  "multiblock": {
+    "type": "multiblock",
+    "name": "immersive_metallurgy:multiblocks/ball_mill"
+  },
+  "ball_mill0": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:pure_coarse_powder_raw_iron"
+    ]
+  },
+  "ball_mill1": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:ore_fines_raw_iron"
+    ]
+  },
+  "ball_mill2": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/raw_iron_slurry"
+    ]
+  }
+}

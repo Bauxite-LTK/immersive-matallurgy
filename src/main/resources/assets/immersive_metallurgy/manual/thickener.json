@@ -1,0 +1,14 @@
+{
+  "multiblock": {
+    "type": "multiblock",
+    "name": "immersive_metallurgy:multiblocks/thickener"
+  },
+  "thickener0": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/raw_iron_concentrate_slurry",
+      "minecraft:water_bucket",
+      "immersive_metallurgy:ore_fines_raw_iron"
+    ]
+  }
+}

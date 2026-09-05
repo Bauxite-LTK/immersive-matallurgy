@@ -5,11 +5,13 @@ import net.bauxite_ltk.immersive_metallurgy.item.IMItems;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 public class IMItemModelProvider extends ItemModelProvider {
     public IMItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -70,5 +72,10 @@ public class IMItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder saplingItem(DeferredBlock<SaplingBlock> sapling){
         return withExistingParent(sapling.getId().getPath(), ResourceLocation.parse("item/generated"))
                 .texture("layer0", IMUtils.modRL("block/" + sapling.getId().getPath()));
+    }
+
+    private ItemModelBuilder slashPathItem(DeferredItem<Item> item){
+        return withExistingParent("item/" + item.getId().getPath(), ResourceLocation.parse("item/generated"))
+                .texture("layer0", IMUtils.modRL("item/" + item.getId().getPath()));
     }
 }

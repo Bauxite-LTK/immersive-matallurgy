@@ -1,18 +1,1 @@
-{
-  "type": "immersiveengineering:crusher",
-  "energy": 6000,
-  "input": {
-    "tag": "c:raw_materials/gold"
-  },
-  "result": {
-    "id": "minecraft:air"
-  },
-  "secondaries": [
-    {
-      "chance": 0.33333334,
-      "output": {
-        "id": "minecraft:air"
-      }
-    }
-  ]
-}
+{}

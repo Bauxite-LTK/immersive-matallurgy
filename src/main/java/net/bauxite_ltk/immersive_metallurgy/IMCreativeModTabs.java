@@ -125,6 +125,7 @@ public class IMCreativeModTabs {
                 output.accept(IMBlocks.PIG_IRON_BLOCK);
                 output.accept(IMItems.HOT_AIR_BUCKET);
                 output.accept(IMItems.WATER_GAS_BUCKET);
+                output.accept(IMItems.BLAST_FURNACE_GAS_BUCKET);
 
             }).build()
     );

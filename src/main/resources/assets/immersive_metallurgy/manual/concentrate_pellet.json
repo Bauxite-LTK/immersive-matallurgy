@@ -1,0 +1,10 @@
+{
+  "concentrate_pellet0": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:ore_fines_raw_iron",
+      "immersiveengineering:squeezer",
+      "immersive_metallurgy:concentrate_pellet_raw_iron"
+    ]
+  }
+}

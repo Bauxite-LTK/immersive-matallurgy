@@ -1,0 +1,12 @@
+{
+  "type": "immersiveengineering:refinery",
+  "energy": 120,
+  "input0": {
+    "amount": 10,
+    "fluid": "immersive_metallurgy:turpentine_oil"
+  },
+  "result": {
+    "amount": 10,
+    "id": "immersive_metallurgy:terpineol"
+  }
+}

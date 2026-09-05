@@ -9,7 +9,7 @@
   },
   "result_gas": {
     "amount": 300,
-    "id": "immersive_metallurgy:water_gas"
+    "id": "immersive_metallurgy:blast_furnace_gas"
   },
   "result_slag": {
     "id": "immersiveengineering:slag"

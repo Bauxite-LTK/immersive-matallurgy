@@ -1,0 +1,28 @@
+{
+  "multiblock": {
+    "type": "multiblock",
+    "name": "immersive_metallurgy:multiblocks/elite_blast_furnace"
+  },
+
+  "elite_blast_furnace0": {
+    "type": "crafting",
+    "recipes": ["immersive_metallurgy:crafting/blast_furnace_pellet"]
+  },
+
+  "elite_blast_furnace1": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/hot_air",
+      "immersiveengineering:elite_blast_furnace",
+      "immersive_metallurgy:concentrate_pellet_raw_iron"
+    ]
+  },
+
+  "elite_blast_furnace2": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/molten_pig_iron",
+      "immersive_metallurgy:bucket/water_gas"
+    ]
+  }
+}

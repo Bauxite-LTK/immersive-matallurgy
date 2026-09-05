@@ -32,7 +32,7 @@ public class IMBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(IMUtils.MOD_ID);
 
     
-    public static final DeferredBlock<LiquidBlock> MOLTEN_PIG_IRON = registerNoItem("fluid/molten_pig_iron", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_PIG_IRON.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), Blocks.IRON_BLOCK, IMBlockEntities.MOLTEN_PIG_IRON,100, 0x3c2d2d));
+    public static final DeferredBlock<LiquidBlock> MOLTEN_PIG_IRON = registerNoItem("fluid/molten_pig_iron", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_PIG_IRON.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), IMBlocks.PIG_IRON_BLOCK, IMBlockEntities.MOLTEN_PIG_IRON,100, 0x3c2d2d));
     public static final DeferredBlock<LiquidBlock> MOLTEN_GOLD = registerNoItem("fluid/molten_gold", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_GOLD.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), Blocks.GOLD_BLOCK,IMBlockEntities.MOLTEN_GOLD, 100, 0xffd241));
     public static final DeferredBlock<LiquidBlock> MOLTEN_COPPER = registerNoItem("fluid/molten_copper", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_COPPER.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), Blocks.COPPER_BLOCK,IMBlockEntities.MOLTEN_COPPER,100, 0xc16348));
     public static final DeferredBlock<LiquidBlock> MOLTEN_SILVER = registerNoItem("fluid/molten_silver", () -> new CanSolidifyLiquidBlock(IMFluids.MOLTEN_SILVER.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).noLootTable(), IEBlocks.Metals.STORAGE.get(EnumMetals.SILVER).get(), IMBlockEntities.MOLTEN_SILVER ,100, 0xd4d2cb));
@@ -43,6 +43,7 @@ public class IMBlocks {
 
     public static final DeferredBlock<LiquidBlock> HOT_AIR = registerNoItem("fluid/hot_air", () -> new CanVaporateLiquidBlock(IMFluids.HOT_AIR.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable(), IMBlockEntities.HOT_AIR ,5));
     public static final DeferredBlock<LiquidBlock> WATER_GAS = registerNoItem("fluid/water_gas", () -> new CanVaporateLiquidBlock(IMFluids.WATER_GAS.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable(), IMBlockEntities.WATER_GAS ,5));
+    public static final DeferredBlock<LiquidBlock> BLAST_FURNACE_GAS = registerNoItem("fluid/blast_furnace_gas", () -> new CanVaporateLiquidBlock(IMFluids.BLAST_FURNACE_GAS.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable(), IMBlockEntities.BLAST_FURNACE_GAS ,5));
 
 
     public static final DeferredBlock<LiquidBlock> MASON_PINE_SAP = registerNoItem("fluid/mason_pine_sap", () -> new LiquidBlock(IMFluids.MASON_PINE_SAP.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));

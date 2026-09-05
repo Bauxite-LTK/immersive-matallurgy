@@ -22,12 +22,14 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Supplier;
+
 
 public class CanSolidifyLiquidBlockEntity extends BlockEntity{
 
     int solidifyTicks = -1;
     int tickRemain = -1;
-    Block solid = null;
+    Supplier<Block> solid = null;
     int baseColor;
 
     public CanSolidifyLiquidBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState blockState) {
@@ -66,13 +68,15 @@ public class CanSolidifyLiquidBlockEntity extends BlockEntity{
         return new CanSolidifyLiquidBlockEntity(IMBlockEntities.MOLTEN_ALUMINUM.get(), pos, blockState);
     }
 
-    public void setSolidProperties(Block solid, int solidifyTicks, int baseColor){
+    public void setSolidProperties(Supplier<Block> solid, int solidifyTicks, int baseColor){
         this.solid = solid;
         this.solidifyTicks = solidifyTicks;
         this.tickRemain = solidifyTicks;
         this.baseColor = baseColor;
         syncToClient();
     }
+
+
 
     public void serverTick(){
         if(tickRemain > 0){
@@ -85,7 +89,7 @@ public class CanSolidifyLiquidBlockEntity extends BlockEntity{
         }
         if (level != null) {
             if(level.getFluidState(getBlockPos()).isSource()){
-                BlockState newState = solid.defaultBlockState();
+                BlockState newState = solid.get().defaultBlockState();
                 level.setBlockAndUpdate(worldPosition, newState);
                 level.playSound(null,getBlockPos(), SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 1,1);
 
@@ -109,7 +113,7 @@ public class CanSolidifyLiquidBlockEntity extends BlockEntity{
     public void readCustomNBT(CompoundTag nbt, boolean descPacket, HolderLookup.Provider provider){
         this.tickRemain = nbt.getInt("ticksRemain");
         //ImmersiveMetallurgy.LOGGER.info("load ticksRemain:{}", tickRemain);
-        this.solid = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(nbt.getString("solidBlock")));
+        this.solid = () -> BuiltInRegistries.BLOCK.get(ResourceLocation.parse(nbt.getString("solidBlock")));
         //ImmersiveMetallurgy.LOGGER.info("load solid:{}", solid);
 
         this.setChanged();
@@ -117,7 +121,7 @@ public class CanSolidifyLiquidBlockEntity extends BlockEntity{
 
     public void writeCustomNBT(CompoundTag nbt, boolean descPacket, HolderLookup.Provider provider){
         nbt.putInt("ticksRemain", tickRemain);
-        nbt.putString("solidBlock", BuiltInRegistries.BLOCK.getKey(solid).toString());
+        nbt.putString("solidBlock", BuiltInRegistries.BLOCK.getKey(solid.get()).toString());
     }
 
 

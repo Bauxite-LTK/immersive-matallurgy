@@ -19,11 +19,19 @@ import java.util.function.Supplier;
 public class CanSolidifyLiquidBlock extends LiquidBlock implements EntityBlock {
 
     int solidifyTicks;
-    Block solid;
+    Supplier<Block> solid;
     final int baseColor;
     Supplier<BlockEntityType<CanSolidifyLiquidBlockEntity>> instanceBE;
 
     public CanSolidifyLiquidBlock(FlowingFluid fluid, Properties properties, Block solid, Supplier<BlockEntityType<CanSolidifyLiquidBlockEntity>> instanceBE , int solidifyTicks, int baseColor) {
+        super(fluid, properties);
+        this.solid = () -> solid;
+        this.solidifyTicks = solidifyTicks;
+        this.baseColor = baseColor;
+        this.instanceBE = instanceBE;
+    }
+
+    public CanSolidifyLiquidBlock(FlowingFluid fluid, Properties properties, Supplier<Block> solid, Supplier<BlockEntityType<CanSolidifyLiquidBlockEntity>> instanceBE , int solidifyTicks, int baseColor) {
         super(fluid, properties);
         this.solid = solid;
         this.solidifyTicks = solidifyTicks;

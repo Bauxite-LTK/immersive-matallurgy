@@ -1,0 +1,14 @@
+{
+  "flotation_reagent0": {
+    "type": "item_display",
+    "items": [
+      "immersiveengineering:plantoil_bucket"
+    ]
+  },
+  "flotation_reagent1": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/terpineol"
+    ]
+  }
+}

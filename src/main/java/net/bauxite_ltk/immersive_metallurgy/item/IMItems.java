@@ -93,6 +93,14 @@ public class IMItems {
                             new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
                     )
             );
+
+    public static final DeferredItem<Item> BLAST_FURNACE_GAS_BUCKET =
+            ITEMS.register("bucket/blast_furnace_gas",
+                    () -> new BucketItem(
+                            IMFluids.BLAST_FURNACE_GAS.getSource(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
+                    )
+            );
     
     
 

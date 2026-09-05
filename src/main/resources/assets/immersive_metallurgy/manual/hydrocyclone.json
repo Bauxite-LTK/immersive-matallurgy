@@ -1,0 +1,14 @@
+{
+  "multiblock": {
+    "type": "multiblock",
+    "name": "immersive_metallurgy:multiblocks/hydrocyclone"
+  },
+  "hydrocyclone0": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/raw_iron_slurry",
+      "immersive_metallurgy:bucket/raw_iron_processed_slurry",
+      "immersive_metallurgy:pure_coarse_powder_raw_iron"
+    ]
+  }
+}
