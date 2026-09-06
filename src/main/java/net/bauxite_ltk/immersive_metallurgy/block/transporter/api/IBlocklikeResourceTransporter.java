@@ -57,17 +57,17 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
                 if(status.equals(TransportationData.Status.SOURCE)){
                     //if(sourceKey.faceDir == null) throw new RuntimeException("WTF");
-                    IMUtils.LOGGER.info("Source update subnet pos:{}", getBlockPos());
+                    //IMUtils.LOGGER.info("Source update subnet pos:{}", getBlockPos());
                     rootUpdateSubnet(sourceKey);
                     if(isNeighborCapabilityInvalid(data.input) || getSelfHandler().isAllEmpty()) {
-                        IMUtils.LOGGER.info("set subroot");
+                        //IMUtils.LOGGER.info("set subroot");
                         data.setStatus(TransportationData.Status.DRAIN);
                         data.removeInput();
                     }
                 }
 
                 else if(status.equals(TransportationData.Status.DRAIN)){
-                    IMUtils.LOGGER.info("drain update subnet pos:{}", getBlockPos());
+                    //IMUtils.LOGGER.info("drain update subnet pos:{}", getBlockPos());
                     BlockFace drainKey = new BlockFace(getBlockPos(),null);
                     subrootUpdateSubnet(sourceKey,
                             drainKey
@@ -85,7 +85,7 @@ public interface IBlocklikeResourceTransporter<R> extends IEServerTickableBE {
 
                 else if(status.equals(TransportationData.Status.COMMON)){
                     if (isNeighborCapabilityInvalid(data.input)){
-                        IMUtils.LOGGER.info("common set sub source pos:{}", getBlockPos());
+                        //IMUtils.LOGGER.info("common set sub source pos:{}", getBlockPos());
                         data.setStatus(TransportationData.Status.DRAIN);
                     }
                 }

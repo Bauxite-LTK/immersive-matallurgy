@@ -9,6 +9,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.logic.ThickenerLogic;
 import net.bauxite_ltk.immersive_metallurgy.util.Helper;
+import net.bauxite_ltk.immersive_metallurgy.util.IMRenderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -31,26 +32,24 @@ public class ThickenerRender extends IEMultiblockRenderer<ThickenerLogic.State> 
         final MultiblockOrientation orientation = ctx.getLevel().getOrientation();
 
         matrixStack.pushPose();
-        matrixStack.translate(0.5, 0.5, 0.5);
-        bufferIn = BERenderUtils.mirror(orientation, matrixStack, bufferIn);
-        VertexConsumer buffer = bufferIn.getBuffer(RenderType.solid());
-        rotateForFacingNoCentering(matrixStack, orientation.front());
-        matrixStack.translate(-0.5, -0.5, -0.5);
+
+        MultiBufferSource bufferSource = IMRenderHelper.mirror(orientation, matrixStack,8,8, bufferIn);
+
+        VertexConsumer buffer = bufferSource.getBuffer(RenderType.translucent());
+        rotateForFacing(matrixStack, orientation.front());
 
         boolean active = ctx.getState().shouldRenderActive();
         float agitatorAngle = ctx.getState().getAgitatorAngle()+ (active? 1.5f * partialTicks: 0);
 
         Helper.applyRotationY(8,8,agitatorAngle,matrixStack);
 
-
-
         blockRenderer.getModelRenderer().renderModel(
                 matrixStack.last(), buffer, null, model,
                 1, 1, 1,
                 combinedLightIn, combinedOverlayIn, ModelData.EMPTY, RenderType.solid()
         );
-
         matrixStack.popPose();
+
 
 
         ThickenerLogic.ThickenerTanks tanks = ctx.getState().tanks;
@@ -75,6 +74,14 @@ public class ThickenerRender extends IEMultiblockRenderer<ThickenerLogic.State> 
 //        TFCTrihydrate.LOGGER.info("Ore: " + ore);
 
         if(!ore.isEmpty()){
+            renderFluidLayerXZ(
+                    matrixStack,orientation,bufferIn,
+                    ore,
+                    0,150,0,17,8,
+                    Math.round(oreHeight));
+
+
+
             renderFluidLayerXZ(
                     matrixStack,orientation,bufferIn,
                     ore,
@@ -131,6 +138,8 @@ public class ThickenerRender extends IEMultiblockRenderer<ThickenerLogic.State> 
             }
         }
 
+
+
     }
 
     private static void renderFluidLayerXZ(
@@ -144,13 +153,16 @@ public class ThickenerRender extends IEMultiblockRenderer<ThickenerLogic.State> 
     {
         float baseScale = .0625f;
         matrixStack.pushPose();
+        MultiBufferSource bufferSource = IMRenderHelper.mirror(orientation, matrixStack,8,8, bufferIn);
+
         rotateForFacing(matrixStack, orientation.front());
         matrixStack.scale(baseScale, baseScale, baseScale);
         matrixStack.translate(tx,ty,tz);
         matrixStack.translate(0, height,0);
         Helper.applyRotationX(0,0,90,matrixStack);
-        GuiHelper.drawRepeatedFluidSprite(bufferIn.getBuffer(RenderType.translucent()), matrixStack, fluidStack,
+        IMRenderHelper.drawRepeatedFluidSprite(bufferSource.getBuffer(RenderType.translucent()), matrixStack, fluidStack,
                 0, 0, w, h);
+
         matrixStack.popPose();
     }
 }
