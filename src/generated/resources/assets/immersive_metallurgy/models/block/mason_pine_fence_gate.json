@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_fence_gate",
+  "textures": {
+    "texture": "immersive_metallurgy:block/mason_pine_planks"
+  }
+}

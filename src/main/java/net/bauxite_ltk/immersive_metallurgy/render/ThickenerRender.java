@@ -77,14 +77,6 @@ public class ThickenerRender extends IEMultiblockRenderer<ThickenerLogic.State> 
             renderFluidLayerXZ(
                     matrixStack,orientation,bufferIn,
                     ore,
-                    0,150,0,17,8,
-                    Math.round(oreHeight));
-
-
-
-            renderFluidLayerXZ(
-                    matrixStack,orientation,bufferIn,
-                    ore,
                     -48,46,-31,112,78,
                     Math.round(oreHeight));
             renderFluidLayerXZ(

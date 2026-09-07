@@ -400,7 +400,7 @@ public class ContinuousCastingMachineLogic implements
                     new FluidTank(GAS_CAPACITY) {
                         @Override
                         public boolean isFluidValid(final FluidStack stack) {
-                            return stack.is(IMFluids.WATER_GAS.source());
+                            return stack.is(IMTags.Fluids.GAS_FUEL);
                         }
                     },
                     new FluidTank(WATER_CAPACITY){

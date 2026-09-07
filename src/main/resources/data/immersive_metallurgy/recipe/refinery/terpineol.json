@@ -5,6 +5,10 @@
     "amount": 10,
     "fluid": "immersive_metallurgy:turpentine_oil"
   },
+  "input1": {
+    "amount": 10,
+    "fluid": "immersiveengineering:redstone_acid"
+  },
   "result": {
     "amount": 10,
     "id": "immersive_metallurgy:terpineol"

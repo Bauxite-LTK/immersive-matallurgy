@@ -48,8 +48,45 @@ public class IMBlockTagProvider extends BlockTagsProvider {
                 .add(IMBlocks.STRIPPED_MASON_PINE_LOG.get())
                 .add(IMBlocks.STRIPPED_MASON_PINE_WOOD.get());
 
+        this.tag(BlockTags.WOODEN_FENCES)
+                .add(IMBlocks.MASON_PINE_FENCE.get());
+        this.tag(BlockTags.FENCES)
+                .add(IMBlocks.MASON_PINE_FENCE.get());
 
+        this.tag(BlockTags.FENCE_GATES)
+                .add(IMBlocks.MASON_PINE_FENCE_GATE.get());
+        this.tag(BlockTags.UNSTABLE_BOTTOM_CENTER)
+                .add(IMBlocks.MASON_PINE_FENCE_GATE.get());
 
+        this.tag(BlockTags.WOODEN_DOORS)
+                .add(IMBlocks.MASON_PINE_DOOR.get());
+        this.tag(BlockTags.DOORS)
+                .add(IMBlocks.MASON_PINE_DOOR.get());
+
+        this.tag(BlockTags.TRAPDOORS)
+                .add(IMBlocks.MASON_PINE_TRAP_DOOR.get());
+        this.tag(BlockTags.WOODEN_TRAPDOORS)
+                .add(IMBlocks.MASON_PINE_TRAP_DOOR.get());
+
+        this.tag(BlockTags.WOODEN_STAIRS)
+                .add(IMBlocks.MASON_PINE_STAIRS.get());
+        this.tag(BlockTags.STAIRS)
+                .add(IMBlocks.MASON_PINE_STAIRS.get());
+
+        this.tag(BlockTags.WOODEN_SLABS)
+                .add(IMBlocks.MASON_PINE_SLAB.get());
+        this.tag(BlockTags.SLABS)
+                .add(IMBlocks.MASON_PINE_SLAB.get());
+
+        this.tag(BlockTags.PRESSURE_PLATES)
+                .add(IMBlocks.MASON_PINE_PRESSURE_PLATE.get());
+        this.tag(BlockTags.WOODEN_PRESSURE_PLATES)
+                .add(IMBlocks.MASON_PINE_PRESSURE_PLATE.get());
+
+        this.tag(BlockTags.BUTTONS)
+                .add(IMBlocks.MASON_PINE_BUTTON.get());
+        this.tag(BlockTags.WOODEN_BUTTONS)
+                .add(IMBlocks.MASON_PINE_BUTTON.get());
 
 
 

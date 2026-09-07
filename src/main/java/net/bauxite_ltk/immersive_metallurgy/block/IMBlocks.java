@@ -8,9 +8,8 @@ import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanVaporateLiquidBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.ElectricCableBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.transporter.casting_channel.CastingChannelBlock;
 import net.bauxite_ltk.immersive_metallurgy.block.sapCollector.SapCollectorBlock;
-import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableBlock;
-import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableLeavesBlock;
-import net.bauxite_ltk.immersive_metallurgy.block.wood.FlameableRotatedPillarBlock;
+import net.bauxite_ltk.immersive_metallurgy.block.wood.*;
+import net.bauxite_ltk.immersive_metallurgy.block.wood.planks.*;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
 import net.bauxite_ltk.immersive_metallurgy.item.IMBaseBlockItem;
 import net.bauxite_ltk.immersive_metallurgy.item.IMItems;
@@ -20,6 +19,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -57,9 +58,18 @@ public class IMBlocks {
     public static final DeferredBlock<FlameableRotatedPillarBlock> STRIPPED_MASON_PINE_LOG = registerBlock("stripped_mason_pine_log", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
     public static final DeferredBlock<FlameableRotatedPillarBlock> STRIPPED_MASON_PINE_WOOD = registerBlock("stripped_mason_pine_wood", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
 
-    public static final DeferredBlock<FlameableBlock> MASON_PINE_PLANKS = registerBlock("mason_pine_planks", () -> new FlameableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS), 20,5));
+    public static final DeferredBlock<Block> MASON_PINE_PLANKS = registerBlock("mason_pine_planks", () -> new FlameableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS), 20,5));
     public static final DeferredBlock<LeavesBlock> MASON_PINE_LEAVES = registerBlock("mason_pine_leaves", () -> new FlameableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES), 60 ,30));
     public static final DeferredBlock<SaplingBlock> MASON_PINE_SAPLING = registerBlock("mason_pine_sapling", () -> new SaplingBlock(IMTreeGrowers.MASON_PINE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
+    public static final DeferredBlock<StairBlock> MASON_PINE_STAIRS = registerBlock("mason_pine_stairs", ()-> new FlameableStairBlock(MASON_PINE_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS), 20, 5));
+    public static final DeferredBlock<SlabBlock> MASON_PINE_SLAB = registerBlock("mason_pine_slab", ()-> new FlameableSlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB), 20, 5));
+    public static final DeferredBlock<PressurePlateBlock> MASON_PINE_PRESSURE_PLATE = registerBlock("mason_pine_pressure_plate", ()-> new FlameablePressurePlateBlock(BlockSetType.SPRUCE ,BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE), 20, 5));
+    public static final DeferredBlock<ButtonBlock> MASON_PINE_BUTTON= registerBlock("mason_pine_button", ()-> new FlameableButtonBlock(BlockSetType.SPRUCE ,BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON),30, 20, 5));
+    public static final DeferredBlock<FlameableFenceBlock> MASON_PINE_FENCE= registerBlock("mason_pine_fence", ()-> new FlameableFenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE), 20, 5));
+    public static final DeferredBlock<FlameableFenceGateBlock> MASON_PINE_FENCE_GATE= registerBlock("mason_pine_fence_gate", ()-> new FlameableFenceGateBlock(WoodType.SPRUCE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE), 20, 5));
+    public static final DeferredBlock<FlameableDoorBlock> MASON_PINE_DOOR= registerBlock("mason_pine_door", ()-> new FlameableDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR), 20, 5));
+    public static final DeferredBlock<FlameableTrapDoorBlock> MASON_PINE_TRAP_DOOR= registerBlock("mason_pine_trapdoor", ()-> new FlameableTrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR), 20, 5));
 
     public static final DeferredBlock<Block> PIG_IRON_BLOCK = registerBlock("pig_iron_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 

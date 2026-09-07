@@ -1,0 +1,22 @@
+{
+  "multiblock": {
+    "type": "multiblock",
+    "name": "immersive_metallurgy:multiblocks/continuous_casting_machine"
+  },
+
+  "continuous_casting_machine0": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/molten_pig_iron",
+      "immersive_metallurgy:ingot_pig_iron"
+    ]
+  },
+
+  "continuous_casting_machine1": {
+    "type": "item_display",
+    "items": [
+      "minecraft:water_bucket",
+      "immersive_metallurgy:bucket/blast_furnace_gas"
+    ]
+  }
+}

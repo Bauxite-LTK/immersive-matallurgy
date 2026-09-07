@@ -1,19 +1,23 @@
 package net.bauxite_ltk.immersive_metallurgy.crafting;
 
-import blusunrize.immersiveengineering.api.crafting.IERecipeSerializer;
-import blusunrize.immersiveengineering.api.crafting.IERecipeTypes;
-import blusunrize.immersiveengineering.api.crafting.MultiblockRecipe;
-import blusunrize.immersiveengineering.api.crafting.TagOutput;
+import blusunrize.immersiveengineering.api.crafting.*;
 import blusunrize.immersiveengineering.api.crafting.cache.CachedRecipeList;
 import com.google.common.collect.Lists;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
+import java.util.Comparator;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class HotAirFurnaceRecipe extends MultiblockRecipe {
@@ -58,5 +62,26 @@ public class HotAirFurnaceRecipe extends MultiblockRecipe {
     @Override
     public int getMultipleProcessTicks() {
         return 0;
+    }
+
+
+    public static SortedMap<Component, Float> getInputValuesSorted(Level level, Fluid out, boolean inverse)
+    {
+        SortedMap<Component, Float> map = new TreeMap<>(
+                Comparator.comparing(
+                        (Function<Component, String>) Component::getString,
+                        inverse?Comparator.reverseOrder(): Comparator.naturalOrder()
+                )
+        );
+        for(RecipeHolder<HotAirFurnaceRecipe> holder : RECIPES.getRecipes(level))
+        {
+            HotAirFurnaceRecipe recipe = holder.value();
+            if(recipe.outputFluidAir!=null&&recipe.outputFluidAir.getFluid()==out && !recipe.inputFluidGas.ingredient().hasNoFluids())
+            {
+                FluidStack is = recipe.inputFluidGas.getFluids()[0];
+                map.put(is.getHoverName(), (float)recipe.inputFluidGas.amount() * 20f/recipe.getBaseTime());
+            }
+        }
+        return map;
     }
 }

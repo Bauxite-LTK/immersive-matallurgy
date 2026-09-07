@@ -19,11 +19,11 @@ public class ContinuousCastingMachineMultiblock extends IETemplateMultiblock {
 
     @Override
     public float getManualScale() {
-        return 16;
+        return 12;
     }
 
     @Override
     public void initializeClient(Consumer<ClientMultiblocks.MultiblockManualData> consumer){
-        consumer.accept(new IMMultiblockProperties(this, 1.5,2.5,3.5));
+        consumer.accept(new IMMultiblockProperties(this, 1.5,0.5,3.5));
     }
 }

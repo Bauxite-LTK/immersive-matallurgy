@@ -3,13 +3,19 @@
   "immersive_metallurgy:mineral_processing": {
     "category_weight": 200,
     "entry_list": [
+      "immersive_metallurgy:mason_pine",
       "immersive_metallurgy:ore_chunk",
       "immersive_metallurgy:ball_mill",
       "immersive_metallurgy:hydrocyclone",
       "immersive_metallurgy:flotation_cell",
       "immersive_metallurgy:flotation_reagent",
       "immersive_metallurgy:thickener",
-      "immersive_metallurgy:concentrate_pellet"
+      "immersive_metallurgy:concentrate_pellet",
+      "immersive_metallurgy:elite_blast_furnace",
+      "immersive_metallurgy:hot_air_furnace",
+      "immersive_metallurgy:gas_fuel",
+      "immersive_metallurgy:continuous_casting_machine",
+      "immersive_metallurgy:pig_iron"
     ]
   }
 }

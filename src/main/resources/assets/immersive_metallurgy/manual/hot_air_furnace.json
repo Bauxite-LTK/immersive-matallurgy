@@ -1,0 +1,19 @@
+{
+  "multiblock": {
+    "type": "multiblock",
+    "name": "immersive_metallurgy:multiblocks/hot_air_furnace"
+  },
+
+  "hot_air_furnace0": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/blast_furnace_gas",
+      "immersive_metallurgy:bucket/hot_air"
+    ]
+  },
+
+  "list": {
+    "type": "immersive_metallurgy:im_dynamic_table",
+    "table": "hot_air_furnace"
+  }
+}

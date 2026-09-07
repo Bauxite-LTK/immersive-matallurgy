@@ -6,6 +6,7 @@ import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -65,6 +66,11 @@ public class IMItemModelProvider extends ItemModelProvider {
         basicItem(IMItems.PIG_IRON_BLAST_FURNACE_PELLET.get());
         basicItem(IMItems.MASON_PINE_SAP_BOTTLE.get());
         basicItem(IMItems.COLOPHONY_BOTTLE.get());
+        basicItem(IMBlocks.MASON_PINE_DOOR.asItem());
+
+        buttonItem(IMBlocks.MASON_PINE_BUTTON, IMBlocks.MASON_PINE_PLANKS);
+        fenceItem(IMBlocks.MASON_PINE_FENCE, IMBlocks.MASON_PINE_PLANKS);
+
 
         saplingItem(IMBlocks.MASON_PINE_SAPLING);
     }
@@ -77,5 +83,15 @@ public class IMItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder slashPathItem(DeferredItem<Item> item){
         return withExistingParent("item/" + item.getId().getPath(), ResourceLocation.parse("item/generated"))
                 .texture("layer0", IMUtils.modRL("item/" + item.getId().getPath()));
+    }
+
+    private void buttonItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock){
+        this.withExistingParent(block.getId().getPath(),mcLoc("block/button_inventory"))
+                .texture("texture", IMUtils.modRL("block/" + baseBlock.getId().getPath()));
+    }
+
+    private void fenceItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock){
+        this.withExistingParent(block.getId().getPath(),mcLoc("block/fence_inventory"))
+                .texture("texture", IMUtils.modRL("block/" + baseBlock.getId().getPath()));
     }
 }

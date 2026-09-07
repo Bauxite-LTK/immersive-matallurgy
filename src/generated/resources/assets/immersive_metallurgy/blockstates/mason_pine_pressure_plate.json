@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "immersive_metallurgy:block/mason_pine_pressure_plate"
+    },
+    "powered=true": {
+      "model": "immersive_metallurgy:block/mason_pine_pressure_plate_down"
+    }
+  }
+}

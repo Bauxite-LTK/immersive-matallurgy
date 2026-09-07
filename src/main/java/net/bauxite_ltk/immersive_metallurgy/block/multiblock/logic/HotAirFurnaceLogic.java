@@ -25,6 +25,7 @@ import net.bauxite_ltk.immersive_metallurgy.block.multiblock.shapes.Hydrocyclone
 import net.bauxite_ltk.immersive_metallurgy.crafting.HotAirFurnaceRecipe;
 import net.bauxite_ltk.immersive_metallurgy.crafting.HydrocycloneRecipe;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
+import net.bauxite_ltk.immersive_metallurgy.tags.IMTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -289,7 +290,7 @@ public class HotAirFurnaceLogic implements
                 new FluidTank(HOT_AIR_CAPACITY){
                     @Override
                     public boolean isFluidValid(final FluidStack stack) {
-                        return stack.is(IMFluids.WATER_GAS.source());
+                        return stack.is(IMTags.Fluids.GAS_FUEL);
                     }
                 },
                 new FluidTank(HOT_AIR_CAPACITY){

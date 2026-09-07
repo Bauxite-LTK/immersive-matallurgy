@@ -1,0 +1,12 @@
+燃气热风炉
+顶燃式
+<&multiblock>
+大型的燃气热风炉，适用于<link;immersive_metallurgy:elite_blast_furnace;冶金高炉;multiblock>的预热。<np>
+
+<&hot_air_furnace0>
+§l燃气预热§r
+燃气热风炉从顶部接受<link;immersive_metallurgy:gas_fuel;燃气;start>，从侧面输出§1热空气§r<br>
+燃气热风炉最高可输出400mb/s的热空气，不同的燃气消耗速率不同。<np>
+
+以下是热风炉达到最大速率时不同燃料的消耗(/s)
+<&list>

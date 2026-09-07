@@ -13,6 +13,7 @@ public class IMTags {
     public static class Fluids{
         public static final TagKey<Fluid> TEMPERATURE_MOLTEN_FLUID = createTag("temperature_molten_fluid");
         public static final TagKey<Fluid> SAP_FLUID = createTag("sap_fluid");
+        public static final TagKey<Fluid> GAS_FUEL = createTag("gas_fuel");
 
         private static TagKey<Fluid> createTag(String name){
             return FluidTags.create(IMUtils.modRL(name));

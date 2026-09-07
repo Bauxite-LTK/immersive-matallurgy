@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "immersive_metallurgy:block/mason_pine_planks"
+  }
+}

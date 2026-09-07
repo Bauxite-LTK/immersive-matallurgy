@@ -22,13 +22,26 @@ public class IMCreativeModTabs {
 
                 output.accept(IMBlocks.ELECTRIC_CABLE_LV.asItem());
                 output.accept(IMBlocks.ELECTRIC_CABLE_MV.asItem());
+                output.accept(IMBlocks.CASTING_CHANNEL);
                 output.accept(IMBlocks.MASON_PINE_LOG);
                 output.accept(IMBlocks.MASON_PINE_WOOD);
                 output.accept(IMBlocks.STRIPPED_MASON_PINE_LOG);
                 output.accept(IMBlocks.STRIPPED_MASON_PINE_WOOD);
                 output.accept(IMBlocks.MASON_PINE_LEAVES);
-                output.accept(IMBlocks.MASON_PINE_PLANKS);
                 output.accept(IMBlocks.MASON_PINE_SAPLING);
+
+                output.accept(IMBlocks.MASON_PINE_PLANKS);
+                output.accept(IMBlocks.MASON_PINE_STAIRS);
+                output.accept(IMBlocks.MASON_PINE_SLAB);
+                output.accept(IMBlocks.MASON_PINE_FENCE);
+                output.accept(IMBlocks.MASON_PINE_FENCE_GATE);
+                output.accept(IMBlocks.MASON_PINE_TRAP_DOOR);
+                output.accept(IMBlocks.MASON_PINE_DOOR);
+                output.accept(IMBlocks.MASON_PINE_PRESSURE_PLATE);
+                output.accept(IMBlocks.MASON_PINE_BUTTON);
+
+
+
                 output.accept(IMBlocks.MASON_PINE_LOG_LIVE);
                 output.accept(IMBlocks.MASON_PINE_LOG_SAPPY);
                 output.accept(IMBlocks.SAP_COLLECTOR);
@@ -119,7 +132,7 @@ public class IMCreativeModTabs {
                 output.accept(IMItems.RAW_ALUMINUM_TAILING_SLURRY_BUCKET);
                 output.accept(IMItems.MOLTEN_ALUMINUM_BUCKET.get());
 
-                output.accept(IMBlocks.CASTING_CHANNEL);
+
                 output.accept(IMItems.PIG_IRON_BLAST_FURNACE_PELLET);
                 output.accept(IMItems.PIG_IRON_INGOT);
                 output.accept(IMBlocks.PIG_IRON_BLOCK);

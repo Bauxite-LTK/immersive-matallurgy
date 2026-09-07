@@ -1,0 +1,6 @@
+{
+  "list": {
+    "type": "immersive_metallurgy:im_dynamic_table",
+    "table": "gas_fuel"
+  }
+}

@@ -1,5 +1,8 @@
 package net.bauxite_ltk.immersive_metallurgy;
 
+import blusunrize.immersiveengineering.api.ManualHelper;
+import blusunrize.immersiveengineering.client.IEManual;
+import blusunrize.immersiveengineering.client.manual.IEManualInstance;
 import net.bauxite_ltk.immersive_metallurgy.block.IMBlockEntities;
 import net.bauxite_ltk.immersive_metallurgy.block.IMBlocks;
 import net.bauxite_ltk.immersive_metallurgy.block.multiblock.IMMultiblockBuilder;
@@ -9,6 +12,7 @@ import net.bauxite_ltk.immersive_metallurgy.crafting.IMRecipeSerializers;
 import net.bauxite_ltk.immersive_metallurgy.crafting.IMRecipeType;
 import net.bauxite_ltk.immersive_metallurgy.event.IMClient;
 import net.bauxite_ltk.immersive_metallurgy.event.IMListeners;
+import net.bauxite_ltk.immersive_metallurgy.event.IMManualHelper;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
 import net.bauxite_ltk.immersive_metallurgy.gui.IMMenuTypes;
 import net.bauxite_ltk.immersive_metallurgy.item.IMItems;
@@ -98,10 +102,12 @@ public class ImmersiveMetallurgy {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
         populateAPI();
+
     }
 
     public static void populateAPI(){
         Config.MACHINES.populateAPI();
+        IMManualHelper.addIMElements(ManualHelper.IE_MANUAL_INSTANCE.get());
     }
 
     // Add the example block item to the building blocks tab

@@ -35,6 +35,14 @@ public class IMBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(IMBlocks.STRIPPED_MASON_PINE_LOG.get());
         dropSelf(IMBlocks.STRIPPED_MASON_PINE_WOOD.get());
         dropSelf(IMBlocks.MASON_PINE_PLANKS.get());
+        dropSelf(IMBlocks.MASON_PINE_STAIRS.get());
+        dropSelf(IMBlocks.MASON_PINE_SLAB.get());
+        dropSelf(IMBlocks.MASON_PINE_PRESSURE_PLATE.get());
+        dropSelf(IMBlocks.MASON_PINE_BUTTON.get());
+        dropSelf(IMBlocks.MASON_PINE_FENCE.get());
+        dropSelf(IMBlocks.MASON_PINE_FENCE_GATE.get());
+        add(IMBlocks.MASON_PINE_DOOR.get(), createDoorTable(IMBlocks.MASON_PINE_DOOR.get()));
+        dropSelf(IMBlocks.MASON_PINE_TRAP_DOOR.get());
         dropSelf(IMBlocks.MASON_PINE_SAPLING.get());
         dropSelf(IMBlocks.SAP_COLLECTOR.get());
         dropSelf(IMBlocks.CASTING_CHANNEL.get());

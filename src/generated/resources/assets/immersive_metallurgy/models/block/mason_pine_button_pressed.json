@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button_pressed",
+  "textures": {
+    "texture": "immersive_metallurgy:block/mason_pine_planks"
+  }
+}

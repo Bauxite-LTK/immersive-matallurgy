@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "immersive_metallurgy:block/mason_pine_slab"
+    },
+    "type=double": {
+      "model": "immersive_metallurgy:block/mason_pine_planks"
+    },
+    "type=top": {
+      "model": "immersive_metallurgy:block/mason_pine_slab_top"
+    }
+  }
+}

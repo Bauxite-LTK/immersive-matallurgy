@@ -3,7 +3,7 @@
   "burn_time": 50,
   "input_gas": {
     "amount": 100,
-    "tag": "c:petroleum_gas"
+    "fluid": "immersivepetroleum:petroleum_gas"
   }
 
 }

@@ -1,0 +1,50 @@
+{
+  "image": {
+    "type": "image",
+    "images": [
+      {
+        "location": "immersive_metallurgy:textures/misc/mason_pine.png",
+        "uMin": 0,
+        "vMin": 0,
+        "uSize": 74,
+        "vSize": 89
+      }
+    ]
+  },
+  "mason_pine0": {
+    "type": "item_display",
+    "items": [
+      "minecraft:iron_axe",
+      "immersive_metallurgy:mason_pine_sapling",
+      "immersive_metallurgy:mason_pine_log_sappy"
+    ]
+  },
+
+  "mason_pine1": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:mason_pine_log_sappy",
+      "immersive_metallurgy:sap_collector",
+      "immersive_metallurgy:bucket/mason_pine_sap"
+    ]
+  },
+
+  "mason_pine2": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:mason_pine_sap_bottle",
+      "immersive_metallurgy:colophony_bottle",
+      "immersive_metallurgy:colophony"
+    ]
+  },
+
+  "mason_pine3": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/mason_pine_sap",
+      "immersive_metallurgy:bucket/turpentine_oil",
+      "immersiveengineering:redstone_acid_bucket",
+      "immersive_metallurgy:bucket/terpineol"
+    ]
+  }
+}

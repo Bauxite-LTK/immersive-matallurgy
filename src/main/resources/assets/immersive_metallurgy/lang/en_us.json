@@ -250,7 +250,17 @@
   "block.immersive_metallurgy.mason_pine_wood": "Mason Pine Log Wood",
   "block.immersive_metallurgy.stripped_mason_pine_log": "Stripped Mason Pine Log",
   "block.immersive_metallurgy.stripped_mason_pine_wood": "Stripped Mason Pine Log Wood",
+
   "block.immersive_metallurgy.mason_pine_planks": "Mason Pine Planks",
+  "block.immersive_metallurgy.mason_pine_stairs": "Mason Pine Stairs",
+  "block.immersive_metallurgy.mason_pine_slab": "Mason Pine Slab",
+  "block.immersive_metallurgy.mason_pine_fence": "Mason Pine Fence",
+  "block.immersive_metallurgy.mason_pine_fence_gate": "Mason Pine Fence Gate",
+  "block.immersive_metallurgy.mason_pine_pressure_plate": "Mason Pine Pressure Plate",
+  "block.immersive_metallurgy.mason_pine_button": "Mason Pine Button",
+  "block.immersive_metallurgy.mason_pine_door": "Mason Pine Door",
+  "block.immersive_metallurgy.mason_pine_trapdoor": "Mason Pine Trap Door",
+
   "block.immersive_metallurgy.mason_pine_leaves": "Mason Pine Leaves",
   "block.immersive_metallurgy.mason_pine_sapling": "Mason Pine Sapling",
   "block.immersive_metallurgy.pig_iron_block": "Pig Iron Block",

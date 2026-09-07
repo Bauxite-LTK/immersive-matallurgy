@@ -12,9 +12,8 @@
   "elite_blast_furnace1": {
     "type": "item_display",
     "items": [
-      "immersive_metallurgy:bucket/hot_air",
-      "immersiveengineering:elite_blast_furnace",
-      "immersive_metallurgy:concentrate_pellet_raw_iron"
+      "immersive_metallurgy:hot_air_furnace",
+      "immersive_metallurgy:bucket/hot_air"
     ]
   },
 
@@ -22,7 +21,8 @@
     "type": "item_display",
     "items": [
       "immersive_metallurgy:bucket/molten_pig_iron",
-      "immersive_metallurgy:bucket/water_gas"
+      "immersive_metallurgy:bucket/blast_furnace_gas",
+      "immersiveengineering:slag"
     ]
   }
 }

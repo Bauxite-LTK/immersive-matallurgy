@@ -8,6 +8,6 @@
   },
   "input_fluid": {
     "amount": 20,
-    "tag": "c:petroleum_gas"
+    "fluid": "immersivepetroleum:petroleum_gas"
   }
 }

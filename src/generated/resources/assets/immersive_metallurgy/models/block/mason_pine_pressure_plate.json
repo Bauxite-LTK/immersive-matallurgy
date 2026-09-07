@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pressure_plate_up",
+  "textures": {
+    "texture": "immersive_metallurgy:block/mason_pine_planks"
+  }
+}

@@ -57,6 +57,28 @@ public class IMBlockStateProvider extends BlockStateProvider {
         leavesBlock(IMBlocks.MASON_PINE_LEAVES);
         saplingBlock(IMBlocks.MASON_PINE_SAPLING);
 
+        stairsBlock(IMBlocks.MASON_PINE_STAIRS.get(), blockTexture(IMBlocks.MASON_PINE_PLANKS.get()));
+        slabBlock(IMBlocks.MASON_PINE_SLAB.get(),
+                blockTexture(IMBlocks.MASON_PINE_PLANKS.get()),
+                blockTexture(IMBlocks.MASON_PINE_PLANKS.get())
+        );
+        pressurePlateBlock(IMBlocks.MASON_PINE_PRESSURE_PLATE.get(),blockTexture(IMBlocks.MASON_PINE_PLANKS.get()));
+        buttonBlock(IMBlocks.MASON_PINE_BUTTON.get(), blockTexture(IMBlocks.MASON_PINE_PLANKS.get()));
+        fenceBlock(IMBlocks.MASON_PINE_FENCE.get(), blockTexture(IMBlocks.MASON_PINE_PLANKS.get()));
+        fenceGateBlock(IMBlocks.MASON_PINE_FENCE_GATE.get(), blockTexture(IMBlocks.MASON_PINE_PLANKS.get()));
+        doorBlockWithRenderType(IMBlocks.MASON_PINE_DOOR.get(),
+                IMUtils.modRL("block/mason_pine_door_bottom"),
+                IMUtils.modRL("block/mason_pine_door_top"), "cutout"
+        );
+        trapdoorBlockWithRenderType(IMBlocks.MASON_PINE_TRAP_DOOR.get(), IMUtils.modRL("block/mason_pine_trapdoor"),true,"cutout");
+
+        blockItem(IMBlocks.MASON_PINE_STAIRS);
+        blockItem(IMBlocks.MASON_PINE_SLAB);
+        blockItem(IMBlocks.MASON_PINE_PRESSURE_PLATE);
+        blockItem(IMBlocks.MASON_PINE_FENCE_GATE);
+
+        blockItem(IMBlocks.MASON_PINE_TRAP_DOOR, "_bottom");
+
     }
 
     private void saplingBlock(DeferredBlock<SaplingBlock> blockRegistryObject) {

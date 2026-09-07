@@ -1,0 +1,25 @@
+{
+  "pig_iron0": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/molten_pig_iron",
+      "immersive_metallurgy:ingot_pig_iron"
+    ]
+  },
+
+  "pig_iron1": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:bucket/molten_pig_iron"
+    ]
+  },
+
+  "pig_iron2": {
+    "type": "item_display",
+    "items": [
+      "immersive_metallurgy:ingot_pig_iron",
+      "immersiveengineering:arc_furnace",
+      "immersiveengineering:ingot_steel"
+    ]
+  }
+}
