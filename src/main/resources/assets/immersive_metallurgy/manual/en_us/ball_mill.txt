@@ -1,0 +1,26 @@
+Ball Mill
+Maybe it can grind wheat, too?
+<&multiblock>
+The Ball Mill is a large machine that grinds materials into ultra-fine powder. It accepts coarse-grained powder as input.
+<np>
+
+<&ball_mill0>
+The Ball Mill has §28 processing threads§r. Feed §1coarse powder§r into the middle port on one side and §1Water§r into the lower port; §1ore powder§r is output from the middle port on the other side, and §1Slurry§r from the lower port.<br>
+The Ball Mill has two types of recipes: §2dry grinding§r and §2wet grinding§r:<br>
+§lDry grinding§r grinds the ore directly into §1ore powder§r for smelting;<br>
+§lWet grinding§r adds §1Water§r during grinding to obtain §1Slurry§r, which has greater yield potential.
+<np>
+
+<&ball_mill1>
+§lDry Grinding§r
+Dry grinding can directly grind §1coarse powder§r into §1ore powder§r, serving as a quick output boost in the early industrial stage.<br>
+Single-thread recipe:<br>
+§1Coarse powder§r x1 --> §1Ore powder§r x5, 40t
+<np>
+
+<&ball_mill2>
+§lWet Grinding§r
+Wet grinding processes §1coarse powder§r into §1Slurry§r, the feedstock for the <link;immersive_metallurgy:hydrocyclone;Hydrocyclone;hydrocyclone0> in the downstream beneficiation process.<br>
+This route offers a higher yield multiplier.<br>
+Single-thread recipe:
+§1Coarse powder§r x1 --> §1Slurry§r 250mB, 20t

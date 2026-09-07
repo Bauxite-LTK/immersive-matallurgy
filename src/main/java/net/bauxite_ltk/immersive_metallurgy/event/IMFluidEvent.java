@@ -4,23 +4,12 @@ import net.bauxite_ltk.immersive_metallurgy.ImmersiveMetallurgy;
 import net.bauxite_ltk.immersive_metallurgy.block.liquid.CanSolidifyLiquidBlockEntity;
 import net.bauxite_ltk.immersive_metallurgy.fluid.FluidRendererExtension;
 import net.bauxite_ltk.immersive_metallurgy.fluid.IMFluids;
-import net.bauxite_ltk.immersive_metallurgy.tags.IMTags;
 import net.bauxite_ltk.immersive_metallurgy.util.IMUtils;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -28,7 +17,6 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.model.DynamicFluidContainerModel;
-import net.neoforged.neoforge.event.entity.EntityEvent;
 
 import java.util.Objects;
 
@@ -55,8 +43,8 @@ public class IMFluidEvent {
         ItemBlockRenderTypes.setRenderLayer(IMFluids.MASON_PINE_SAP.getFlowing(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(IMFluids.TURPENTINE_OIL.getSource(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(IMFluids.TURPENTINE_OIL.getFlowing(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getSource(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPINEOL.getFlowing(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPENIC_OIL.getSource(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(IMFluids.TERPENIC_OIL.getFlowing(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(IMFluids.HOT_AIR.getSource(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(IMFluids.HOT_AIR.getFlowing(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(IMFluids.WATER_GAS.getSource(), RenderType.translucent());
@@ -123,7 +111,7 @@ public class IMFluidEvent {
 
         event.registerFluidType(
                 new FluidRendererExtension(0xFFffcb00, WATER_STILL, WATER_FLOW, null, null),
-                IMFluids.TERPINEOL.getType());
+                IMFluids.TERPENIC_OIL.getType());
 
         event.registerFluidType(
                 new FluidRendererExtension(0xFFaf8a63, MOLTEN_STILL, MOLTEN_FLOW, null, null),

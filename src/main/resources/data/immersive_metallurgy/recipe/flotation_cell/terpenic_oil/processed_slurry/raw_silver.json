@@ -4,18 +4,18 @@
   "time": 2,
   "result_concentrate": {
     "amount": 100,
-    "id": "immersive_metallurgy:raw_iron_concentrate_slurry"
+    "id": "immersive_metallurgy:raw_silver_concentrate_slurry"
   },
   "result_tailing": {
     "amount": 100,
-    "id": "immersive_metallurgy:raw_iron_processed_slurry"
+    "id": "immersive_metallurgy:raw_silver_processed_slurry"
   },
   "input_ore": {
     "amount": 200,
-    "fluid": "immersive_metallurgy:raw_iron_processed_slurry"
+    "fluid": "immersive_metallurgy:raw_silver_processed_slurry"
   },
   "input_add": {
     "amount": 2,
-    "fluid": "immersive_metallurgy:terpineol"
+    "fluid": "immersive_metallurgy:terpenic_oil"
   }
 }

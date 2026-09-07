@@ -1,6 +1,6 @@
 {
   "itemGroup.immersive_metallurgy": "Immersive Metallurgy",
-  "manual.immersive_metallurgy.mineral_processing": "高级矿物处理",
+  "manual.immersive_metallurgy.mineral_processing": "Advanced Ore Processing",
 
   "item.immersive_metallurgy.bucket.molten_pig_iron": "Molten Pig Iron Bucket",
   "block.immersive_metallurgy.fluid.molten_pig_iron": "Molten Pig Iron",
@@ -54,9 +54,9 @@
   "block.immersive_metallurgy.fluid.turpentine_oil": "Turpentine Oil",
   "fluid.immersive_metallurgy.turpentine_oil": "Turpentine Oil",
 
-  "item.immersive_metallurgy.bucket.terpineol": "Terpineol Bucket",
-  "block.immersive_metallurgy.fluid.terpineol": "Terpineol",
-  "fluid.immersive_metallurgy.terpineol": "Terpineol",
+  "item.immersive_metallurgy.bucket.terpenic_oil": "Terpenic Oil Bucket",
+  "block.immersive_metallurgy.fluid.terpenic_oil": "Terpenic Oil",
+  "fluid.immersive_metallurgy.terpenic_oil": "Terpenic Oil",
 
 
   "item.immersive_metallurgy.pure_ore_chunk_raw_iron": "Raw Iron Chunk",
@@ -286,8 +286,8 @@
   "block.immersive_metallurgy.flotation_cell": "Flotation Cell",
   "block.immersive_metallurgy.hydrocyclone": "Hydrocyclone",
   "block.immersive_metallurgy.thickener": "Thickener",
-  "block.immersive_metallurgy.elite_blast_furnace": "Elite Blast Furnace",
-  "block.immersive_metallurgy.hot_air_furnace": "Hot Air Furnace",
+  "block.immersive_metallurgy.elite_blast_furnace": "Metallurgy Blast Furnace",
+  "block.immersive_metallurgy.hot_air_furnace": "Gas Hot Air Furnace",
   "block.immersive_metallurgy.continuous_casting_machine": "Continuous Casting Machine",
 
   "desc.immersive_metallurgy.info.thread_ift": "%1$s IF/tick (x%2$d)",

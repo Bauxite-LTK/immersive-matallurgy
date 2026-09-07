@@ -27,7 +27,7 @@
 
 §l提炼松醇油§r
 将松脂送入<link;refinery;精炼厂;start>，可以处理为§2松节油§r。<br>
-将§2松节油§r与红石酸送入精炼厂，可炼制为§1松醇油§r。松醇油可用于<link;immersive_metallurgy:flotation_reagent;浮选;terpineol>
+将§2松节油§r与红石酸送入精炼厂，可炼制为§1松醇油§r。松醇油可用于<link;immersive_metallurgy:flotation_reagent;浮选;terpenic_oil>
 
 10mB 松脂 --> 10mB 松节油<br>
 10mB 松节油 + 10mB 红石酸 --> 10mB 松醇油

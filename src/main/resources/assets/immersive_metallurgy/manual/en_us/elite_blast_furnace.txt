@@ -1,0 +1,25 @@
+Metallurgy Blast Furnace
+How Steel Is Made
+<&multiblock>
+The Metallurgy Blast Furnace is a machine dedicated to smelting pig iron, suitable for producing steel in large batches.
+<np>
+
+<&elite_blast_furnace0>
+§lBlast Furnace Charge§r
+The Metallurgy Blast Furnace accepts §1charge§r from the top and can store up to four stacks of §1charge§r inside the furnace body.<br>
+The charge is the raw material for steelmaking; it can be crafted from §1Iron Concentrate Pellets§r and §1Coke Powder§r.
+<np>
+
+<&elite_blast_furnace1>
+§lHot Blast Preheating§r
+Both sides of the furnace need a continuous supply of §1Hot Air§r for heating. Four <link;immersive_metallurgy:hot_air_furnace;Gas Hot Air Furnace;multiblock>s running at full speed are required to reach and maintain the maximum temperature (1600°C).<br>
+A standard charge requires at least §c1500°C§r to be smelted.
+<np>
+
+<&elite_blast_furnace2>
+§lSmelting Pig Iron§r
+Smelting the charge produces §1Molten Pig Iron§r, §3Blast Furnace Gas§r and slag.
+§1Molten Pig Iron§r is output from the lower front of the furnace, §3Blast Furnace Gas§r from the top, and slag from the lower rear.<br>
+1x charge --(5t)--> 100mB §1Molten Pig Iron§r
++ 300mB §3Blast Furnace Gas§r + 1x slag<br>
+§3Blast Furnace Gas§r is a type of fuel gas and can be used as fuel for the <link;immersive_metallurgy:hot_air_furnace;Gas Hot Air Furnace;multiblock>.

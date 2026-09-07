@@ -49,7 +49,7 @@ public class IMBlocks {
 
     public static final DeferredBlock<LiquidBlock> MASON_PINE_SAP = registerNoItem("fluid/mason_pine_sap", () -> new LiquidBlock(IMFluids.MASON_PINE_SAP.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
     public static final DeferredBlock<LiquidBlock> TURPENTINE_OIL = registerNoItem("fluid/turpentine_oil", () -> new LiquidBlock(IMFluids.TURPENTINE_OIL.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
-    public static final DeferredBlock<LiquidBlock> TERPINEOL = registerNoItem("fluid/terpineol", () -> new LiquidBlock(IMFluids.TERPINEOL.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
+    public static final DeferredBlock<LiquidBlock> TERPENIC_OIL = registerNoItem("fluid/terpenic_oil", () -> new LiquidBlock(IMFluids.TERPENIC_OIL.getFlowing(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()));
 
     public static final DeferredBlock<FlameableRotatedPillarBlock> MASON_PINE_LOG = registerBlock("mason_pine_log", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
     public static final DeferredBlock<FlameableRotatedPillarBlock> MASON_PINE_LOG_LIVE = registerBlock("mason_pine_log_live", () -> new FlameableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).pushReaction(PushReaction.DESTROY)));

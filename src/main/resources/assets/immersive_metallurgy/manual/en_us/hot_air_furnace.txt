@@ -1,0 +1,13 @@
+Gas Hot Air Furnace
+Top-fired type
+<&multiblock>
+A large gas-fired hot air furnace used to preheat the <link;immersive_metallurgy:elite_blast_furnace;Metallurgy Blast Furnace;multiblock>.
+<np>
+
+<&hot_air_furnace0>
+§lGas Preheating§r
+The Gas Hot Air Furnace accepts <link;immersive_metallurgy:gas_fuel;Gas;start> from the top and outputs §1Hot Air§r from the side.<br>
+The Gas Hot Air Furnace can output up to 400mb/s of hot air; different gases are consumed at different rates.<np>
+
+The following shows the fuel consumption per second (/s) of different fuels when the hot air furnace is running at maximum speed:
+<&list>

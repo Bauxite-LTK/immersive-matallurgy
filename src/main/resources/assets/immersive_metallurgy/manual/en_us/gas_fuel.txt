@@ -1,0 +1,6 @@
+Gas Fuel
+Remember to keep the room ventilated
+
+§1Gas§r is a category of gases that can be used as fuel.
+Different gases provide different §2burn times§r.
+<&list>

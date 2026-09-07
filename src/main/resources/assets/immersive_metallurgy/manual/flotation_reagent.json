@@ -5,10 +5,10 @@
       "immersiveengineering:plantoil_bucket"
     ]
   },
-  "terpineol": {
+  "terpenic_oil": {
     "type": "item_display",
     "items": [
-      "immersive_metallurgy:bucket/terpineol"
+      "immersive_metallurgy:bucket/terpenic_oil"
     ]
   }
 }

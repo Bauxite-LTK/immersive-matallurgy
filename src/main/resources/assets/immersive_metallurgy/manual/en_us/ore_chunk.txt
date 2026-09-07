@@ -1,0 +1,8 @@
+Ore Chunks
+Would a mace do?
+<&ore_chunk0>
+§lOre Crushing§r
+§1Raw ore§r can now be crushed into §1ore chunks§r with a <link;crusher;Crusher;start>.<br>
+§1Ore chunks§r can be smelted into metal ingots, or further crushed into §1coarse powder§r.<br>
+Crushing §1raw ore§r in the Crusher yields about a 1.5x output increase.<br>
+If ground into coarse powder, one piece of §1raw ore§r is expected to yield 4 pieces of §1coarse powder§r.

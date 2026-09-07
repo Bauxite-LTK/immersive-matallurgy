@@ -1,0 +1,303 @@
+{
+  "itemGroup.immersive_metallurgy": "沉浸冶金学",
+  "manual.immersive_metallurgy.mineral_processing": "高级矿物处理",
+
+  "item.immersive_metallurgy.bucket.molten_pig_iron": "熔融生铁桶",
+  "block.immersive_metallurgy.fluid.molten_pig_iron": "熔融生铁",
+  "fluid.immersive_metallurgy.molten_pig_iron": "熔融生铁",
+
+  "item.immersive_metallurgy.bucket.molten_gold": "熔融金桶",
+  "block.immersive_metallurgy.fluid.molten_gold": "熔融金",
+  "fluid.immersive_metallurgy.molten_gold": "熔融金",
+
+  "item.immersive_metallurgy.bucket.molten_copper": "熔融铜桶",
+  "block.immersive_metallurgy.fluid.molten_copper": "熔融铜",
+  "fluid.immersive_metallurgy.molten_copper": "熔融铜",
+  
+  "item.immersive_metallurgy.bucket.molten_silver": "熔融银桶",
+  "block.immersive_metallurgy.fluid.molten_silver": "熔融银",
+  "fluid.immersive_metallurgy.molten_silver": "熔融银",
+
+  "item.immersive_metallurgy.bucket.molten_lead": "熔融铅桶",
+  "block.immersive_metallurgy.fluid.molten_lead": "熔融铅",
+  "fluid.immersive_metallurgy.molten_lead": "熔融铅",
+
+  "item.immersive_metallurgy.bucket.molten_nickel": "熔融镍桶",
+  "block.immersive_metallurgy.fluid.molten_nickel": "熔融镍",
+  "fluid.immersive_metallurgy.molten_nickel": "熔融镍",
+
+  "item.immersive_metallurgy.bucket.molten_uranium": "熔融铀桶",
+  "block.immersive_metallurgy.fluid.molten_uranium": "熔融铀",
+  "fluid.immersive_metallurgy.molten_uranium": "熔融铀",
+
+  "item.immersive_metallurgy.bucket.molten_aluminum": "熔融铝桶",
+  "block.immersive_metallurgy.fluid.molten_aluminum": "熔融铝",
+  "fluid.immersive_metallurgy.molten_aluminum": "熔融铝",
+
+  "item.immersive_metallurgy.bucket.hot_air": "灼热空气桶",
+  "block.immersive_metallurgy.fluid.hot_air": "灼热空气",
+  "fluid.immersive_metallurgy.hot_air": "灼热空气",
+
+  "item.immersive_metallurgy.bucket.water_gas": "水煤气桶",
+  "block.immersive_metallurgy.fluid.water_gas": "水煤气",
+  "fluid.immersive_metallurgy.water_gas": "水煤气",
+
+  "item.immersive_metallurgy.bucket.blast_furnace_gas": "高炉煤气桶",
+  "block.immersive_metallurgy.fluid.blast_furnace_gas": "高炉煤气",
+  "fluid.immersive_metallurgy.blast_furnace_gas": "高炉煤气",
+
+  "item.immersive_metallurgy.bucket.mason_pine_sap": "马尾松松脂桶",
+  "block.immersive_metallurgy.fluid.mason_pine_sap": "马尾松松脂",
+  "fluid.immersive_metallurgy.mason_pine_sap": "马尾松松脂",
+
+  "item.immersive_metallurgy.bucket.turpentine_oil": "松节油桶",
+  "block.immersive_metallurgy.fluid.turpentine_oil": "松节油",
+  "fluid.immersive_metallurgy.turpentine_oil": "松节油",
+
+  "item.immersive_metallurgy.bucket.terpenic_oil": "松醇油桶",
+  "block.immersive_metallurgy.fluid.terpenic_oil": "松醇油",
+  "fluid.immersive_metallurgy.terpenic_oil": "松醇油",
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_iron": "粗铁碎块",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_iron": "粗铁粗粉",
+  "item.immersive_metallurgy.ore_fines_raw_iron": "粗铁精矿粉",
+  "item.immersive_metallurgy.concentrate_pellet_raw_iron": "粗铁精矿饼",
+
+  "item.immersive_metallurgy.bucket.raw_iron_slurry": "粗铁粗矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_iron_slurry": "粗铁粗矿浆 ",
+  "fluid.immersive_metallurgy.raw_iron_slurry": "粗铁粗矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_iron_processed_slurry": "粗铁细矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_iron_processed_slurry": "粗铁细矿浆 ",
+  "fluid.immersive_metallurgy.raw_iron_processed_slurry": "粗铁细矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_iron_concentrate_slurry": "粗铁精矿泡沫桶",
+  "block.immersive_metallurgy.fluid.raw_iron_concentrate_slurry": "粗铁精矿泡沫 ",
+  "fluid.immersive_metallurgy.raw_iron_concentrate_slurry": "粗铁精矿泡沫",
+
+  "item.immersive_metallurgy.bucket.raw_iron_tailing_slurry": "粗铁尾矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_iron_tailing_slurry": "粗铁尾矿浆 ",
+  "fluid.immersive_metallurgy.raw_iron_tailing_slurry": "粗铁尾矿浆",
+
+
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_gold": "粗金碎块",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_gold": "粗金粗粉",
+  "item.immersive_metallurgy.ore_fines_raw_gold": "粗金精矿粉",
+  "item.immersive_metallurgy.concentrate_pellet_raw_gold": "粗金精矿饼",
+
+  "item.immersive_metallurgy.bucket.raw_gold_slurry": "粗金粗矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_gold_slurry": "粗金粗矿浆 ",
+  "fluid.immersive_metallurgy.raw_gold_slurry": "粗金粗矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_gold_processed_slurry": "粗金细矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_gold_processed_slurry": "粗金细矿浆 ",
+  "fluid.immersive_metallurgy.raw_gold_processed_slurry": "粗金细矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_gold_concentrate_slurry": "粗金精矿泡沫桶",
+  "block.immersive_metallurgy.fluid.raw_gold_concentrate_slurry": "粗金精矿泡沫 ",
+  "fluid.immersive_metallurgy.raw_gold_concentrate_slurry": "粗金精矿泡沫",
+
+  "item.immersive_metallurgy.bucket.raw_gold_tailing_slurry": "粗金尾矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_gold_tailing_slurry": "粗金尾矿浆 ",
+  "fluid.immersive_metallurgy.raw_gold_tailing_slurry": "粗金尾矿浆",
+
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_copper": "粗铜碎块",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_copper": "粗铜粗粉",
+  "item.immersive_metallurgy.ore_fines_raw_copper": "粗铜精矿粉",
+  "item.immersive_metallurgy.concentrate_pellet_raw_copper": "粗铜精矿饼",
+
+  "item.immersive_metallurgy.bucket.raw_copper_slurry": "粗铜粗矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_copper_slurry": "粗铜粗矿浆 ",
+  "fluid.immersive_metallurgy.raw_copper_slurry": "粗铜粗矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_copper_processed_slurry": "粗铜细矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_copper_processed_slurry": "粗铜细矿浆 ",
+  "fluid.immersive_metallurgy.raw_copper_processed_slurry": "粗铜细矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_copper_concentrate_slurry": "粗铜精矿泡沫桶",
+  "block.immersive_metallurgy.fluid.raw_copper_concentrate_slurry": "粗铜精矿泡沫 ",
+  "fluid.immersive_metallurgy.raw_copper_concentrate_slurry": "粗铜精矿泡沫",
+
+  "item.immersive_metallurgy.bucket.raw_copper_tailing_slurry": "粗铜尾矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_copper_tailing_slurry": "粗铜尾矿浆 ",
+  "fluid.immersive_metallurgy.raw_copper_tailing_slurry": "粗铜尾矿浆",
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_silver": "粗银碎块",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_silver": "粗银粗粉",
+  "item.immersive_metallurgy.ore_fines_raw_silver": "粗银精矿粉",
+  "item.immersive_metallurgy.concentrate_pellet_raw_silver": "粗银精矿饼",
+
+  "item.immersive_metallurgy.bucket.raw_silver_slurry": "粗银粗矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_silver_slurry": "粗银粗矿浆 ",
+  "fluid.immersive_metallurgy.raw_silver_slurry": "粗银粗矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_silver_processed_slurry": "粗银细矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_silver_processed_slurry": "粗银细矿浆 ",
+  "fluid.immersive_metallurgy.raw_silver_processed_slurry": "粗银细矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_silver_concentrate_slurry": "粗银精矿泡沫桶",
+  "block.immersive_metallurgy.fluid.raw_silver_concentrate_slurry": "粗银精矿泡沫 ",
+  "fluid.immersive_metallurgy.raw_silver_concentrate_slurry": "粗银精矿泡沫",
+
+  "item.immersive_metallurgy.bucket.raw_silver_tailing_slurry": "粗银尾矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_silver_tailing_slurry": "粗银尾矿浆 ",
+  "fluid.immersive_metallurgy.raw_silver_tailing_slurry": "粗银尾矿浆",
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_lead": "粗铅碎块",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_lead": "粗铅粗粉",
+  "item.immersive_metallurgy.ore_fines_raw_lead": "粗铅精矿粉",
+  "item.immersive_metallurgy.concentrate_pellet_raw_lead": "粗铅精矿饼",
+
+  "item.immersive_metallurgy.bucket.raw_lead_slurry": "粗铅粗矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_lead_slurry": "粗铅粗矿浆 ",
+  "fluid.immersive_metallurgy.raw_lead_slurry": "粗铅粗矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_lead_processed_slurry": "粗铅细矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_lead_processed_slurry": "粗铅细矿浆 ",
+  "fluid.immersive_metallurgy.raw_lead_processed_slurry": "粗铅细矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_lead_concentrate_slurry": "粗铅精矿泡沫桶",
+  "block.immersive_metallurgy.fluid.raw_lead_concentrate_slurry": "粗铅精矿泡沫 ",
+  "fluid.immersive_metallurgy.raw_lead_concentrate_slurry": "粗铅精矿泡沫",
+
+  "item.immersive_metallurgy.bucket.raw_lead_tailing_slurry": "粗铅尾矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_lead_tailing_slurry": "粗铅尾矿浆 ",
+  "fluid.immersive_metallurgy.raw_lead_tailing_slurry": "粗铅尾矿浆",
+
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_nickel": "粗镍碎块",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_nickel": "粗镍粗粉",
+  "item.immersive_metallurgy.ore_fines_raw_nickel": "粗镍精矿粉",
+  "item.immersive_metallurgy.concentrate_pellet_raw_nickel": "粗镍精矿饼",
+
+  "item.immersive_metallurgy.bucket.raw_nickel_slurry": "粗镍粗矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_nickel_slurry": "粗镍粗矿浆 ",
+  "fluid.immersive_metallurgy.raw_nickel_slurry": "粗镍粗矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_nickel_processed_slurry": "粗镍细矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_nickel_processed_slurry": "粗镍细矿浆 ",
+  "fluid.immersive_metallurgy.raw_nickel_processed_slurry": "粗镍细矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_nickel_concentrate_slurry": "粗镍精矿泡沫桶",
+  "block.immersive_metallurgy.fluid.raw_nickel_concentrate_slurry": "粗镍精矿泡沫 ",
+  "fluid.immersive_metallurgy.raw_nickel_concentrate_slurry": "粗镍精矿泡沫",
+
+  "item.immersive_metallurgy.bucket.raw_nickel_tailing_slurry": "粗镍尾矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_nickel_tailing_slurry": "粗镍尾矿浆 ",
+  "fluid.immersive_metallurgy.raw_nickel_tailing_slurry": "粗镍尾矿浆",
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_uranium": "粗铀碎块",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_uranium": "粗铀粗粉",
+  "item.immersive_metallurgy.ore_fines_raw_uranium": "粗铀精矿粉",
+  "item.immersive_metallurgy.concentrate_pellet_raw_uranium": "粗铀精矿饼",
+
+  "item.immersive_metallurgy.bucket.raw_uranium_slurry": "粗铀粗矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_uranium_slurry": "粗铀粗矿浆 ",
+  "fluid.immersive_metallurgy.raw_uranium_slurry": "粗铀粗矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_uranium_processed_slurry": "粗铀细矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_uranium_processed_slurry": "粗铀细矿浆 ",
+  "fluid.immersive_metallurgy.raw_uranium_processed_slurry": "粗铀细矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_uranium_concentrate_slurry": "粗铀精矿泡沫桶",
+  "block.immersive_metallurgy.fluid.raw_uranium_concentrate_slurry": "粗铀精矿泡沫 ",
+  "fluid.immersive_metallurgy.raw_uranium_concentrate_slurry": "粗铀精矿泡沫",
+
+  "item.immersive_metallurgy.bucket.raw_uranium_tailing_slurry": "粗铀尾矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_uranium_tailing_slurry": "粗铀尾矿浆 ",
+  "fluid.immersive_metallurgy.raw_uranium_tailing_slurry": "粗铀尾矿浆",
+
+
+  "item.immersive_metallurgy.pure_ore_chunk_raw_aluminum": "粗铝碎块",
+  "item.immersive_metallurgy.pure_coarse_powder_raw_aluminum": "粗铝粗粉",
+  "item.immersive_metallurgy.ore_fines_raw_aluminum": "粗铝精矿粉",
+  "item.immersive_metallurgy.concentrate_pellet_raw_aluminum": "粗铝精矿饼",
+
+  "item.immersive_metallurgy.bucket.raw_aluminum_slurry": "粗铝粗矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_aluminum_slurry": "粗铝粗矿浆 ",
+  "fluid.immersive_metallurgy.raw_aluminum_slurry": "粗铝粗矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_aluminum_processed_slurry": "粗铝细矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_aluminum_processed_slurry": "粗铝细矿浆 ",
+  "fluid.immersive_metallurgy.raw_aluminum_processed_slurry": "粗铝细矿浆",
+
+  "item.immersive_metallurgy.bucket.raw_aluminum_concentrate_slurry": "粗铝精矿泡沫桶",
+  "block.immersive_metallurgy.fluid.raw_aluminum_concentrate_slurry": "粗铝精矿泡沫 ",
+  "fluid.immersive_metallurgy.raw_aluminum_concentrate_slurry": "粗铝精矿泡沫",
+
+  "item.immersive_metallurgy.bucket.raw_aluminum_tailing_slurry": "粗铝尾矿浆桶",
+  "block.immersive_metallurgy.fluid.raw_aluminum_tailing_slurry": "粗铝尾矿浆 ",
+  "fluid.immersive_metallurgy.raw_aluminum_tailing_slurry": "粗铝尾矿浆",
+
+
+  "block.immersive_metallurgy.electric_cable_lv": "低压电缆",
+  "block.immersive_metallurgy.electric_cable_mv": "中压电缆",
+  "block.immersive_metallurgy.sap_collector": "树脂采集器",
+  "block.immersive_metallurgy.casting_channel": "浇铸道",
+
+  "block.immersive_metallurgy.mason_pine_log": "马尾松原木",
+  "block.immersive_metallurgy.mason_pine_log_live": "马尾松树干",
+  "block.immersive_metallurgy.mason_pine_log_sappy": "流松脂的马尾松树干",
+  "block.immersive_metallurgy.mason_pine_wood": "马尾松木",
+  "block.immersive_metallurgy.stripped_mason_pine_log": "去皮马尾松原木",
+  "block.immersive_metallurgy.stripped_mason_pine_wood": "去皮马尾松木",
+
+  "block.immersive_metallurgy.mason_pine_planks": "马尾松木板",
+  "block.immersive_metallurgy.mason_pine_stairs": "马尾松楼梯",
+  "block.immersive_metallurgy.mason_pine_slab": "马尾松台阶",
+  "block.immersive_metallurgy.mason_pine_fence": "马尾松栅栏",
+  "block.immersive_metallurgy.mason_pine_fence_gate": "马尾松栅栏门",
+  "block.immersive_metallurgy.mason_pine_pressure_plate": "马尾松压力板",
+  "block.immersive_metallurgy.mason_pine_button": "马尾松按钮",
+  "block.immersive_metallurgy.mason_pine_door": "马尾松门",
+  "block.immersive_metallurgy.mason_pine_trapdoor": "马尾松活板门",
+
+  "block.immersive_metallurgy.mason_pine_leaves": "马尾松树叶",
+  "block.immersive_metallurgy.mason_pine_sapling": "马尾松树苗",
+  "block.immersive_metallurgy.pig_iron_block": "生铁块",
+
+  "tooltip.immersive_metallurgy.electric_cable_lv.idle": "§a▼§r 512 RF/t ",
+  "tooltip.immersive_metallurgy.electric_cable_mv.idle": "§a▼§r 2048 RF/t ",
+  "tooltip.immersive_metallurgy.casting_channel.idle": "§b●§r 速率跟随输入",
+  "tooltip.immersive_metallurgy.ingot_pig_iron.idle": "可在§d电弧炉§r中加工成钢锭",
+  "tooltip.immersive_metallurgy.blast_furnace_iron_pellet.idle": "§c▲§r 1500°C",
+
+
+  "gui.immersive_metallurgy.gas_fuel": "燃气燃料",
+  
+  
+  
+  "item.immersive_metallurgy.mason_pine_sap_bottle": "马尾松松脂瓶",
+  "item.immersive_metallurgy.colophony_bottle": "松香瓶",
+  "item.immersive_metallurgy.colophony": "松香",
+  "item.immersive_metallurgy.ingot_pig_iron": "生铁锭",
+  "item.immersive_metallurgy.blast_furnace_iron_pellet": "高炉炉料饼",
+
+  "block.immersive_metallurgy.ball_mill": "球磨机",
+  "block.immersive_metallurgy.flotation_cell": "浮选机",
+  "block.immersive_metallurgy.hydrocyclone": "水力旋流器",
+  "block.immersive_metallurgy.thickener": "矿浆浓密机",
+  "block.immersive_metallurgy.elite_blast_furnace": "冶金高炉",
+  "block.immersive_metallurgy.hot_air_furnace": "燃气热风炉",
+  "block.immersive_metallurgy.continuous_casting_machine": "连铸机",
+
+  "desc.immersive_metallurgy.info.thread_ift": "%1$s IF/tick (x%2$d)",
+  "desc.immersive_metallurgy.info.fuel_cost": "燃料消耗: %1$s",
+  "desc.immersive_metallurgy.info.fuel_amount": "燃料: %1$s",
+  "desc.immersive_metallurgy.info.fuel_info": "燃料: %1$s/%2$s",
+  "desc.immersive_metallurgy.info.ift": "%1$s IF/tick",
+  "desc.immersive_metallurgy.info.temperature": "%1$s°C",
+
+  "immersive_metallurgy.configuration.title": "Immersive Metallurgy Configs",
+  "immersive_metallurgy.configuration.section.immersive_metallurgy.common.toml": "Immersive Metallurgy Configs",
+  "immersive_metallurgy.configuration.section.immersive_metallurgy.common.toml.title": "Immersive Metallurgy Configs"
+}

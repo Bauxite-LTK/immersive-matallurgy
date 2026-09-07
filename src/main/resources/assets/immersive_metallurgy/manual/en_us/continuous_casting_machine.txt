@@ -1,0 +1,19 @@
+Continuous Casting Machine
+cooling liquid metal, not liquid metal cooling
+<&multiblock>
+The Continuous Casting Machine is a machine dedicated to continuously casting metal ingots, suitable for cooling molten metal in large batches.
+<np>
+
+<&continuous_casting_machine0>
+§lContinuous Casting§r
+The Continuous Casting Machine accepts §1molten metal§r from the upper port on one side.
+As long as §2cooling water§r and §2cutting fuel§r are sufficient, it can continuously cast the §1molten metal§r into §1metal ingots§r.<br>
+800mB molten metal --(40t)--> 8x metal ingots
+<np>
+
+<&continuous_casting_machine1>
+§lCooling and Cutting§r
+During casting, the Continuous Casting Machine continuously consumes §2cooling water§r and §2cutting fuel§r; see <link;immersive_metallurgy:gas_fuel;Gas;start> for details.<br>
+Cooling water consumption rate: 50mB/t
+Cutting fuel consumption rate: 1 Fuel/t<br>
+If cooling water or fuel runs out during casting, the machine stops working and sounds an alert.

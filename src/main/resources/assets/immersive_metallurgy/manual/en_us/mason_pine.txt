@@ -1,0 +1,34 @@
+Pine Sap Products
+No amber here
+<&image>
+§lMason Pine§r
+The Mason Pine is a pine that grows in old-growth coniferous forests (giant tree taiga). The trees are quite tall and bear yellow, elongated cone-flowers at the tips of their branches.
+<np>
+
+<&mason_pine0>
+§lObtaining Sap§r
+Strip a Mason Pine trunk with an §2axe§r to obtain a §1Sappy Mason Pine Trunk§r. If the trunk is broken, it drops logs, and logs have no sap-producing ability.<br>
+Generally, a single Mason Pine trunk has only one spot where sap can be collected.<br>
+For Mason Pines at the same XZ coordinates, the sap collection spots must be at least 16 blocks apart vertically.
+<np>
+<&mason_pine1>
+§lCollecting Sap§r
+Sap can be collected from the four sides of the §1Sappy Mason Pine Trunk§r. Place §2Sap Collectors§r against the sides, and each collector produces at a rate of 1mB/s.<br>
+There are two ways to handle the §1sap§r inside a collector:<br>
+1. Right-click with an empty glass bottle to bottle the sap, which is used to make §1Colophony§r.<br>
+2. Connect pipes to the bottom of the collector to drain the sap as a liquid, which is refined into §1Terpenic Oil§r.
+<np>
+<&mason_pine2>
+§lMaking Colophony§r
+Put bottled sap in a Furnace or Smoker to smelt it into §1Colophony§r.<br>
+Colophony is a good flux and is used to craft §1MV wall-mounted cables§r.
+Colophony can also be used to make §1Torches§r or as furnace fuel.
+<np>
+<&mason_pine3>
+
+§lRefining Terpenic Oil§r
+Send the sap to a <link;refinery;Refinery;start> to process it into §2Turpentine Oil§r.<br>
+Send §2Turpentine Oil§r and Redstone Acid into the Refinery to produce §1Terpenic Oil§r. Terpenic Oil is used in <link;immersive_metallurgy:flotation_reagent;Flotation;terpenic_oil>.
+<np>
+10mB sap --> 10mB Turpentine Oil<br>
+10mB Turpentine Oil + 10mB Redstone Acid --> 10mB Terpenic Oil

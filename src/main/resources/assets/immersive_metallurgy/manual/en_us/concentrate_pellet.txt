@@ -1,0 +1,7 @@
+Concentrate Pellet
+"Rock" tea cake
+<&concentrate_pellet0>
+§lPressing into Pellets§r
+§1Ore Fines§r can be compressed into §1Concentrate Pellets§r with a <link;squeezer;Squeezer;start>. The pellets can be smelted directly.<br>
+10 §1Ore Fines§r make 1 §1Concentrate Pellet§r.<br>
+§1Concentrate Pellets§r can be smelted quickly in an Arc Furnace.

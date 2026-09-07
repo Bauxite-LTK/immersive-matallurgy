@@ -1,16 +1,19 @@
 {
   "type": "immersiveengineering:refinery",
   "energy": 120,
+  "catalyst": {
+    "item": "minecraft:redstone"
+  },
   "input0": {
     "amount": 10,
     "fluid": "immersive_metallurgy:turpentine_oil"
   },
   "input1": {
     "amount": 10,
-    "fluid": "immersiveengineering:redstone_acid"
+    "tag": "c:ethanol"
   },
   "result": {
-    "amount": 10,
-    "id": "immersive_metallurgy:terpineol"
+    "amount": 20,
+    "id": "immersive_metallurgy:terpenic_oil"
   }
 }

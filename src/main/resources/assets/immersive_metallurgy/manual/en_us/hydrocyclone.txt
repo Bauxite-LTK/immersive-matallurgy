@@ -1,0 +1,14 @@
+Hydrocyclone
+Sharknado
+<&multiblock>
+The Hydrocyclone is a device that separates mixed liquids by centrifugal sedimentation. It can quickly split the coarse and fine particles in the slurry for the subsequent flotation process.
+
+<&hydrocyclone0>
+§lCentrifugal Classification§r
+The Hydrocyclone accepts the §1Slurry§r produced by the <link;immersive_metallurgy:ball_mill;Ball Mill;ball_mill2> as input.<br>
+ It outputs §1Processed Slurry§r from the side and §1coarse powder§r from the bottom.<br>
+The output §1coarse powder§r must be returned to the §5Ball Mill§r for regrinding.
+
+§1Slurry§r 500mB
+---(160IF/t, 10t)--->
+§1Processed Slurry§r 500mB + §1coarse powder§r x1

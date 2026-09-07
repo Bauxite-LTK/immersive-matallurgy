@@ -50,7 +50,7 @@ public class IMCreativeModTabs {
                 output.accept(IMItems.COLOPHONY);
                 output.accept(IMItems.MASON_PINE_SAP_BUCKET);
                 output.accept(IMItems.TURPENTINE_OIL_BUCKET);
-                output.accept(IMItems.TERPINEOL_BUCKET);
+                output.accept(IMItems.TERPENIC_OIL_BUCKET);
 
                 output.accept(IMItems.Ores.RAW_IRON_ORE_CHUNK);
                 output.accept(IMItems.Ores.RAW_IRON_ORE_COARSE_POWDER);

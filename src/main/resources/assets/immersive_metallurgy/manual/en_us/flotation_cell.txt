@@ -1,0 +1,18 @@
+Flotation Cell
+Watch your step!
+<&multiblock>
+The Flotation Cell uses air bubbles to selectively separate minerals from the slurry, exploiting the hydrophilicity or hydrophobicity of the mineral particles.
+
+<&flotation_cell0>
+§lFroth Flotation§r
+The Flotation Cell accepts the §1Processed Slurry§r output by the <link;immersive_metallurgy:hydrocyclone;Hydrocyclone;hydrocyclone0>, fed in through the lower port on one side, while a small amount of <link;immersive_metallurgy:flotation_reagent;Flotation Reagent;start> is added through the upper port on the back. §1Concentrate Slurry§r is output through the upper port at the front, and §1Processed Slurry§r through the lower port on the other side.<np>
+§1Concentrate Slurry§r is the concentrated mineral carried out attached to the flotation froth, and it can be fed directly into a <link;immersive_metallurgy:thickener;Thickener;multiblock>.<br>
+Processed Slurry that was not fully selected and sinks to the bottom can be sent to another §5Flotation Cell§r for a second flotation pass.
+<np>
+
+<&flotation_cell1>
+§lConcentrate Overflow§r
+Unlike conventional machines, the Flotation Cell's §1Concentrate Slurry§r output relies on "§2overflow§r".<br>
+Specifically, only when the total amount of liquid inside the cell reaches the "§2overflow line (overflow)§r" will the concentrate inside gradually transfer to the output slot.<br>
+The §2overflow line§r is set at §248000mB§r; enough ore is needed to start up the line.<np>
+§7(Actually, you can pump the liquid out of the Flotation Cell's input tank and pour water in to flush away the froth.)§r

@@ -1,0 +1,14 @@
+Thickener
+Actually, this is the mini version
+<&multiblock>
+The Thickener is a solid-liquid separation device based on gravity sedimentation. It concentrates the mineral particles in the concentrate slurry and produces smeltable solids.
+<np>
+
+<&thickener0>
+§lSedimentation and Thickening§r
+The Thickener accepts the §1Concentrate Slurry§r from the <link;immersive_metallurgy:flotation_cell;Flotation Cell;multiblock>, fed in through the upper port on one side; §2overflow§r is output from the upper port on the other side, and §1Ore Fines§r are discharged from the bottom.
+
+Unlike the Flotation Cell, the Thickener only discharges its overflow actively when the total liquid inside reaches §2128000mB§r, though the overflow can also be pumped out directly.
+
+§1Concentrate Slurry§r 200mB --(320IF/t,4t)-->
+§1Water§r 200mB + §1Ore Fines§r x3

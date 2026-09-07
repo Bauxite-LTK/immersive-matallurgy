@@ -1,0 +1,23 @@
+Flotation Reagent
+Removes stubborn stains
+
+Flotation reagents are used in the <link;immersive_metallurgy:flotation_cell;Flotation Cell;multiblock>. They modify the surface properties of minerals, improving or reducing their floatability so that the slurry's properties and froth stability become more favorable for mineral separation.<br>
+A good flotation reagent should have good §3frothing ability§r and §5collecting ability§r.<br>
+The better the frothing ability, the higher the flotation efficiency and the shorter the time a recipe takes.<br>
+The better the collecting ability, the higher the flotation yield — the higher the conversion rate from Processed Slurry to Concentrate Slurry.
+<np>
+
+<&plantoil>
+§lSeed Oil§r
+Flotation efficiency: 800mB/s
+Flotation yield: 0.8 <br>
+Seed oil can serve as a cheap flotation reagent, but it is rather inefficient: it can only adsorb a small amount of ore, so it is not recommended for long-term use.<br>
+<np>
+
+<&terpenic_oil>
+§lTerpenic Oil§r
+Flotation efficiency: 2000mB/s
+Flotation yield: 1.0 <br>
+Terpenic oil is an efficient and environmentally friendly flotation frother. Its frothing performance is excellent and can greatly improve flotation efficiency.<br>
+Terpenic oil also has a weak collecting ability, so it can be used on its own.<br>
+<link;immersive_metallurgy:mason_pine;See here for making Terpenic Oil;mason_pine3>

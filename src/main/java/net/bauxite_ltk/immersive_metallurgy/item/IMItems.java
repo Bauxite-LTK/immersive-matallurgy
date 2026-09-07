@@ -7,9 +7,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 public class IMItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(IMUtils.MOD_ID);
 
@@ -120,10 +117,10 @@ public class IMItems {
                     )
             );
 
-    public static final DeferredItem<Item> TERPINEOL_BUCKET =
-            ITEMS.register("bucket/terpineol",
+    public static final DeferredItem<Item> TERPENIC_OIL_BUCKET =
+            ITEMS.register("bucket/terpenic_oil",
                     () -> new BucketItem(
-                            IMFluids.TERPINEOL.getSource(),
+                            IMFluids.TERPENIC_OIL.getSource(),
                             new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
                     )
             );

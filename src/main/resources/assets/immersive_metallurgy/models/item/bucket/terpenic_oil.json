@@ -1,5 +1,5 @@
 {
   "loader": "neoforge:fluid_container",
   "parent": "neoforge:item/bucket",
-  "fluid": "immersive_metallurgy:terpineol"
+  "fluid": "immersive_metallurgy:terpenic_oil"
 }

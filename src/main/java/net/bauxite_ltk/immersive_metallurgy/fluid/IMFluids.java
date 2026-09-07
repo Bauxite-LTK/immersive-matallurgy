@@ -128,14 +128,14 @@ public class IMFluids {
                     BaseFlowingFluid.Flowing::new
             );
 
-    public static final FluidHolder<BaseFlowingFluid> TERPINEOL =
+    public static final FluidHolder<BaseFlowingFluid> TERPENIC_OIL =
             register(
-                    "terpineol",
+                    "terpenic_oil",
                     properties -> properties
-                            .block(IMBlocks.TERPINEOL)
-                            .bucket(IMItems.TERPINEOL_BUCKET),
+                            .block(IMBlocks.TERPENIC_OIL)
+                            .bucket(IMItems.TERPENIC_OIL_BUCKET),
                     waterLike()
-                            .descriptionId("fluid.immersive_metallurgy.terpineol"),
+                            .descriptionId("fluid.immersive_metallurgy.terpenic_oil"),
                     BaseFlowingFluid.Source::new,
                     BaseFlowingFluid.Flowing::new
             );
