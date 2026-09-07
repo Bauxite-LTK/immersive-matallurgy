@@ -1,25 +1,56 @@
+# 沉浸冶金学 (Immersive Metallurgy)
 
-Installation information
-=======
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+**沉浸冶金学** 是 Minecraft **[NeoForge]** 下基于 **沉浸工程 (Immersive Engineering)** 的附属模组，为游戏添加了一条完整的「选矿—冶金」工业化产线：多级研磨、泡沫浮选、浓缩压饼、生铁炼钢与连铸。
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-brightgreen) ![NeoForge](https://img.shields.io/badge/NeoForge-21.1-orange) ![License](https://img.shields.io/badge/License-MIT-blue)
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+### 高级矿物处理
+
+---
+```
+粗矿 → 矿石碎块 → 矿石粗粉 → 球磨机 → 粗矿浆 → 水力旋流器
+     → 细矿浆 → 浮选机 → 精矿泡沫 → 浓密机 → 精矿粉
+     → 工业挤压机 → 精矿粉饼
+```
+
+- **球磨机**
+- **水力旋流器**
+- **浮选机**
+- **浓密机**
+- **精矿粉饼**
+
+### 冶金与炼钢
+
+---
+- **冶金高炉**
+- **燃气热风炉**
+- **生铁炼钢**
+- **连铸机**
+
+
+### 其他
+
+---
+- 新增低压（512 RF/t）、中压（2048 RF/t）贴墙电缆，以及可当做可视化管道使用的浇铸道。
+
+更多内容详见沉浸工程手册-高级矿物处理章节
+
+### 环境要求
+
+---
+- Minecraft **1.21.1**
+- NeoForge **21.1.226+**
+- 沉浸工程(Immersive Engineering) **1.21.1-12.4.2-194**。
+
+### 语言支持
+
+---
+- English (en_us)
+- 简体中文 (zh_cn)
+
+
+[NeoForge]: https://neoforged.net/
+[沉浸工程 (Immersive Engineering)]: https://www.curseforge.com/minecraft/mc-mods/immersive-engineering
